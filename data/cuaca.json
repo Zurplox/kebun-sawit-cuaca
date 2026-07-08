@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-08T16:16+08:00",
+  "updated_at": "2026-07-08T19:59+08:00",
   "location": {
     "lat": 0.835,
     "lon": 101.976
@@ -949,15 +949,15 @@
     },
     {
       "date": "2026-07-23",
-      "precip": 0.4,
+      "precip": 0.0,
       "prob": 35,
-      "tmax": 34.1,
-      "tmin": 24.5,
+      "tmax": 34.3,
+      "tmin": 24.3,
       "wind": 7.3,
-      "code": 51,
+      "code": 3,
       "gust": 16.9,
       "wdir": 154,
-      "phours": 4.0,
+      "phours": 0.0,
       "kind": "forecast"
     }
   ]
