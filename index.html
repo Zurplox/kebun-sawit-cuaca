@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Cuaca &amp; Hujan Kebun</title>
+<style>
+  :root{
+    --text:#2C2C2B; --muted:#7D7A75; --canvas:#FFFFFF; --soft:#F9F8F7;
+    --surface:#F0EFED; --border:#E6E5E3;
+    --blue:#2783DE; --blue-soft:#E5F2FC;
+    --green:#46A171; --green-soft:#E8F1EC;
+    --orange:#D5803B; --orange-soft:#FBEBDE;
+    --red:#E56458; --red-soft:#FCE9E7;
+    --gold:#C99A2E; --gold-soft:#F7EFD6;
+    --pupuk:#46A171; --pruning:#7A5AD9; --tebas:#D5803B;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --text:#FFFFFF; --muted:rgba(255,255,255,.65); --canvas:#191919;
+      --soft:#202020; --surface:#242423; --border:rgba(255,255,255,.16);
+      --blue:#5E9FE8; --blue-soft:rgba(94,159,232,.14);
+      --green:#72BC8F; --green-soft:rgba(114,188,143,.14);
+      --orange:#DE9255; --orange-soft:rgba(222,146,85,.14);
+      --red:#E97366; --red-soft:rgba(233,115,102,.14);
+      --gold:#E5C466; --gold-soft:rgba(229,196,102,.16);
+      --pupuk:#72BC8F; --pruning:#A78BE6; --tebas:#DE9255;
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--canvas); color:var(--text);
+    font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px; margin:0 auto; padding:24px 20px 56px}
+  header.top{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:20px}
+  h1{font-size:24px; line-height:1.25; margin:0 0 4px}
+  .sub{color:var(--muted); font-size:14px; margin:0}
+  .updated{color:var(--muted); font-size:13px; text-align:right; white-space:nowrap}
+  .headline{display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin-bottom:20px}
+  .headline .emoji{font-size:22px; line-height:1.2}
+  .headline .txt{font-size:15px; font-weight:550}
+  .headline .txt small{display:block; font-weight:400; color:var(--muted); font-size:13px; margin-top:2px}
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:16px}
+  @media (max-width:640px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--soft); border:1px solid var(--border); border-radius:12px; padding:16px}
+  .card .k{font-size:13px; color:var(--muted); margin:0 0 6px; display:flex; align-items:center; gap:6px}
+  .card .v{font-size:26px; font-weight:650; margin:0; line-height:1.1}
+  .card .v small{font-size:14px; font-weight:500; color:var(--muted)}
+  .card .note{font-size:13px; margin:8px 0 0}
+  .badge{display:inline-block; font-size:12px; font-weight:600; padding:3px 8px; border-radius:6px}
+  .b-green{background:var(--green-soft); color:var(--green)}
+  .b-orange{background:var(--orange-soft); color:var(--orange)}
+  .b-red{background:var(--red-soft); color:var(--red)}
+  .b-blue{background:var(--blue-soft); color:var(--blue)}
+  .b-gold{background:var(--gold-soft); color:var(--gold)}
+  .insights{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px}
+  @media (max-width:760px){.insights{grid-template-columns:1fr}}
+  .ins{background:var(--soft); border:1px solid var(--border); border-radius:12px; padding:16px}
+  .ins.hi{border-color:var(--gold); background:var(--gold-soft)}
+  .ins .k{font-size:13px; color:var(--muted); margin:0 0 8px; display:flex; align-items:center; gap:6px}
+  .ins .big{font-size:20px; font-weight:650; margin:0 0 4px; line-height:1.15}
+  .ins .small{font-size:13px; color:var(--muted); margin:4px 0 0}
+  .gauge{height:8px; border-radius:4px; background:linear-gradient(90deg,var(--orange) 0%,var(--orange) 28%,var(--green) 30%,var(--green) 84%,var(--blue) 86%,var(--blue) 100%); position:relative; margin:12px 0 6px}
+  .gauge .pin{position:absolute; top:-4px; width:3px; height:16px; background:var(--text); border-radius:2px; transform:translateX(-50%)}
+  .gauge-labels{display:flex; justify-content:space-between; font-size:11px; color:var(--muted)}
+  section.panel{background:var(--soft); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:24px}
+  .panel h2{font-size:16px; margin:0 0 4px}
+  .panel .hint{font-size:13px; color:var(--muted); margin:0 0 16px}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin:14px 0 0; font-size:13px; color:var(--muted)}
+  .legend span{display:inline-flex; align-items:center; gap:6px}
+  .swatch{width:12px; height:12px; border-radius:3px; display:inline-block}
+  .swatch.line{width:2px; height:14px; border-radius:0}
+  .swatch.star{width:14px;height:14px;border-radius:0;background:none}
+  .chartbox{width:100%; overflow-x:auto}
+  svg{display:block; width:100%; height:auto}
+  .bar-actual{fill:var(--blue)}
+  .bar-forecast{fill:var(--blue); opacity:.38}
+  .grid-line{stroke:var(--border); stroke-width:1}
+  .axis-label{fill:var(--muted); font-size:11px}
+  .ev-line{stroke-width:2; stroke-dasharray:3 3}
+  .today-line{stroke:var(--muted); stroke-width:1.5; stroke-dasharray:2 3; opacity:.7}
+  ul.sched{list-style:none; margin:0; padding:0}
+  ul.sched li{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-top:1px solid var(--border)}
+  ul.sched li:first-child{border-top:none}
+  .dot{width:10px; height:10px; border-radius:50%; margin-top:6px; flex:0 0 auto}
+  .sched .lab{font-weight:600}
+  .sched .meta{font-size:13px; color:var(--muted)}
+  .sched .when{margin-left:auto; text-align:right; font-size:13px; white-space:nowrap}
+  .err{background:var(--red-soft); color:var(--red); border:1px solid var(--red); border-radius:12px; padding:16px; font-size:14px}
+  footer{color:var(--muted); font-size:12px; text-align:center; margin-top:32px}
+  .tgrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:8px; }
+  @media (max-width:640px){ .tgrid{ grid-template-columns:1fr; } }
+  .tcell{ display:flex; justify-content:space-between; gap:12px; background:var(--soft); border:1px solid var(--border); border-radius:10px; padding:10px 12px; }
+  .tk{ color:var(--muted); font-size:13px; }
+  .tv{ font-weight:600; font-size:14px; text-align:right; }
+  .hstrip{ display:flex; align-items:flex-end; gap:2px; height:56px; margin:14px 0 4px; overflow-x:auto; }
+  .hbarwrap{ flex:1 0 12px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; position:relative; }
+  .hbar{ width:8px; background:var(--blue); border-radius:2px; }
+  .hl{ font-size:9px; color:var(--muted); margin-top:2px; white-space:nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1 id="title">Cuaca &amp; Hujan Kebun</h1>
+      <p class="sub" id="subtitle">Memuat data…</p>
+    </div>
+    <div class="updated" id="updated"></div>
+  </header>
+
+  <div id="app"></div>
+
+  <footer>Data hujan: Open-Meteo (gratis). Diperbarui otomatis tiap hari oleh GitHub Actions. Saran bersifat panduan — tetap sesuaikan kondisi lapangan.</footer>
+</div>
+
+<script>
+const MONTHS = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+const DAYS = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+const EVCOLOR = {pupuk:'var(--pupuk)', pruning:'var(--pruning)', tebas:'var(--tebas)'};
+const EVLABEL = {pupuk:'Pupuk', pruning:'Pruning', tebas:'Tebas'};
+
+function parseDate(s){ const [y,m,d]=s.split('-').map(Number); return new Date(y, m-1, d); }
+function iso(dt){ return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
+function addDays(dt,n){ const x=new Date(dt); x.setDate(x.getDate()+n); return x; }
+function fmtShort(dt){ return dt.getDate()+' '+MONTHS[dt.getMonth()]; }
+function fmtFull(dt){ return dt.getDate()+' '+MONTHS[dt.getMonth()]+' '+dt.getFullYear(); }
+function fmtDow(dt){ return DAYS[dt.getDay()]+' '+dt.getDate()+' '+MONTHS[dt.getMonth()]; }
+function daysBetween(a,b){ return Math.round((b-a)/86400000); }
+function esc(s){ return String(s).replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+async function loadJSON(path){
+  const r = await fetch(path, {cache:'no-store'});
+  if(!r.ok) throw new Error(path+' '+r.status);
+  return r.json();
+}
+
+// ---------- Analisis cerdas ----------
+function computeInsights(days, cfg, today){
+  const heavy = cfg.heavy_rain_mm || 25;
+  const dry = cfg.dry_threshold_mm || 2;
+  const byDate = {}; days.forEach(d=>byDate[d.date]=d);
+  const P = ds => { const r=byDate[ds]; return (r && r.precip!=null)? r.precip : null; };
+  const sumRange = (from,to)=>{ let s=0; for(let i=from;i<=to;i++){ const v=P(iso(addDays(today,i))); if(v!=null) s+=v; } return s; };
+
+  // 1) Best fertilizing window (next 16 days)
+  let best=null;
+  for(let i=0;i<16;i++){
+    const cd = addDays(today,i); const ds=iso(cd); const pv=P(ds);
+    if(pv==null) continue;
+    let score=100; const why=[];
+    if(pv>=heavy){ score-=60; why.push('hujan lebat hari itu'); }
+    else if(pv>10){ score-=18; }
+    const prior = (P(iso(addDays(cd,-1)))||0)+(P(iso(addDays(cd,-2)))||0);
+    if(prior<2){ score-=15; why.push('tanah cenderung kering'); }
+    else if(prior>60){ score-=10; why.push('tanah sangat basah'); }
+    const next = (P(iso(addDays(cd,1)))||0)+(P(iso(addDays(cd,2)))||0);
+    if(next>40){ score-=40; why.push('hujan deras sesudahnya (risiko tercuci)'); }
+    else if(next<1){ score-=8; why.push('nyaris tanpa air pelarut'); }
+    else { score+=6; }
+    if(!best || score>best.score){ best={date:ds, dt:cd, score, why, precip:pv}; }
+  }
+
+  // 2) 30-day water balance (actual days)
+  const actuals = days.filter(d=>d.kind==='actual').slice(-30);
+  let wb=0,wbn=0; actuals.forEach(d=>{ if(d.precip!=null){wb+=d.precip;wbn++;} });
+
+  // 3) Dry-spell radar: longest dry run in forecast + when it starts
+  let bestRun=null, curStart=null, curLen=0;
+  for(let i=0;i<16;i++){
+    const cd=addDays(today,i); const pv=P(iso(cd));
+    if(pv!=null && pv<dry){ if(curLen===0) curStart=cd; curLen++; if(!bestRun||curLen>bestRun.len) bestRun={start:new Date(curStart),len:curLen}; }
+    else { curLen=0; curStart=null; }
+  }
+  // consecutive dry starting today/tomorrow
+  let upcomingDry=0; for(let i=0;i<16;i++){ const pv=P(iso(addDays(today,i))); if(pv!=null&&pv<dry) upcomingDry++; else break; }
+
+  return {best, waterBalance:{sum:wb,n:wbn}, drySpell:{longest:bestRun, upcoming:upcomingDry}};
+}
+
+function render(cfg, jadwal, cuaca){
+  const days = cuaca.days || [];
+  const heavy = cfg.heavy_rain_mm || 25;
+  const dry = cfg.dry_threshold_mm || 2;
+  document.getElementById('title').textContent = (cuaca.farm_name || cfg.farm_name || 'Kebun') + ' — Cuaca & Hujan';
+  const loc = cuaca.location || {lat:cfg.lat, lon:cfg.lon};
+  document.getElementById('subtitle').textContent = 'Lokasi '+Number(loc.lat).toFixed(4)+', '+Number(loc.lon).toFixed(4);
+  if(cuaca.updated_at){ document.getElementById('updated').textContent = 'Diperbarui '+cuaca.updated_at.replace('T',' '); }
+
+  const byDate = {}; days.forEach(d=>byDate[d.date]=d);
+  const firstForecast = days.find(d=>d.kind==='forecast');
+  const today = firstForecast ? parseDate(firstForecast.date) : (days.length? parseDate(days[days.length-1].date): new Date());
+  const todayStr = firstForecast ? firstForecast.date : (days.length? days[days.length-1].date : '');
+
+  const ins = computeInsights(days, cfg, today);
+
+  // ---- Summary values ----
+  const todayRow = byDate[todayStr];
+  const rainToday = todayRow && todayRow.precip!=null ? todayRow.precip : null;
+  let sum7=0,c7=0;
+  days.filter(d=>d.kind==='actual').slice(-7).forEach(d=>{ if(d.precip!=null){sum7+=d.precip;c7++;} });
+
+  const events = (jadwal.events||[]).map(e=>({...e, dt:parseDate(e.date)})).sort((a,b)=>a.dt-b.dt);
+  function nextOf(type){ return events.find(e=>e.type===type && daysBetween(today,e.dt)>=0); }
+  const nextPupuk = nextOf('pupuk');
+
+  function advice(dateStr){
+    const row = byDate[dateStr];
+    if(!row || row.precip==null) return {cls:'b-blue', txt:'Prakiraan belum tersedia'};
+    const p = row.precip;
+    if(p>=heavy) return {cls:'b-red', txt:'Hujan lebat ('+p+' mm) — risiko hara tercuci'};
+    if(p<dry) return {cls:'b-orange', txt:'Cenderung kering ('+p+' mm) — hara lambat larut'};
+    return {cls:'b-green', txt:'Kondisi baik ('+p+' mm)'};
+  }
+
+  // ---- Smart headline ----
+  const soon = (P0=>{ let s=0; for(let i=0;i<3;i++){const r=byDate[iso(addDays(today,i))]; if(r&&r.precip!=null)s+=r.precip;} return s; })();
+  let hEmoji='🌤️', hTxt='Cuaca campur beberapa hari ke depan.', hSub='Cek grafik untuk atur pekerjaan kebun.';
+  if(soon>=heavy*1.5){ hEmoji='⛈️'; hTxt='Hujan deras 3 hari ke depan.'; hSub='Tunda pemupukan; akses panen bisa becek.'; }
+  else if(ins.drySpell.upcoming>=3){ hEmoji='☀️'; hTxt=ins.drySpell.upcoming+' hari kering berturut-turut ke depan.'; hSub='Bagus untuk tebas, semprot, dan akses panen.'; }
+  else if(ins.best && ins.best.score>=70){ hEmoji='🌱'; hTxt='Ada jendela bagus untuk memupuk: '+fmtDow(ins.best.dt)+'.'; hSub='Tanah lembap, tanpa hujan deras sesudahnya.'; }
+
+  let pupukCard = '<p class="v">—</p>';
+  if(nextPupuk){
+    const sisa = daysBetween(today, nextPupuk.dt);
+    const adv = advice(nextPupuk.date);
+    pupukCard = '<p class="v">'+sisa+' <small>hari lagi</small></p>'+
+      '<p class="note">'+esc(nextPupuk.label)+' · '+fmtFull(nextPupuk.dt)+'</p>'+
+      '<p class="note"><span class="badge '+adv.cls+'">'+adv.txt+'</span></p>';
+  }
+
+  const cards =
+    '<div class="cards">'+
+      '<div class="card"><p class="k">☔ Hujan hari ini</p><p class="v">'+
+        (rainToday!=null? rainToday+' <small>mm</small>':'—')+'</p>'+
+        (todayRow&&todayRow.prob!=null?'<p class="note">Kemungkinan '+todayRow.prob+'%</p>':'')+'</div>'+
+      '<div class="card"><p class="k">💧 Total 7 hari terakhir</p><p class="v">'+
+        (c7? sum7.toFixed(1)+' <small>mm</small>':'—')+'</p>'+
+        '<p class="note">Rata-rata '+(c7?(sum7/c7).toFixed(1):'0')+' mm/hari</p></div>'+
+      '<div class="card"><p class="k">🌱 Pupuk berikutnya</p>'+pupukCard+'</div>'+
+    '</div>';
+
+  // ---- Cuaca hari ini (rinci) ----
+  const td = cuaca.today || null;
+  let todayPanel = '';
+  if(td){
+    const rows = [];
+    if(td.condition) rows.push(['Kondisi', (td.emoji||'')+' '+esc(td.condition)+(td.cloud!=null?' · awan '+td.cloud+'%':'')]);
+    if(td.tmin!=null&&td.tmax!=null) rows.push(['Suhu', Math.round(td.tmin)+'–'+Math.round(td.tmax)+' °C']);
+    if(td.humidity!=null) rows.push(['Kelembapan', td.humidity+' %']);
+    if(td.wind!=null) rows.push(['Angin', Math.round(td.wind)+' km/j'+(td.gust!=null?' (hembus '+Math.round(td.gust)+')':'')+(td.wind_dir?' dari '+esc(td.wind_dir):'')]);
+    if(td.sunrise&&td.sunset) rows.push(['Matahari', 'terbit '+td.sunrise+' · terbenam '+td.sunset]);
+    const rw = td.rain_windows||[];
+    const rainTxt = rw.length ? (rw.join(', ')+' WIB'+(td.precip_hours!=null?' (±'+Math.round(td.precip_hours)+' jam)':'')) : 'Cenderung tanpa hujan berarti';
+    rows.push(['Perkiraan jam hujan', esc(rainTxt)]);
+    let cells='';
+    rows.forEach(function(r){ cells += '<div class="tcell"><span class="tk">'+r[0]+'</span><span class="tv">'+r[1]+'</span></div>'; });
+    let strip='';
+    if(Array.isArray(td.hourly)&&td.hourly.length){
+      let maxp=1; td.hourly.forEach(function(h){ if((h.p||0)>maxp) maxp=h.p; });
+      td.hourly.forEach(function(h){
+        const ht=Math.max(2, Math.round(((h.p||0)/maxp)*40));
+        const hr=parseInt(h.t,10);
+        const lab=(hr%6===0)?('<span class="hl">'+h.t+'</span>'):'';
+        strip += '<div class="hbarwrap" title="'+h.t+' — '+(h.p||0)+' mm, kmk '+(h.prob!=null?h.prob:'-')+'%, lembap '+(h.rh!=null?h.rh:'-')+'%"><div class="hbar" style="height:'+ht+'px"></div>'+lab+'</div>';
+      });
+    }
+    const stripHTML = strip ? ('<div class="hstrip">'+strip+'</div><p class="hint">Tinggi batang = perkiraan hujan tiap jam (waktu setempat / WIB). Arahkan kursor untuk detail.</p>') : '';
+    todayPanel = '<section class="panel"><h2>Cuaca hari ini — rinci</h2>'+
+      '<p class="hint">Prakiraan per jam untuk titik koordinat kebun (Open-Meteo, model terbaik untuk lokasi).</p>'+
+      '<div class="tgrid">'+cells+'</div>'+stripHTML+'</section>';
+  }
+
+  // ---- Insight panel ----
+  // best window card
+  let bestHTML;
+  if(ins.best){
+    const cls = ins.best.score>=70?'b-green':(ins.best.score>=55?'b-gold':'b-orange');
+    const verdict = ins.best.score>=70?'Ideal':(ins.best.score>=55?'Cukup baik':'Kurang ideal');
+    bestHTML = '<p class="big">'+fmtDow(ins.best.dt)+'</p>'+
+      '<p class="small"><span class="badge '+cls+'">'+verdict+' · skor '+Math.min(100,ins.best.score)+'/100</span></p>'+
+      '<p class="small">'+(ins.best.why.length? esc(ins.best.why.slice(0,2).join(', ')) : 'tanah lembap, tanpa hujan deras sesudahnya')+'</p>';
+  } else {
+    bestHTML = '<p class="big">—</p><p class="small">Prakiraan belum cukup.</p>';
+  }
+  // water balance
+  const wb = ins.waterBalance.sum;
+  let wbCls='b-green', wbTxt='Cukup';
+  if(wb<100){ wbCls='b-orange'; wbTxt='Kurang air'; }
+  else if(wb>300){ wbCls='b-blue'; wbTxt='Berlebih'; }
+  const pinPct = Math.max(2, Math.min(98, (wb/350)*100));
+  const wbHTML = '<p class="big">'+wb.toFixed(0)+' <span style="font-size:14px;font-weight:500;color:var(--muted)">mm / 30 hari</span></p>'+
+    '<p class="small"><span class="badge '+wbCls+'">'+wbTxt+'</span></p>'+
+    '<div class="gauge"><span class="pin" style="left:'+pinPct.toFixed(0)+'%"></span></div>'+
+    '<div class="gauge-labels"><span>0</span><span>ideal 100–300</span><span>350+</span></div>';
+  // dry spell
+  let dryHTML;
+  if(ins.drySpell.longest){
+    const s=ins.drySpell.longest;
+    dryHTML = '<p class="big">'+s.len+' hari kering</p>'+
+      '<p class="small">Mulai '+fmtDow(s.start)+'</p>'+
+      '<p class="small">Jendela terkering — pas untuk tebas / semprot / panen.</p>';
+  } else {
+    dryHTML = '<p class="big">Sering hujan</p><p class="small">Tak ada rentang kering panjang dalam 16 hari.</p>';
+  }
+
+  const insightsHTML =
+    '<div class="insights">'+
+      '<div class="ins hi"><p class="k">🎯 Jendela pemupukan terbaik</p>'+bestHTML+'</div>'+
+      '<div class="ins"><p class="k">💧 Neraca air 30 hari</p>'+wbHTML+'</div>'+
+      '<div class="ins"><p class="k">☀️ Radar hari kering</p>'+dryHTML+'</div>'+
+    '</div>';
+
+  const chart = buildChart(days, events, todayStr, ins.best?ins.best.date:null);
+
+  const upcoming = events.filter(e=>daysBetween(today,e.dt)>=0).slice(0,6);
+  let listHTML = '<ul class="sched">';
+  upcoming.forEach(e=>{
+    const sisa = daysBetween(today, e.dt);
+    const adv = e.type==='pupuk'? advice(e.date) : null;
+    listHTML += '<li><span class="dot" style="background:'+EVCOLOR[e.type]+'"></span>'+
+      '<div><div class="lab">'+EVLABEL[e.type]+' · '+esc(e.label)+'</div>'+
+      (adv?'<div class="meta"><span class="badge '+adv.cls+'">'+adv.txt+'</span></div>':'')+'</div>'+
+      '<div class="when">'+fmtFull(e.dt)+'<br>'+(sisa===0?'hari ini':sisa+' hari lagi')+'</div></li>';
+  });
+  listHTML += '</ul>';
+  if(upcoming.length===0) listHTML='<p class="hint">Belum ada kegiatan mendatang di jadwal.json</p>';
+
+  document.getElementById('app').innerHTML =
+    '<div class="headline"><div class="emoji">'+hEmoji+'</div><div class="txt">'+esc(hTxt)+'<small>'+esc(hSub)+'</small></div></div>'+
+    cards + todayPanel + insightsHTML +
+    '<section class="panel"><h2>Curah hujan harian</h2>'+
+    '<p class="hint">Batang solid = aktual, batang pudar = prakiraan. Garis putus berwarna = jadwal kebun. ⭐ = hari terbaik untuk memupuk.</p>'+
+    '<div class="chartbox">'+chart+'</div>'+
+    '<div class="legend">'+
+      '<span><i class="swatch" style="background:var(--blue)"></i>Hujan aktual (mm)</span>'+
+      '<span><i class="swatch" style="background:var(--blue);opacity:.38"></i>Prakiraan</span>'+
+      '<span><i class="swatch star">⭐</i>Hari pupuk terbaik</span>'+
+      '<span><i class="swatch line" style="background:var(--pupuk)"></i>Pupuk</span>'+
+      '<span><i class="swatch line" style="background:var(--pruning)"></i>Pruning</span>'+
+      '<span><i class="swatch line" style="background:var(--tebas)"></i>Tebas</span>'+
+    '</div></section>'+
+    '<section class="panel"><h2>Kegiatan mendatang</h2>'+
+    '<p class="hint">Diambil dari jadwal.json — pupuk dinilai terhadap prakiraan hujan.</p>'+listHTML+'</section>';
+}
+
+function buildChart(days, events, todayStr, bestDate){
+  const W=940, H=300, padL=40, padR=16, padT=22, padB=48;
+  const n = days.length;
+  if(n===0) return '<p class="hint">Tidak ada data.</p>';
+  const plotW = W-padL-padR, plotH = H-padT-padB;
+  const maxP = Math.max(10, ...days.map(d=>d.precip||0));
+  const yMax = Math.ceil(maxP/10)*10;
+  const bw = plotW/n;
+  const x = i => padL + i*bw;
+  const y = v => padT + plotH - (v/yMax)*plotH;
+
+  let svg = '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Grafik curah hujan harian">';
+  const steps=4;
+  for(let s=0;s<=steps;s++){
+    const val = yMax*s/steps; const yy = y(val);
+    svg += '<line class="grid-line" x1="'+padL+'" y1="'+yy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+yy.toFixed(1)+'"/>';
+    svg += '<text class="axis-label" x="'+(padL-6)+'" y="'+(yy+3).toFixed(1)+'" text-anchor="end">'+val+'</text>';
+  }
+  const idxByDate={}; days.forEach((d,i)=>idxByDate[d.date]=i);
+  days.forEach((d,i)=>{
+    const p = d.precip||0;
+    const bx = x(i)+bw*0.15, bwid = bw*0.7;
+    const by = y(p), bh = padT+plotH-by;
+    if(bh>0.3){
+      svg += '<rect class="'+(d.kind==='actual'?'bar-actual':'bar-forecast')+'" x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+bwid.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="1.5"><title>'+d.date+': '+p+' mm</title></rect>';
+    }
+  });
+  const stepX = Math.max(1, Math.round(n/8));
+  days.forEach((d,i)=>{
+    if(i%stepX===0){
+      const dt=parseDate(d.date);
+      svg += '<text class="axis-label" x="'+(x(i)+bw/2).toFixed(1)+'" y="'+(H-padB+16)+'" text-anchor="middle">'+fmtShort(dt)+'</text>';
+    }
+  });
+  if(idxByDate[todayStr]!=null){
+    const tx = x(idxByDate[todayStr]);
+    svg += '<line class="today-line" x1="'+tx.toFixed(1)+'" y1="'+padT+'" x2="'+tx.toFixed(1)+'" y2="'+(padT+plotH)+'"/>';
+    svg += '<text class="axis-label" x="'+(tx+3).toFixed(1)+'" y="'+(padT+9)+'">hari ini</text>';
+  }
+  const first=parseDate(days[0].date), last=parseDate(days[n-1].date);
+  events.forEach(e=>{
+    if(e.dt<first || e.dt>last) return;
+    const i = idxByDate[e.date]; if(i==null) return;
+    const ex = x(i)+bw/2;
+    svg += '<line class="ev-line" stroke="'+EVCOLOR[e.type]+'" x1="'+ex.toFixed(1)+'" y1="'+padT+'" x2="'+ex.toFixed(1)+'" y2="'+(padT+plotH)+'"/>';
+    svg += '<circle cx="'+ex.toFixed(1)+'" cy="'+padT+'" r="3" fill="'+EVCOLOR[e.type]+'"/>';
+  });
+  // best fertilizing day star
+  if(bestDate!=null && idxByDate[bestDate]!=null){
+    const bi=idxByDate[bestDate]; const bxc=x(bi)+bw/2;
+    svg += '<text x="'+bxc.toFixed(1)+'" y="'+(padT-6)+'" text-anchor="middle" font-size="15">⭐</text>';
+  }
+  svg += '</svg>';
+  return svg;
+}
+
+(async function(){
+  try{
+    const [cfg, jadwal, cuaca] = await Promise.all([
+      loadJSON('config.json'), loadJSON('jadwal.json'), loadJSON('data/cuaca.json')
+    ]);
+    render(cfg, jadwal, cuaca);
+  }catch(err){
+    document.getElementById('subtitle').textContent='';
+    document.getElementById('app').innerHTML='<div class="err">Gagal memuat data: '+esc(err.message)+
+      '. Pastikan config.json, jadwal.json, dan data/cuaca.json ada, dan buka halaman lewat http/https (bukan file://).</div>';
+  }
+})();
+</script>
+</body>
+</html>

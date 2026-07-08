@@ -1,0 +1,16 @@
+{
+  "_catatan": "Edit file ini kapan saja. type: pupuk | pruning | tebas. Tanggal format YYYY-MM-DD. Untuk pupuk, tanggal bulanan dipakai tanggal 1 (approx=true) — ganti ke tanggal asli bila sudah tahu.",
+  "events": [
+    { "date": "2026-07-01", "type": "pupuk",   "label": "Dolomit 2 HA \u00b7 NPK 5 HA", "approx": true },
+    { "date": "2026-08-01", "type": "pupuk",   "label": "Dolomit (1.5/16/2/4/5 HA)", "approx": true },
+    { "date": "2026-09-01", "type": "pupuk",   "label": "NPK Biasa (1.5/16/4 HA)", "approx": true },
+    { "date": "2026-10-01", "type": "pupuk",   "label": "NPK 12-12-17 (5 HA)", "approx": true },
+    { "date": "2027-01-01", "type": "pupuk",   "label": "NPK 12-12-17 (2 & 5 HA)", "approx": true },
+
+    { "date": "2026-08-01", "type": "pruning", "label": "Pruning 16 HA & 4 HA" },
+    { "date": "2026-09-01", "type": "pruning", "label": "Pruning 1.5 HA" },
+
+    { "date": "2026-08-01", "type": "tebas",   "label": "Tebas 16 HA & 4 HA" },
+    { "date": "2026-11-01", "type": "tebas",   "label": "Tebas 1.5 HA" }
+  ]
+}

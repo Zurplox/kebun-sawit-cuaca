@@ -1,0 +1,18 @@
+{
+  "farm_name": "Kebun Kelapa Sawit (Harvin)",
+  "lat": 0.835,
+  "lon": 101.976,
+  "utc_offset_hours": 8,
+  "past_days": 40,
+  "forecast_days": 16,
+  "heavy_rain_mm": 25,
+  "dry_threshold_mm": 2,
+  "dashboard_url": "https://zurplox.github.io/kebun-sawit-cuaca/",
+  "citra_dashboard_url": "https://zurplox.github.io/kebun-sawit/",
+  "harvin_owner": "Zurplox",
+  "harvin_repo": "kebun-sawit",
+  "harvin_branch": "main",
+  "harvin_pages_url": "https://zurplox.github.io/kebun-sawit",
+  "truecolor_name": "1_warna_asli_terbaru.png",
+  "ndvi_name": "2_ndvi_terbaru.png"
+}
