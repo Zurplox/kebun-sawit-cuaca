@@ -334,19 +334,32 @@ def wa_send(text):
     snippet = re.sub(r"<[^>]+>", " ", body)
     snippet = re.sub(r"\s+", " ", snippet).strip()[:300]
     low = snippet.lower()
-    ok_markers = ("queued", "message sent", "sent to", "will receive", "waiting to be delivered")
-    err_markers = ("apikey", "api key", "not valid", "invalid", "not registered",
-                   "not allowed", "too fast", "too many", "wait until", "limit",
-                   "expired", "activate", "error")
+    # Penanda SUKSES khas CallMeBot (pesan diterima / diantrikan).
+    ok_markers = ("queued", "message sent", "sent to", "will receive",
+                  "waiting to be delivered", "message to")
+    # HANYA error yang berarti pesan BENAR-BENAR tidak terkirim (auth/konfigurasi).
+    # Catatan: kata "error" polos / "limit" / "too fast" SENGAJA tidak dipakai
+    # sebagai penanda gagal, karena sering muncul di teks bantuan pada respons
+    # yang sebenarnya SUKSES -> dulu ini bikin alarm "GAGAL" palsu walau WA
+    # sudah terkirim (bug yang sedang diperbaiki).
+    hard_err_markers = ("apikey not", "api key not", "not valid", "invalid apikey",
+                        "invalid api key", "not registered", "not allowed",
+                        "need to activate", "activate the api", "expired",
+                        "unauthorized", "forbidden")
     is_ok = any(m in low for m in ok_markers)
-    is_err = any(m in low for m in err_markers)
+    is_hard_err = any(m in low for m in hard_err_markers)
     print("WA:", status, "| resp:", snippet if snippet else "(kosong)")
-    if is_ok and not is_err:
-        return True
-    if is_err:
-        print("WA DITOLAK CallMeBot (kemungkinan rate-limit / apikey / aktivasi).")
+    if is_hard_err:
+        print("WA DITOLAK CallMeBot (apikey/aktivasi/izin bermasalah).")
         return False
-    print("WA: respons tidak dikenal, dianggap GAGAL agar aman.")
+    if is_ok:
+        return True
+    # CallMeBot membalas HTTP 200 untuk pesan yang diterima/diantrikan. Selama
+    # bukan hard-error, anggap TERKIRIM supaya tidak ada alarm "GAGAL" palsu.
+    if status == 200:
+        print("WA: 200 tanpa penanda baku -> dianggap terkirim.")
+        return True
+    print("WA: status non-200 / respons tak dikenal -> dianggap GAGAL.")
     return False
 
 
