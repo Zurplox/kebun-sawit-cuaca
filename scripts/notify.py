@@ -182,19 +182,108 @@ def when_label(dd):
     return "hari ini" if dd == 0 else ("besok" if dd == 1 else str(dd) + " hari lagi")
 
 
+# ---------- Blok LINGKUNGAN (karhutla / udara / pasang / banjir) ----------
+def neraca_sinergi(env, ins):
+    """Klausa singkat: kaitkan banjir/pasang dengan neraca air. Ditaruh TEPAT di
+    bawah baris "Neraca air 30 hari" sehingga tidak mengulang angka/vonisnya."""
+    if not env or not ins:
+        return []
+    wb = ins.get("water_balance")
+    if wb is None:
+        return []
+    verd = water_verdict(wb)
+    flood = env.get("flood") or {}
+    trend = flood.get("trend")
+    disch = flood.get("river_discharge")
+    tide = env.get("tide") or {}
+    high = (tide.get("high") or {}).get("h")
+    ctx = []
+    if disch is not None:
+        ctx.append("sungai " + (str(trend) if trend else "stabil"))
+    if high is not None:
+        ctx.append("pasang " + str(high) + " m")
+    ctxtxt = (" (" + ", ".join(ctx) + ")") if ctx else ""
+    if verd == "berlebih":
+        act = "air menumpuk" + ctxtxt + " → utamakan drainase, tunda pemupukan (hara tercuci), waspada genangan."
+    elif verd == "kurang":
+        act = "cadangan air menipis" + ctxtxt + " → tahan buka parit, tunda pemupukan sampai tanah lembap."
+    else:
+        act = "banjir & pasang belum mengancam" + ctxtxt + "; pantau bila debit sungai naik."
+    return ["↳ " + act]
+
+
+def env_lines(env, ins=None):
+    """Ringkasan lingkungan untuk DITARUH DI ATAS blok Jadwal kegiatan."""
+    if not env:
+        return []
+    L = ["─" * 12, "🌏 *LINGKUNGAN SEKITAR:*"]
+    fire = env.get("fire") or {}
+    st = fire.get("status")
+    near = fire.get("nearest")
+    wr = (fire.get("weather_risk") or {}).get("level")
+    if st == "tidak tersedia":
+        L.append("🔥 Karhutla: data belum aktif (atur FIRMS_MAP_KEY)")
+    elif st == "aman" and not near:
+        L.append("🔥 Karhutla: *AMAN* — tak ada titik api terdeteksi di sekitar")
+    elif near:
+        icon = "🚨" if st == "bahaya" else ("⚠️" if st == "waspada" else "🔥")
+        loc = (", " + near["place"]) if near.get("place") else ""
+        L.append(icon + " Karhutla: *" + str(st).upper() + "* — titik api terdekat *"
+                 + str(near["km"]) + " km* (" + str(near["dir"]) + loc + ")")
+        tail = str(fire.get("count_within", 0)) + " titik ≤" + str(fire.get("warn_km", 50)) + " km"
+        if near.get("acq"):
+            tail += " · deteksi " + str(near["acq"])
+        L.append("   " + tail)
+    if wr:
+        L.append("   Risiko cuaca kebakaran: " + wr)
+    air = env.get("air") or {}
+    if air.get("us_aqi") is not None:
+        line = "😷 Udara: *" + str(air.get("category")) + "* · AQI " + str(air["us_aqi"])
+        if air.get("pm2_5") is not None:
+            line += " · PM2.5 " + str(round(air["pm2_5"])) + " µg/m³"
+        L.append(line)
+    tide = env.get("tide")
+    if tide:
+        L.append("🌊 Air pasang (" + str(tide["point_name"]) + " ~" + str(tide["km"])
+                 + " km " + str(tide["dir"]) + "):")
+        L.append("   pasang tertinggi *" + str(tide["high"]["h"]) + " m* pukul " + str(tide["high"]["time"])
+                 + " · surut terendah *" + str(tide["low"]["h"]) + " m* pukul " + str(tide["low"]["time"]) + " WIB")
+    flood = env.get("flood")
+    if flood and flood.get("river_discharge") is not None:
+        line = "💧 Debit sungai (banjir): " + str(flood["river_discharge"]) + " m³/s (" + str(flood.get("trend", "-")) + ")"
+        L.append(line)
+    L.append("─" * 12)
+    L.append("")
+    return L
+
+
 # ---------- PESAN 1: HEADLINE ----------
 def build_headline(cfg, jadwal, cuaca, today, harv):
+    """Ringkasan singkat (1-2 kalimat) + pengingat mendesak. Detail ada di pesan bawah."""
     days = cuaca.get("days", [])
     by = {d["date"]: d for d in days}
     ins = compute_insights(days, cfg, today)
     L = []
-    L.append("🌴 *" + cfg.get("farm_name", "Kebun") + "*")
-    L.append(HARI[today.weekday()] + ", " + f"{today.day:02d} {BULAN[today.month]} {today.year}")
-    L.append("")
-    L.append(headline(ins, cfg))
+    L.append("🌴 *" + cfg.get("farm_name", "Kebun") + "* — "
+             + HARI[today.weekday()] + ", " + f"{today.day:02d} {BULAN[today.month]} {today.year}")
     L.append("")
 
-    # PENGINGAT H-7: semua kegiatan (pupuk/pruning/tebas) dalam 0-7 hari
+    # Kalimat inti: vonis cuaca + kondisi hari ini (ringkas, tanpa daftar).
+    lead = headline(ins, cfg)
+    t = by.get(today.isoformat())
+    td = cuaca.get("today") or {}
+    cond = (td.get("condition") or "").strip().lower()
+    clause = ""
+    if cond:
+        clause = " Hari ini " + cond
+        precip = t.get("precip") if t else None
+        if precip is not None:
+            clause += " (" + str(precip) + " mm)"
+        clause += "."
+    L.append(lead + clause)
+    L.append("")
+
+    # PENGINGAT H-7: hanya kegiatan mendesak (0-7 hari) — nilai tinggi, tampil sekali di sini.
     soon = soon_events(jadwal, today, 7)
     if soon:
         L.append("⏰ *PENGINGAT 7 HARI:*")
@@ -202,39 +291,12 @@ def build_headline(cfg, jadwal, cuaca, today, harv):
             L.append("   " + JENIS.get(e["type"], "•") + " " + e["label"] + " — *" + when_label(dd) + "* (" + fmt(e["date"]) + ")")
         L.append("")
 
-    t = by.get(today.isoformat())
-    if t and t.get("precip") is not None:
-        pr = (" (kmk " + str(t["prob"]) + "%)") if t.get("prob") is not None else ""
-        L.append("☔ Hujan hari ini: *" + str(t["precip"]) + " mm*" + pr)
-    for line in today_summary_lines(cuaca.get("today") or {}):
-        L.append(line)
-    if ins["best"]:
-        b = ins["best"]
-        verdict = "ideal" if b["score"] >= 70 else ("cukup baik" if b["score"] >= 55 else "kurang ideal")
-        L.append("🎯 Pupuk terbaik: *" + fmt_dow(b["date"]) + "* (" + verdict + ")")
-    if ins["dry_longest"]:
-        s = ins["dry_longest"]
-        L.append("☀️ Kering terpanjang: *" + str(s["len"]) + " hari* dari " + fmt_dow(s["start"]))
-    if harv and harv.get("sat"):
-        L.append("🛰️ Citra satelit: *" + sat_label(harv) + "* (foto menyusul)")
-
-    # Info pupuk terjadwal berikutnya (hanya bila >7 hari; kalau ≤7 hari sudah ada di PENGINGAT)
-    pupuk = next_event(jadwal, "pupuk", today)
-    if pupuk:
-        d = datetime.strptime(pupuk["date"], "%Y-%m-%d").date()
-        if (d - today).days > 7:
-            L.append("🌱 Pupuk terjadwal: *" + str((d - today).days) + " hari lagi*")
-
-    url = (cfg.get("dashboard_url") or "").strip()
-    L.append("")
-    if url:
-        L.append("📊 Dashboard: " + url)
-    L.append("📩 Detail + foto menyusul ⬇️")
+    L.append("📩 Rincian cuaca, lingkungan & jadwal di bawah ⬇️")
     return "\n".join(L)
 
 
 # ---------- PESAN 2: DETAIL (dipecah 2 bagian agar tidak terpotong) ----------
-def build_detail(cfg, jadwal, cuaca, today, harv):
+def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
     days = cuaca.get("days", [])
     by = {d["date"]: d for d in days}
     heavy = cfg.get("heavy_rain_mm", 25)
@@ -255,6 +317,8 @@ def build_detail(cfg, jadwal, cuaca, today, harv):
     for line in today_detail_lines(td):
         A.append(line)
     A.append("💧 Neraca air 30 hari: *" + f"{ins['water_balance']:.0f} mm* (" + water_verdict(ins["water_balance"]) + ")")
+    for _n in neraca_sinergi(env, ins):
+        A.append("   " + _n)
     A.append("")
     A.append("📅 *Prakiraan 3 hari:*")
     for i in range(1, 4):
@@ -314,7 +378,12 @@ def build_detail(cfg, jadwal, cuaca, today, harv):
     if curl:
         B.append("🛰️ Dashboard citra: " + curl)
 
-    return ["\n".join(A), "\n".join(B)]
+    parts = ["\n".join(A)]
+    env_msg = "\n".join(env_lines(env, ins)).strip()
+    if env_msg:
+        parts.append(env_msg)
+    parts.append("\n".join(B))
+    return parts
 
 
 # ---------- CallMeBot WhatsApp (teks + tautan pratinjau) ----------
@@ -446,8 +515,12 @@ def main():
         return
 
     harv = harvin_latest(cfg)
+    try:
+        env = load_json(os.path.join("data", "lingkungan.json"))
+    except Exception:
+        env = None
     msg1 = build_headline(cfg, jadwal, cuaca, today, harv)
-    parts = build_detail(cfg, jadwal, cuaca, today, harv)
+    parts = build_detail(cfg, jadwal, cuaca, today, harv, env)
     cu = chart_url(cfg)
 
     print("===== PESAN 1 (HEADLINE) =====\n" + msg1)

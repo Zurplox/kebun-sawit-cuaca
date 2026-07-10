@@ -117,3 +117,17 @@ Dashboard & pesan menandai kondisi ini otomatis (hijau = baik, oranye = kering, 
 - **Retry API:** `fetch_weather.py` mencoba 3x kalau Open-Meteo sedang gangguan.
 - **Riwayat 1 tahun:** data hujan disimpan maksimal 365 hari (`MAX_HISTORY_DAYS`).
 - **Run manual selalu kirim:** menjalankan lewat tombol Run workflow memakai FORCE_SEND=true (abaikan anti-dobel) untuk tes.
+
+### Kaitan dengan neraca air
+
+Info **banjir (debit sungai)** dan **air pasang** tidak berdiri sendiri — keduanya
+dihubungkan dengan **neraca air 30 hari** (curah hujan) supaya saling melengkapi:
+
+- **Neraca air berlebih + sungai naik / pasang tinggi** → air menumpuk: utamakan
+  drainase, tunda pemupukan (hara mudah tercuci), waspada genangan.
+- **Neraca air kurang + sungai surut** → cadangan air menipis: tahan buka parit,
+  tunda pemupukan sampai tanah lembap.
+- **Neraca air cukup** → banjir & pasang belum mengancam, kondisi seimbang.
+
+Baris "🔗 Kaitan neraca air" ini muncul di pesan WhatsApp (blok Lingkungan,
+tepat di atas Jadwal kegiatan) dan sebagai kartu di dashboard.

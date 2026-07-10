@@ -181,7 +181,38 @@ function computeInsights(days, cfg, today){
   return {best, waterBalance:{sum:wb,n:wbn}, drySpell:{longest:bestRun, upcoming:upcomingDry}};
 }
 
-function render(cfg, jadwal, cuaca){
+function envSection(env){
+  if(!env) return '';
+  var cells='';
+  var fire=env.fire||{};
+  var fcls='b-green', ftxt='Aman', fsub='Tak ada titik api terdeteksi di sekitar kebun.';
+  if(fire.status==='tidak tersedia'){ fcls='b-blue'; ftxt='Belum aktif'; fsub='Atur secret FIRMS_MAP_KEY untuk mengaktifkan data titik api.'; }
+  else if(fire.status==='waspada'){ fcls='b-orange'; ftxt='Waspada'; }
+  else if(fire.status==='bahaya'){ fcls='b-red'; ftxt='Bahaya'; }
+  var n=fire.nearest;
+  if(n){ fsub='Titik api terdekat <b>'+n.km+' km</b> ('+esc(n.dir)+(n.place?', '+esc(n.place):'')+')'+(fire.count_within?' · '+fire.count_within+' titik ≤'+fire.warn_km+' km':'')+(n.acq?'<br>Deteksi '+esc(n.acq):''); }
+  var wr=(fire.weather_risk||{}).level;
+  if(wr) fsub+='<br>Risiko cuaca kebakaran: '+esc(wr);
+  cells += '<div class="ins"><p class="k">🔥 Karhutla</p><p class="big"><span class="badge '+fcls+'">'+ftxt+'</span></p><p class="small">'+fsub+'</p></div>';
+  var air=env.air;
+  if(air && air.us_aqi!=null){
+    var acls = air.color==='green'?'b-green':(air.color==='gold'?'b-gold':(air.color==='orange'?'b-orange':'b-red'));
+    cells += '<div class="ins"><p class="k">😷 Kualitas udara</p><p class="big">AQI '+air.us_aqi+'</p><p class="small"><span class="badge '+acls+'">'+esc(air.category)+'</span>'+(air.pm2_5!=null?' · PM2.5 '+Math.round(air.pm2_5)+' µg/m³':'')+'</p></div>';
+  }
+  var t=env.tide;
+  if(t){
+    cells += '<div class="ins"><p class="k">🌊 Air pasang</p><p class="big">'+t.high.h+' m <span style="font-size:13px;color:var(--muted)">pk '+t.high.time+'</span></p><p class="small">Surut terendah '+t.low.h+' m pk '+t.low.time+'<br>'+esc(t.point_name)+' (~'+t.km+' km '+esc(t.dir)+' dari kebun)</p></div>';
+  }
+  var fl=env.flood;
+  if(fl && fl.river_discharge!=null){
+    cells += '<div class="ins"><p class="k">💧 Debit sungai (banjir)</p><p class="big">'+fl.river_discharge+' <span style="font-size:13px;color:var(--muted)">m³/s</span></p><p class="small">Tren '+esc(fl.trend||'-')+(fl.peak_next3!=null?' · puncak 3 hari: '+fl.peak_next3+' m³/s':'')+'</p></div>';
+  }
+  if(!cells) return '';
+  var upd = env.updated_at? '<p class="hint">Diperbarui '+esc(String(env.updated_at).replace("T"," "))+' · sumber: NASA FIRMS, Open-Meteo (Air Quality / Flood / Marine).</p>':'';
+  return '<section class="panel"><h2>🌏 Lingkungan sekitar</h2>'+upd+'<div class="insights">'+cells+'</div></section>';
+}
+
+function render(cfg, jadwal, cuaca, env){
   const days = cuaca.days || [];
   const heavy = cfg.heavy_rain_mm || 25;
   const dry = cfg.dry_threshold_mm || 2;
@@ -292,8 +323,20 @@ function render(cfg, jadwal, cuaca){
   if(wb<100){ wbCls='b-orange'; wbTxt='Kurang air'; }
   else if(wb>300){ wbCls='b-blue'; wbTxt='Berlebih'; }
   const pinPct = Math.max(2, Math.min(98, (wb/350)*100));
+  let wbNote='';
+  if(env){
+    const fl2=env.flood||{}, t2=env.tide||{}; const c2=[];
+    if(fl2.river_discharge!=null) c2.push('sungai '+esc(fl2.trend||'stabil'));
+    if(t2.high&&t2.high.h!=null) c2.push('pasang '+t2.high.h+' m');
+    const cx = c2.length? ' ('+c2.join(', ')+')':'';
+    let act;
+    if(wb>300) act='air menumpuk'+cx+' → utamakan drainase, tunda pemupukan (hara tercuci), waspada genangan.';
+    else if(wb<100) act='cadangan air menipis'+cx+' → tahan buka parit, tunda pemupukan sampai tanah lembap.';
+    else act='banjir & pasang belum mengancam'+cx+'; pantau bila debit sungai naik.';
+    wbNote = '<p class="small">↳ '+act+'</p>';
+  }
   const wbHTML = '<p class="big">'+wb.toFixed(0)+' <span style="font-size:14px;font-weight:500;color:var(--muted)">mm / 30 hari</span></p>'+
-    '<p class="small"><span class="badge '+wbCls+'">'+wbTxt+'</span></p>'+
+    '<p class="small"><span class="badge '+wbCls+'">'+wbTxt+'</span></p>'+wbNote+
     '<div class="gauge"><span class="pin" style="left:'+pinPct.toFixed(0)+'%"></span></div>'+
     '<div class="gauge-labels"><span>0</span><span>ideal 100–300</span><span>350+</span></div>';
   // dry spell
@@ -331,6 +374,7 @@ function render(cfg, jadwal, cuaca){
 
   document.getElementById('app').innerHTML =
     '<div class="headline"><div class="emoji">'+hEmoji+'</div><div class="txt">'+esc(hTxt)+'<small>'+esc(hSub)+'</small></div></div>'+
+    envSection(env)+
     cards + todayPanel + insightsHTML +
     '<section class="panel"><h2>Curah hujan harian</h2>'+
     '<p class="hint">Batang solid = aktual, batang pudar = prakiraan. Garis putus berwarna = jadwal kebun. ⭐ = hari terbaik untuk memupuk.</p>'+
@@ -408,7 +452,8 @@ function buildChart(days, events, todayStr, bestDate){
     const [cfg, jadwal, cuaca] = await Promise.all([
       loadJSON('config.json'), loadJSON('jadwal.json'), loadJSON('data/cuaca.json')
     ]);
-    render(cfg, jadwal, cuaca);
+    let env=null; try{ env = await loadJSON('data/lingkungan.json'); }catch(e){ env=null; }
+    render(cfg, jadwal, cuaca, env);
   }catch(err){
     document.getElementById('subtitle').textContent='';
     document.getElementById('app').innerHTML='<div class="err">Gagal memuat data: '+esc(err.message)+
