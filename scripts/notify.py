@@ -63,6 +63,9 @@ def today_summary_lines(td):
         wtxt = "💨 " + str(round(w)) + " km/j"
         if wd:
             wtxt += " dari " + wd
+        _g = td.get("gust")
+        if _g is not None:
+            wtxt += " (maks: " + str(round(_g)) + " km/j)"
         bits.append(wtxt)
     if bits:
         out.append(" · ".join(bits))
@@ -85,9 +88,6 @@ def today_detail_lines(td):
     ss = td.get("sunset")
     if sr and ss:
         out.append("🌅 Matahari: terbit " + sr + ", terbenam " + ss + " WIB")
-    g = td.get("gust")
-    if g is not None:
-        out.append("💨 Hembusan angin maks: " + str(round(g)) + " km/j")
     return out
 
 
@@ -228,7 +228,7 @@ def neraca_sinergi(env, ins, sm=None):
     elif verd == "kurang":
         act = "cadangan air menipis" + ctxtxt + " → tahan buka parit, tunda pemupukan sampai tanah lembap."
     else:
-        act = "banjir & pasang belum mengancam" + ctxtxt + "; pantau bila debit sungai naik."
+        act = "banjir & pasang belum mengancam" + ctxtxt + "."
     tag = ""
     if sm is not None:
         if verd == "kurang":
@@ -270,7 +270,7 @@ def env_lines(env, ins=None):
     """Ringkasan lingkungan untuk DITARUH DI ATAS blok Jadwal kegiatan."""
     if not env:
         return []
-    L = ["─" * 12, "🌏 *LINGKUNGAN SEKITAR:*"]
+    L = ["🌏 *LINGKUNGAN SEKITAR:*"]
     fire = env.get("fire") or {}
     st = fire.get("status")
     near = fire.get("nearest")
@@ -288,13 +288,8 @@ def env_lines(env, ins=None):
         if near.get("acq"):
             tail += " · deteksi " + str(near["acq"])
         L.append("   " + tail)
-        _fm = []
         if fire.get("map"):
-            _fm.append("peta hotspot " + fire["map"])
-        if fire.get("map_google"):
-            _fm.append("titik terdekat " + fire["map_google"])
-        if _fm:
-            L.append("   🔎 " + " · ".join(_fm))
+            L.append("   🔎 peta hotspot " + fire["map"])
     _fc = fire_confidence(fire, env.get("air"), wr)
     if _fc:
         L.append("   " + _fc)
@@ -306,7 +301,15 @@ def env_lines(env, ins=None):
         L.append(line)
         _extra = []
         if air.get("uv") is not None:
-            _extra.append("UV " + str(air["uv"]) + " (" + str(air.get("uv_cat")) + ")")
+            _uv = "UV skrg " + str(air["uv"])
+            if air.get("uv_max") is not None:
+                _win = ""
+                if air.get("uv_peak_from") and air.get("uv_peak_to"):
+                    _win = ", " + str(air["uv_peak_from"]) + "–" + str(air["uv_peak_to"])
+                _uv += " (maks " + ("%g" % air["uv_max"]) + _win + ")"
+            else:
+                _uv += " (" + str(air.get("uv_cat")) + ")"
+            _extra.append(_uv)
         if air.get("haze") and air.get("haze") != "tidak tersedia":
             _hz = "asap/kabut " + str(air["haze"])
             if air.get("aod") is not None:
@@ -329,8 +332,6 @@ def env_lines(env, ins=None):
         else:
             L.append("   pasang tertinggi *" + str(tide["high"]["h"]) + " m* pukul " + str(tide["high"]["time"])
                      + " · surut terendah *" + str(tide["low"]["h"]) + " m* pukul " + str(tide["low"]["time"]) + " WIB")
-        if tide.get("map"):
-            L.append("   🔎 Peta lokasi: " + tide["map"])
     flood = env.get("flood")
     if flood and flood.get("river_discharge") is not None:
         _st = flood.get("status") or "-"
@@ -341,9 +342,6 @@ def env_lines(env, ins=None):
         _note = FLOOD_NOTE.get(_st)
         if _note:
             L.append("   " + _note)
-        if flood.get("map"):
-            L.append("   🔎 Peta banjir: " + flood["map"])
-    L.append("─" * 12)
     L.append("")
     return L
 
@@ -392,11 +390,11 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
     by = {d["date"]: d for d in days}
     heavy = cfg.get("heavy_rain_mm", 25)
     dry = cfg.get("dry_threshold_mm", 2)
-    ins = compute_insights(days, cfg, today)
+    ins = compute_insights(days, cfg, today, (cuaca.get("today") or {}).get("soil_moist"))
 
     # ===== Bagian A: cuaca & rekomendasi =====
     A = []
-    A.append("🌴 *" + cfg.get("farm_name", "Kebun") + "* — Cuaca (" + f"{today.day:02d} {BULAN[today.month]}" + ")")
+    A.append("*Status " + cfg.get("farm_name", "Kebun") + "*")
     A.append("")
     t = by.get(today.isoformat())
     if t and t.get("precip") is not None:
@@ -434,15 +432,23 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
         why = b["why"][:2]
         A.append("   " + (", ".join(why) if why else "tanah lembap, tanpa hujan deras sesudahnya"))
         if _sm is not None:
-            if _sm < 20:
-                A.append("   🌱 Tanah kini " + str(_sm) + "% (kering) → butiran sukar larut; tunggu lembap.")
-            elif _sm >= 45:
-                A.append("   🌱 Tanah kini " + str(_sm) + "% (basah) → hara bisa tercuci; tunda dulu.")
+            _is_today = (b["date"] == today)
+            if _sm >= 45:
+                if _is_today:
+                    A.append("   🌱 Tanah kini " + str(_sm) + "% (basah) → hara mudah tercuci; tunggu agak kering.")
+                else:
+                    A.append("   🌱 Tanah kini " + str(_sm) + "% (basah), terlalu becek hari ini → tunggu " + fmt_dow(b["date"]) + " saat tanah lebih kering.")
+            elif _sm < 20:
+                if _is_today:
+                    A.append("   🌱 Tanah kini " + str(_sm) + "% (kering) → butiran sukar larut; tunggu ada lembap.")
+                else:
+                    A.append("   🌱 Tanah kini " + str(_sm) + "% (kering) → " + fmt_dow(b["date"]) + " (setelah ada hujan ringan) lebih pas.")
             else:
-                A.append("   🌱 Tanah kini " + str(_sm) + "% (lembap) → butiran mudah larut; cocok memupuk.")
+                A.append("   🌱 Tanah kini " + str(_sm) + "% (lembap) → kelembapan pas untuk memupuk.")
     if ins["dry_longest"]:
         s = ins["dry_longest"]
-        A.append("☀️ *Rentang kering terpanjang:* " + str(s["len"]) + " hari mulai " + fmt_dow(s["start"]) + " (tebas/semprot)")
+        A.append("☀️ *Rentang kering terpanjang:* " + str(s["len"]) + " hari mulai " + fmt_dow(s["start"]))
+        A.append("   cocok untuk tebas & semprot — herbisida tak terbilas hujan")
 
     # ===== Bagian B: jadwal kegiatan + dashboard =====
     def rain_advice(dstr):
@@ -702,10 +708,8 @@ def main():
     tg_configured = bool(os.environ.get("TG_TOKEN", "").strip() and os.environ.get("TG_CHAT_ID", "").strip())
 
     # ---- WhatsApp (CallMeBot): jumlah pesan dikurangi supaya tidak kena rate-limit ----
-    wa_msgs = [msg1] + list(parts)
+    wa_msgs = list(parts)
     links = []
-    if cu:
-        links.append("Grafik hujan & jadwal:\n" + cu)
     if harv:
         links.append("Warna asli (" + sat_label(harv) + "):\n" + harv["truecolor"])
         links.append("NDVI (" + sat_label(harv) + "):\n" + harv["ndvi"])
