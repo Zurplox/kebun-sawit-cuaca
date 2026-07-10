@@ -1,0 +1,88 @@
+{
+  "updated_at": "2026-07-10T19:01+08:00",
+  "farm": {
+    "lat": 0.81573,
+    "lon": 101.96621,
+    "name": "Kebun Kelapa Sawit (Harvin)"
+  },
+  "fire": {
+    "status": "bahaya",
+    "warn_km": 50,
+    "nearest": {
+      "km": 13.7,
+      "dir": "timur laut",
+      "lat": 0.9271,
+      "lon": 102.018,
+      "place": "Siak, Sumatera",
+      "acq": "2026-07-08",
+      "sat": "N",
+      "confidence": "n",
+      "frp": "1.16"
+    },
+    "count_within": 8,
+    "scanned_days": 5,
+    "weather_risk": {
+      "level": "rendah",
+      "dry_streak": 0,
+      "humidity": 92
+    },
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
+    "map_google": "https://www.google.com/maps?q=0.9271,102.018"
+  },
+  "air": {
+    "us_aqi": 56,
+    "pm2_5": 17.2,
+    "pm10": 18.3,
+    "category": "Sedang",
+    "color": "gold",
+    "aod": 0.29,
+    "dust": 0,
+    "haze": "cerah",
+    "haze_color": "green",
+    "uv": 0.1,
+    "uv_cat": "rendah"
+  },
+  "flood": {
+    "river_discharge": 515.4,
+    "unit": "m3/s",
+    "trend": "stabil",
+    "peak_next3": 468.9,
+    "baseline": 608.5,
+    "ratio_pct": 85,
+    "status": "Normal",
+    "map": "https://sites.research.google/floods/l/0.816/101.966/9"
+  },
+  "tide": {
+    "point_name": "Selat Malaka (dekat Sungai Apit)",
+    "lat": 1.3,
+    "lon": 102.35,
+    "km": 69,
+    "dir": "timur laut",
+    "high": {
+      "h": 1.58,
+      "time": "16:00"
+    },
+    "low": {
+      "h": -0.3,
+      "time": "10:00"
+    },
+    "extremes": [
+      {
+        "type": "pasang",
+        "h": 0.87,
+        "time": "03:00"
+      },
+      {
+        "type": "surut",
+        "h": -0.3,
+        "time": "10:00"
+      },
+      {
+        "type": "pasang",
+        "h": 1.58,
+        "time": "17:00"
+      }
+    ],
+    "map": "https://www.google.com/maps?q=1.3,102.35"
+  }
+}
