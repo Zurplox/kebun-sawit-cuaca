@@ -238,7 +238,7 @@ def neraca_sinergi(env, ins, sm=None):
         else:
             ok = 25 <= sm < 45
         tag = " [tanah sepakat ✓]" if ok else " [cek: tanah beda arah ⚠]"
-    return ["↳ " + act + tag]
+    return ["↳ " + act[0].upper() + act[1:] + tag]
 
 
 def fire_confidence(fire, air, wr=None):
@@ -262,7 +262,7 @@ def fire_confidence(fire, air, wr=None):
     else:
         msg = ""
     if msg and wr:
-        msg += " · cuaca: " + str(wr)
+        msg += " · risiko cuaca: " + str(wr)
     return msg
 
 
@@ -311,7 +311,7 @@ def env_lines(env, ins=None):
                 _uv += " (" + str(air.get("uv_cat")) + ")"
             _extra.append(_uv)
         if air.get("haze") and air.get("haze") != "tidak tersedia":
-            _hz = "asap/kabut " + str(air["haze"])
+            _hz = "kabut: " + str(air["haze"])
             if air.get("aod") is not None:
                 _hz += " (AOD " + str(air["aod"]) + ")"
             _extra.append(_hz)
@@ -430,7 +430,8 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
         verdict = "ideal" if b["score"] >= 70 else ("cukup baik" if b["score"] >= 55 else "kurang ideal")
         A.append("🎯 *Hari terbaik memupuk (16 hr):* " + fmt_dow(b["date"]) + " — " + verdict)
         why = b["why"][:2]
-        A.append("   " + (", ".join(why) if why else "tanah lembap, tanpa hujan deras sesudahnya"))
+        _wy = ", ".join(why) if why else "kondisi seimbang untuk memupuk"
+        A.append("   " + _wy[0].upper() + _wy[1:])
         if _sm is not None:
             _is_today = (b["date"] == today)
             if _sm >= 45:
@@ -448,7 +449,7 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
     if ins["dry_longest"]:
         s = ins["dry_longest"]
         A.append("☀️ *Rentang kering terpanjang:* " + str(s["len"]) + " hari mulai " + fmt_dow(s["start"]))
-        A.append("   cocok untuk tebas & semprot — herbisida tak terbilas hujan")
+        A.append("   Cocok untuk tebas & semprot — herbisida tak terbilas hujan")
 
     # ===== Bagian B: jadwal kegiatan + dashboard =====
     def rain_advice(dstr):
@@ -475,7 +476,10 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
         e = next_event(jadwal, jenis, today)
         if e:
             d = datetime.strptime(e["date"], "%Y-%m-%d").date()
-            B.append(JENIS[jenis] + ": " + e["label"] + " — " + fmt(e["date"]) + " (" + str((d - today).days) + " hari lagi)")
+            _emoji, _word = JENIS[jenis].split(" ", 1)
+            _lbl = e["label"]
+            _head = (_emoji + " " + _lbl) if _lbl.lower().startswith(_word.lower()) else (JENIS[jenis] + ": " + _lbl)
+            B.append(_head + " — " + fmt(e["date"]) + " (" + str((d - today).days) + " hari lagi)")
     if harv and harv.get("cloud") is not None:
         B.append("")
         B.append("🛰️ Citra satelit " + sat_label(harv) + " · awan " + str(harv["cloud"]) + "% (foto menyusul)")

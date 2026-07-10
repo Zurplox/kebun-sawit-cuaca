@@ -62,12 +62,12 @@ def compute_insights(days, cfg, today, soil=None):
         elif nxt < 1:
             score -= 8; why.append("nyaris tanpa air pelarut")
         else:
-            score += 6
+            score += 6; why.append("tanpa hujan deras 2 hari sesudahnya")
         sw = None
         if soil is not None:
             sw = soil_at(cd)
             if 25 <= sw <= 45:
-                score += 12
+                score += 12; why.append("tanah ~" + str(round(sw)) + "% (pas)")
             elif sw > 45:
                 score -= 50; why.append("tanah masih terlalu basah")
             elif sw < 15:
