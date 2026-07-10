@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-10T19:01+08:00",
+  "updated_at": "2026-07-10T20:38+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -23,30 +23,30 @@
     "scanned_days": 5,
     "weather_risk": {
       "level": "rendah",
-      "dry_streak": 0,
-      "humidity": 92
+      "dry_streak": 1,
+      "humidity": 85
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
     "map_google": "https://www.google.com/maps?q=0.9271,102.018"
   },
   "air": {
-    "us_aqi": 56,
-    "pm2_5": 17.2,
-    "pm10": 18.3,
+    "us_aqi": 57,
+    "pm2_5": 18.7,
+    "pm10": 19.8,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.29,
+    "aod": 0.3,
     "dust": 0,
-    "haze": "cerah",
-    "haze_color": "green",
-    "uv": 0.1,
+    "haze": "berkabut tipis",
+    "haze_color": "gold",
+    "uv": 0.0,
     "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 515.4,
     "unit": "m3/s",
     "trend": "stabil",
-    "peak_next3": 468.9,
+    "peak_next3": 449.8,
     "baseline": 608.5,
     "ratio_pct": 85,
     "status": "Normal",
@@ -59,7 +59,7 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 1.58,
+      "h": 1.59,
       "time": "16:00"
     },
     "low": {
@@ -69,7 +69,7 @@
     "extremes": [
       {
         "type": "pasang",
-        "h": 0.87,
+        "h": 0.89,
         "time": "03:00"
       },
       {
@@ -79,7 +79,7 @@
       },
       {
         "type": "pasang",
-        "h": 1.58,
+        "h": 1.59,
         "time": "17:00"
       }
     ],
