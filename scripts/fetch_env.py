@@ -205,18 +205,53 @@ def aqi_category(aqi):
     return ("Berbahaya", "red")
 
 
+def haze_category(aod):
+    if aod is None:
+        return ("tidak tersedia", "muted")
+    if aod < 0.3:
+        return ("cerah", "green")
+    if aod < 0.6:
+        return ("berkabut tipis", "gold")
+    if aod < 1.0:
+        return ("berasap/berkabut", "orange")
+    return ("asap tebal", "red")
+
+
+def uv_category(uv):
+    if uv is None:
+        return "tidak tersedia"
+    if uv < 3:
+        return "rendah"
+    if uv < 6:
+        return "sedang"
+    if uv < 8:
+        return "tinggi"
+    if uv < 11:
+        return "sangat tinggi"
+    return "ekstrem"
+
+
 def fetch_air(cfg):
     url = ("https://air-quality-api.open-meteo.com/v1/air-quality?latitude="
            + str(cfg["farm_lat"]) + "&longitude=" + str(cfg["farm_lon"])
-           + "&current=pm2_5,pm10,us_aqi&timezone=auto")
+           + "&current=pm2_5,pm10,us_aqi,aerosol_optical_depth,dust,uv_index&timezone=auto")
     d = _get(url)
     if not isinstance(d, dict):
         return None
     cur = d.get("current", {})
     aqi = cur.get("us_aqi")
     cat, color = aqi_category(aqi)
+    aod = cur.get("aerosol_optical_depth")
+    dust = cur.get("dust")
+    uv = cur.get("uv_index")
+    hcat, hcolor = haze_category(aod)
     return {"us_aqi": aqi, "pm2_5": cur.get("pm2_5"), "pm10": cur.get("pm10"),
-            "category": cat, "color": color}
+            "category": cat, "color": color,
+            "aod": round(aod, 2) if aod is not None else None,
+            "dust": round(dust) if dust is not None else None,
+            "haze": hcat, "haze_color": hcolor,
+            "uv": round(uv, 1) if uv is not None else None,
+            "uv_cat": uv_category(uv)}
 
 
 # ---------- 3) BANJIR / DEBIT SUNGAI (Open-Meteo Flood) ----------
@@ -247,9 +282,47 @@ def fetch_flood(cfg):
             trend = "turun"
     fut = [disch[i] for i in range(idx + 1, min(len(disch), idx + 4))
            if disch[i] is not None]
+    prev7 = [disch[i] for i in range(max(0, idx - 7), idx)
+             if i < len(disch) and disch[i] is not None]
+    base = None
+    if prev7:
+        sp = sorted(prev7)
+        base = sp[len(sp) // 2]  # median 7 hari
+    ratio = (val / base) if (val is not None and base) else None
+    if ratio is None:
+        status = "tidak tersedia"
+    elif ratio < 1.15:
+        status = "Normal"
+    elif ratio < 1.5:
+        status = "Agak tinggi"
+    elif ratio < 2.0:
+        status = "Tinggi"
+    else:
+        status = "Sangat tinggi"
     return {"river_discharge": round(val, 1) if val is not None else None,
             "unit": "m3/s", "trend": trend,
-            "peak_next3": round(max(fut), 1) if fut else None}
+            "peak_next3": round(max(fut), 1) if fut else None,
+            "baseline": round(base, 1) if base is not None else None,
+            "ratio_pct": round(ratio * 100) if ratio is not None else None,
+            "status": status}
+
+
+def tide_extremes(pairs):
+    """Semua titik balik pasang/surut dari deret ketinggian per jam."""
+    ext = []
+    prev_sign = 0
+    for i in range(1, len(pairs)):
+        d = pairs[i][1] - pairs[i - 1][1]
+        s = 1 if d > 0.005 else (-1 if d < -0.005 else 0)
+        if s == 0:
+            continue
+        if prev_sign != 0 and s != prev_sign:
+            typ = "pasang" if prev_sign > 0 else "surut"
+            ext.append({"type": typ,
+                        "h": round(pairs[i - 1][1], 2),
+                        "time": pairs[i - 1][0][11:16]})
+        prev_sign = s
+    return ext
 
 
 # ---------- 4) AIR PASANG (Open-Meteo Marine) ----------
@@ -281,13 +354,15 @@ def fetch_tide(cfg):
                      if lv[i] is not None]
         if not pairs:
             continue
+        pairs.sort(key=lambda p: p[0])
         hi = max(pairs, key=lambda p: p[1])
         lo = min(pairs, key=lambda p: p[1])
         return {"point_name": name, "lat": tlat, "lon": tlon,
                 "km": round(haversine_km(lat, lon, tlat, tlon)),
                 "dir": bearing_compass(lat, lon, tlat, tlon),
                 "high": {"h": round(hi[1], 2), "time": hi[0][11:16]},
-                "low": {"h": round(lo[1], 2), "time": lo[0][11:16]}}
+                "low": {"h": round(lo[1], 2), "time": lo[0][11:16]},
+                "extremes": tide_extremes(pairs)}
     return None
 
 
@@ -308,6 +383,17 @@ def main():
         "flood": fetch_flood(cfg),
         "tide": fetch_tide(cfg),
     }
+    fl, fo = cfg["farm_lat"], cfg["farm_lon"]
+    if out.get("fire"):
+        out["fire"]["map"] = ("https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@"
+                              + "{:.3f},{:.3f},9z".format(fo, fl))
+        _nr = out["fire"].get("nearest") or {}
+        if _nr.get("lat") is not None:
+            out["fire"]["map_google"] = "https://www.google.com/maps?q=" + str(_nr["lat"]) + "," + str(_nr["lon"])
+    if out.get("flood"):
+        out["flood"]["map"] = "https://sites.research.google/floods/l/" + format(fl, ".3f") + "/" + format(fo, ".3f") + "/9"
+    if out.get("tide") and out["tide"].get("lat") is not None:
+        out["tide"]["map"] = "https://www.google.com/maps?q=" + str(out["tide"]["lat"]) + "," + str(out["tide"]["lon"])
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)

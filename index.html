@@ -139,6 +139,7 @@ async function loadJSON(path){
 }
 
 // ---------- Analisis cerdas ----------
+function soilLabel(p){ if(p==null) return 'tidak tersedia'; if(p<15) return 'kering'; if(p<30) return 'agak kering'; if(p<40) return 'lembap'; return 'basah'; }
 function computeInsights(days, cfg, today){
   const heavy = cfg.heavy_rain_mm || 25;
   const dry = cfg.dry_threshold_mm || 2;
@@ -166,7 +167,7 @@ function computeInsights(days, cfg, today){
 
   // 2) 30-day water balance (actual days)
   const actuals = days.filter(d=>d.kind==='actual').slice(-30);
-  let wb=0,wbn=0; actuals.forEach(d=>{ if(d.precip!=null){wb+=d.precip;wbn++;} });
+  let rain=0,et=0,wbn=0; actuals.forEach(d=>{ if(d.precip!=null){rain+=d.precip;wbn++;} if(d.et0!=null){et+=d.et0;} }); const wb=rain-et;
 
   // 3) Dry-spell radar: longest dry run in forecast + when it starts
   let bestRun=null, curStart=null, curLen=0;
@@ -178,9 +179,10 @@ function computeInsights(days, cfg, today){
   // consecutive dry starting today/tomorrow
   let upcomingDry=0; for(let i=0;i<16;i++){ const pv=P(iso(addDays(today,i))); if(pv!=null&&pv<dry) upcomingDry++; else break; }
 
-  return {best, waterBalance:{sum:wb,n:wbn}, drySpell:{longest:bestRun, upcoming:upcomingDry}};
+  return {best, waterBalance:{sum:wb,n:wbn,rain:rain,et0:et}, drySpell:{longest:bestRun, upcoming:upcomingDry}};
 }
 
+function fireConf(fire, air){ fire=fire||{}; air=air||{}; var aod=air.aod; var hot=((fire.count_within||0)>0)||!!fire.nearest; var smoky=aod!=null&&aod>=0.6; var hazy=aod!=null&&aod>=0.3&&aod<0.6; var m=""; if(hot&&smoky) m="🎯 Keyakinan tinggi: ada titik api + udara berasap → asap kemungkinan nyata."; else if(hot&&hazy) m="🎯 Titik api + udara agak berkabut → pantau, asap mulai terasa."; else if(hot&&aod!=null) m="🎯 Titik api terdeteksi, tapi udara masih bersih → asap belum sampai sini."; else if(hot) m="🎯 Titik api terdeteksi; data udara belum tersedia."; else if(smoky) m="🎯 Tak ada titik api dekat, tapi udara berasap → mungkin asap kiriman dari jauh."; return m; }
 function envSection(env){
   if(!env) return '';
   var cells='';
@@ -192,20 +194,36 @@ function envSection(env){
   var n=fire.nearest;
   if(n){ fsub='Titik api terdekat <b>'+n.km+' km</b> ('+esc(n.dir)+(n.place?', '+esc(n.place):'')+')'+(fire.count_within?' · '+fire.count_within+' titik ≤'+fire.warn_km+' km':'')+(n.acq?'<br>Deteksi '+esc(n.acq):''); }
   var wr=(fire.weather_risk||{}).level;
-  if(wr) fsub+='<br>Risiko cuaca kebakaran: '+esc(wr);
+  var _fc=fireConf(fire, env.air); if(_fc) fsub+='<br>'+esc(_fc)+(wr?' · cuaca: '+esc(wr):''); else if(wr) fsub+='<br>Risiko cuaca kebakaran: '+esc(wr);
+  var fmaps=[];
+  if(fire.map) fmaps.push('<a href="'+fire.map+'" target="_blank">peta hotspot</a>');
+  if(fire.map_google) fmaps.push('<a href="'+fire.map_google+'" target="_blank">titik terdekat</a>');
+  if(fmaps.length) fsub+='<br>🔎 '+fmaps.join(' · ');
   cells += '<div class="ins"><p class="k">🔥 Karhutla</p><p class="big"><span class="badge '+fcls+'">'+ftxt+'</span></p><p class="small">'+fsub+'</p></div>';
   var air=env.air;
   if(air && air.us_aqi!=null){
     var acls = air.color==='green'?'b-green':(air.color==='gold'?'b-gold':(air.color==='orange'?'b-orange':'b-red'));
-    cells += '<div class="ins"><p class="k">😷 Kualitas udara</p><p class="big">AQI '+air.us_aqi+'</p><p class="small"><span class="badge '+acls+'">'+esc(air.category)+'</span>'+(air.pm2_5!=null?' · PM2.5 '+Math.round(air.pm2_5)+' µg/m³':'')+'</p></div>';
+    var aq2=''; if(air.uv!=null) aq2+='UV '+air.uv+' ('+esc(air.uv_cat)+')'; if(air.haze&&air.haze!=='tidak tersedia'){ aq2+=(aq2?' · ':'')+'asap/kabut '+esc(air.haze)+(air.aod!=null?' (AOD '+air.aod+')':''); }
+    cells += '<div class="ins"><p class="k">😷 Kualitas udara</p><p class="big">AQI '+air.us_aqi+'</p><p class="small"><span class="badge '+acls+'">'+esc(air.category)+'</span>'+(air.pm2_5!=null?' · PM2.5 '+Math.round(air.pm2_5)+' µg/m³':'')+(aq2?'<br>'+aq2:'')+'</p></div>';
   }
   var t=env.tide;
   if(t){
-    cells += '<div class="ins"><p class="k">🌊 Air pasang</p><p class="big">'+t.high.h+' m <span style="font-size:13px;color:var(--muted)">pk '+t.high.time+'</span></p><p class="small">Surut terendah '+t.low.h+' m pk '+t.low.time+'<br>'+esc(t.point_name)+' (~'+t.km+' km '+esc(t.dir)+' dari kebun)</p></div>';
+    var tex='';
+    if(t.extremes && t.extremes.length){
+      tex = t.extremes.map(function(e){ return (e.type==='pasang'?'↑ pasang':'↓ surut')+' '+e.time+' ('+e.h+' m)'; }).join('<br>');
+    } else {
+      tex = 'Pasang tertinggi '+t.high.h+' m pk '+t.high.time+'<br>Surut terendah '+t.low.h+' m pk '+t.low.time;
+    }
+    var tmap = t.map? '<br>🔎 <a href="'+t.map+'" target="_blank">Peta lokasi</a>':'';
+    cells += '<div class="ins"><p class="k">🌊 Air pasang / surut hari ini</p><p class="small">'+tex+'</p><p class="small" style="color:var(--muted)">'+esc(t.point_name)+' (~'+t.km+' km '+esc(t.dir)+' dari kebun)'+tmap+'</p></div>';
   }
   var fl=env.flood;
   if(fl && fl.river_discharge!=null){
-    cells += '<div class="ins"><p class="k">💧 Debit sungai (banjir)</p><p class="big">'+fl.river_discharge+' <span style="font-size:13px;color:var(--muted)">m³/s</span></p><p class="small">Tren '+esc(fl.trend||'-')+(fl.peak_next3!=null?' · puncak 3 hari: '+fl.peak_next3+' m³/s':'')+'</p></div>';
+    var fst=fl.status||'-';
+    var fnote={'Normal':'Aman — aliran normal, tak ada tanda banjir.','Agak tinggi':'Pantau saja — sedikit di atas biasa.','Tinggi':'Waspada — cek parit & bagian rendah kebun.','Sangat tinggi':'Siaga — risiko genangan/banjir.'}[fst]||'';
+    var fbcls={'Normal':'b-green','Agak tinggi':'b-gold','Tinggi':'b-orange','Sangat tinggi':'b-red'}[fst]||'b-blue';
+    var fmap=fl.map? '<br>🔎 <a href="'+fl.map+'" target="_blank">Peta banjir</a>':'';
+    cells += '<div class="ins"><p class="k">🏞️ Debit sungai (banjir)</p><p class="big">'+fl.river_discharge+' <span style="font-size:13px;color:var(--muted)">m³/s</span></p><p class="small"><span class="badge '+fbcls+'">'+esc(fst)+'</span>'+(fl.baseline!=null?' biasanya ~'+fl.baseline:'')+'<br>'+fnote+fmap+'</p></div>';
   }
   if(!cells) return '';
   var upd = env.updated_at? '<p class="hint">Diperbarui '+esc(String(env.updated_at).replace("T"," "))+' · sumber: NASA FIRMS, Open-Meteo (Air Quality / Flood / Marine).</p>':'';
@@ -284,6 +302,7 @@ function render(cfg, jadwal, cuaca, env){
     if(td.humidity!=null) rows.push(['Kelembapan', td.humidity+' %']);
     if(td.wind!=null) rows.push(['Angin', Math.round(td.wind)+' km/j'+(td.gust!=null?' (hembus '+Math.round(td.gust)+')':'')+(td.wind_dir?' dari '+esc(td.wind_dir):'')]);
     if(td.sunrise&&td.sunset) rows.push(['Matahari', 'terbit '+td.sunrise+' · terbenam '+td.sunset]);
+    if(td.soil_moist!=null) rows.push(['Lembap tanah (akar ~10–27 cm)', td.soil_moist+'% ('+soilLabel(td.soil_moist)+')']);
     const rw = td.rain_windows||[];
     const rainTxt = rw.length ? (rw.join(', ')+' WIB'+(td.precip_hours!=null?' (±'+Math.round(td.precip_hours)+' jam)':'')) : 'Cenderung tanpa hujan berarti';
     rows.push(['Perkiraan jam hujan', esc(rainTxt)]);
@@ -320,9 +339,9 @@ function render(cfg, jadwal, cuaca, env){
   // water balance
   const wb = ins.waterBalance.sum;
   let wbCls='b-green', wbTxt='Cukup';
-  if(wb<100){ wbCls='b-orange'; wbTxt='Kurang air'; }
-  else if(wb>300){ wbCls='b-blue'; wbTxt='Berlebih'; }
-  const pinPct = Math.max(2, Math.min(98, (wb/350)*100));
+  if(wb<0){ wbCls='b-orange'; wbTxt='Kurang air'; }
+  else if(wb>150){ wbCls='b-blue'; wbTxt='Berlebih'; }
+  const pinPct = Math.max(2, Math.min(98, ((wb+150)/450)*100));
   let wbNote='';
   if(env){
     const fl2=env.flood||{}, t2=env.tide||{}; const c2=[];
@@ -330,15 +349,17 @@ function render(cfg, jadwal, cuaca, env){
     if(t2.high&&t2.high.h!=null) c2.push('pasang '+t2.high.h+' m');
     const cx = c2.length? ' ('+c2.join(', ')+')':'';
     let act;
-    if(wb>300) act='air menumpuk'+cx+' → utamakan drainase, tunda pemupukan (hara tercuci), waspada genangan.';
-    else if(wb<100) act='cadangan air menipis'+cx+' → tahan buka parit, tunda pemupukan sampai tanah lembap.';
+    if(wb>150) act='air menumpuk'+cx+' → utamakan drainase, tunda pemupukan (hara tercuci), waspada genangan.';
+    else if(wb<0) act='cadangan air menipis'+cx+' → tahan buka parit, tunda pemupukan sampai tanah lembap.';
     else act='banjir & pasang belum mengancam'+cx+'; pantau bila debit sungai naik.';
     wbNote = '<p class="small">↳ '+act+'</p>';
   }
+  var _tsm=(cuaca.today||{}).soil_moist;
+  if(_tsm!=null){ var _ok = wb<0 ? (_tsm<25) : (wb>150 ? (_tsm>=40) : (_tsm>=25&&_tsm<45)); wbNote += '<p class="small">'+(_ok?'✅ Neraca air & lembap tanah sepakat → keyakinan tinggi.':'⚠️ Neraca air & lembap tanah beda arah → tafsir hati-hati.')+'</p>'; }
   const wbHTML = '<p class="big">'+wb.toFixed(0)+' <span style="font-size:14px;font-weight:500;color:var(--muted)">mm / 30 hari</span></p>'+
-    '<p class="small"><span class="badge '+wbCls+'">'+wbTxt+'</span></p>'+wbNote+
+    '<p class="small"><span class="badge '+wbCls+'">'+wbTxt+'</span></p>'+'<p class="small">hujan '+Math.round(ins.waterBalance.rain)+' mm − penguapan '+Math.round(ins.waterBalance.et0)+' mm</p>'+wbNote+
     '<div class="gauge"><span class="pin" style="left:'+pinPct.toFixed(0)+'%"></span></div>'+
-    '<div class="gauge-labels"><span>0</span><span>ideal 100–300</span><span>350+</span></div>';
+    '<div class="gauge-labels"><span>−150</span><span>ideal 0–150</span><span>+300</span></div>';
   // dry spell
   let dryHTML;
   if(ins.drySpell.longest){

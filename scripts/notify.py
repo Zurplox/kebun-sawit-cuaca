@@ -183,7 +183,27 @@ def when_label(dd):
 
 
 # ---------- Blok LINGKUNGAN (karhutla / udara / pasang / banjir) ----------
-def neraca_sinergi(env, ins):
+def soil_label(pct):
+    if pct is None:
+        return "tidak tersedia"
+    if pct < 15:
+        return "kering"
+    if pct < 30:
+        return "agak kering"
+    if pct < 40:
+        return "lembap"
+    return "basah"
+
+
+FLOOD_NOTE = {
+    "Normal": "Aman — aliran sungai normal, tak ada tanda banjir.",
+    "Agak tinggi": "Pantau saja — sedikit di atas biasa, belum berbahaya.",
+    "Tinggi": "Waspada — aliran cukup tinggi; cek parit & bagian rendah kebun.",
+    "Sangat tinggi": "Siaga — aliran jauh di atas normal; risiko genangan/banjir.",
+}
+
+
+def neraca_sinergi(env, ins, sm=None):
     """Klausa singkat: kaitkan banjir/pasang dengan neraca air. Ditaruh TEPAT di
     bawah baris "Neraca air 30 hari" sehingga tidak mengulang angka/vonisnya."""
     if not env or not ins:
@@ -209,7 +229,41 @@ def neraca_sinergi(env, ins):
         act = "cadangan air menipis" + ctxtxt + " → tahan buka parit, tunda pemupukan sampai tanah lembap."
     else:
         act = "banjir & pasang belum mengancam" + ctxtxt + "; pantau bila debit sungai naik."
-    return ["↳ " + act]
+    tag = ""
+    if sm is not None:
+        if verd == "kurang":
+            ok = sm < 25
+        elif verd == "berlebih":
+            ok = sm >= 40
+        else:
+            ok = 25 <= sm < 45
+        tag = " [tanah sepakat ✓]" if ok else " [cek: tanah beda arah ⚠]"
+    return ["↳ " + act + tag]
+
+
+def fire_confidence(fire, air, wr=None):
+    """Gabungkan titik api (FIRMS) + kabut/asap (AOD) jadi satu penilaian keyakinan."""
+    fire = fire or {}
+    air = air or {}
+    aod = air.get("aod")
+    hot = (fire.get("count_within") or 0) > 0 or bool(fire.get("nearest"))
+    smoky = aod is not None and aod >= 0.6
+    hazy = aod is not None and 0.3 <= aod < 0.6
+    if hot and smoky:
+        msg = "🎯 Keyakinan tinggi: ada titik api + udara berasap → asap kemungkinan nyata."
+    elif hot and hazy:
+        msg = "🎯 Titik api + udara agak berkabut → pantau, asap mulai terasa."
+    elif hot and aod is not None:
+        msg = "🎯 Titik api terdeteksi, tapi udara masih bersih → asap belum sampai sini."
+    elif hot:
+        msg = "🎯 Titik api terdeteksi; data udara belum tersedia."
+    elif smoky:
+        msg = "🎯 Tak ada titik api dekat, tapi udara berasap → mungkin asap kiriman dari jauh."
+    else:
+        msg = ""
+    if msg and wr:
+        msg += " · cuaca: " + str(wr)
+    return msg
 
 
 def env_lines(env, ins=None):
@@ -234,24 +288,61 @@ def env_lines(env, ins=None):
         if near.get("acq"):
             tail += " · deteksi " + str(near["acq"])
         L.append("   " + tail)
-    if wr:
-        L.append("   Risiko cuaca kebakaran: " + wr)
+        _fm = []
+        if fire.get("map"):
+            _fm.append("peta hotspot " + fire["map"])
+        if fire.get("map_google"):
+            _fm.append("titik terdekat " + fire["map_google"])
+        if _fm:
+            L.append("   🔎 " + " · ".join(_fm))
+    _fc = fire_confidence(fire, env.get("air"), wr)
+    if _fc:
+        L.append("   " + _fc)
     air = env.get("air") or {}
     if air.get("us_aqi") is not None:
         line = "😷 Udara: *" + str(air.get("category")) + "* · AQI " + str(air["us_aqi"])
         if air.get("pm2_5") is not None:
             line += " · PM2.5 " + str(round(air["pm2_5"])) + " µg/m³"
         L.append(line)
+        _extra = []
+        if air.get("uv") is not None:
+            _extra.append("UV " + str(air["uv"]) + " (" + str(air.get("uv_cat")) + ")")
+        if air.get("haze") and air.get("haze") != "tidak tersedia":
+            _hz = "asap/kabut " + str(air["haze"])
+            if air.get("aod") is not None:
+                _hz += " (AOD " + str(air["aod"]) + ")"
+            _extra.append(_hz)
+        if _extra:
+            L.append("   " + " · ".join(_extra))
     tide = env.get("tide")
     if tide:
         L.append("🌊 Air pasang (" + str(tide["point_name"]) + " ~" + str(tide["km"])
                  + " km " + str(tide["dir"]) + "):")
-        L.append("   pasang tertinggi *" + str(tide["high"]["h"]) + " m* pukul " + str(tide["high"]["time"])
-                 + " · surut terendah *" + str(tide["low"]["h"]) + " m* pukul " + str(tide["low"]["time"]) + " WIB")
+        _ext = tide.get("extremes") or []
+        if _ext:
+            _p = []
+            for _e in _ext:
+                _ar = "↑ pasang" if _e["type"] == "pasang" else "↓ surut"
+                _p.append(_ar + " " + str(_e["time"]) + " (" + str(_e["h"]) + " m)")
+            for _i in range(0, len(_p), 2):
+                L.append("   " + " · ".join(_p[_i:_i + 2]))
+        else:
+            L.append("   pasang tertinggi *" + str(tide["high"]["h"]) + " m* pukul " + str(tide["high"]["time"])
+                     + " · surut terendah *" + str(tide["low"]["h"]) + " m* pukul " + str(tide["low"]["time"]) + " WIB")
+        if tide.get("map"):
+            L.append("   🔎 Peta lokasi: " + tide["map"])
     flood = env.get("flood")
     if flood and flood.get("river_discharge") is not None:
-        line = "💧 Debit sungai (banjir): " + str(flood["river_discharge"]) + " m³/s (" + str(flood.get("trend", "-")) + ")"
+        _st = flood.get("status") or "-"
+        line = "🏞️ Debit sungai: *" + str(flood["river_discharge"]) + " m³/s* — " + _st
+        if flood.get("baseline") is not None:
+            line += " (biasanya ~" + str(flood["baseline"]) + ")"
         L.append(line)
+        _note = FLOOD_NOTE.get(_st)
+        if _note:
+            L.append("   " + _note)
+        if flood.get("map"):
+            L.append("   🔎 Peta banjir: " + flood["map"])
     L.append("─" * 12)
     L.append("")
     return L
@@ -316,8 +407,13 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
         A.append(line)
     for line in today_detail_lines(td):
         A.append(line)
-    A.append("💧 Neraca air 30 hari: *" + f"{ins['water_balance']:.0f} mm* (" + water_verdict(ins["water_balance"]) + ")")
-    for _n in neraca_sinergi(env, ins):
+    A.append("💧 Neraca air 30 hari: *" + str(round(ins["water_balance"])) + " mm* (" + water_verdict(ins["water_balance"]) + ")")
+    if ins.get("rain_total") is not None and ins.get("et0_total") is not None:
+        A.append("   💦 Hujan: *" + str(round(ins["rain_total"])) + " mm* · ☀️ Penguapan ET₀: *" + str(round(ins["et0_total"])) + " mm*")
+    _sm = (cuaca.get("today") or {}).get("soil_moist")
+    if _sm is not None:
+        A.append("🌱 Lembap tanah (akar ~10–27 cm): *" + str(_sm) + "%* (" + soil_label(_sm) + ")")
+    for _n in neraca_sinergi(env, ins, _sm):
         A.append("   " + _n)
     A.append("")
     A.append("📅 *Prakiraan 3 hari:*")
@@ -337,6 +433,13 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
         A.append("🎯 *Hari terbaik memupuk (16 hr):* " + fmt_dow(b["date"]) + " — " + verdict)
         why = b["why"][:2]
         A.append("   " + (", ".join(why) if why else "tanah lembap, tanpa hujan deras sesudahnya"))
+        if _sm is not None:
+            if _sm < 20:
+                A.append("   🌱 Tanah kini " + str(_sm) + "% (kering) → butiran sukar larut; tunggu lembap.")
+            elif _sm >= 45:
+                A.append("   🌱 Tanah kini " + str(_sm) + "% (basah) → hara bisa tercuci; tunda dulu.")
+            else:
+                A.append("   🌱 Tanah kini " + str(_sm) + "% (lembap) → butiran mudah larut; cocok memupuk.")
     if ins["dry_longest"]:
         s = ins["dry_longest"]
         A.append("☀️ *Rentang kering terpanjang:* " + str(s["len"]) + " hari mulai " + fmt_dow(s["start"]) + " (tebas/semprot)")
@@ -501,6 +604,52 @@ def mark_sent(now):
         print("Gagal simpan status:", e)
 
 
+WA_LIMIT = 900
+
+
+def split_message(text, limit=WA_LIMIT):
+    """Pecah pesan panjang di batas baris supaya tiap potongan <= limit karakter,
+    sehingga WhatsApp (CallMeBot) selalu bisa terkirim."""
+    if len(text) <= limit:
+        return [text]
+    out = []
+    cur = ""
+    for ln in text.split("\n"):
+        while len(ln) > limit:
+            if cur:
+                out.append(cur)
+                cur = ""
+            out.append(ln[:limit])
+            ln = ln[limit:]
+        cand = ln if not cur else cur + "\n" + ln
+        if len(cand) > limit:
+            if cur:
+                out.append(cur)
+            cur = ln
+        else:
+            cur = cand
+    if cur:
+        out.append(cur)
+    return out
+
+
+def wa_send_safe(text):
+    """Kirim pesan; kalau kepanjangan, pecah otomatis + beri penanda (i/n)."""
+    if len(text) <= WA_LIMIT:
+        chunks = [text]
+    else:
+        chunks = split_message(text, WA_LIMIT - 12)
+    n = len(chunks)
+    ok = False
+    for i, c in enumerate(chunks):
+        if i:
+            time.sleep(6)
+        body = c if n == 1 else (c + "\n(" + str(i + 1) + "/" + str(n) + ")")
+        if wa_send(body):
+            ok = True
+    return ok
+
+
 def main():
     cfg = load_json("config.json")
     jadwal = load_json("jadwal.json")
@@ -549,7 +698,7 @@ def main():
         for i, m in enumerate(wa_msgs):
             if i:
                 time.sleep(6)
-            if wa_send(m):
+            if wa_send_safe(m):
                 wa_ok = True
             elif i == 0:
                 print("WhatsApp: pesan pertama gagal, hentikan sisa pesan (hindari blokir).")

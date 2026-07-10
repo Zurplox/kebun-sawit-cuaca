@@ -57,7 +57,9 @@ def compute_insights(days, cfg, today):
             best = {"date": cd, "score": score, "why": why, "precip": pv}
 
     actuals = [d for d in days if d.get("kind") == "actual"][-30:]
-    wb = sum(d["precip"] for d in actuals if d.get("precip") is not None)
+    rain_total = sum(d["precip"] for d in actuals if d.get("precip") is not None)
+    et0_total = sum((d.get("et0") or 0) for d in actuals)
+    wb = rain_total - et0_total
 
     best_run = None
     cur_start = None
@@ -86,6 +88,8 @@ def compute_insights(days, cfg, today):
     return {
         "best": best,
         "water_balance": wb,
+        "rain_total": rain_total,
+        "et0_total": et0_total,
         "dry_longest": best_run,
         "upcoming_dry": upcoming_dry,
         "soon3": soon,
@@ -93,9 +97,9 @@ def compute_insights(days, cfg, today):
 
 
 def water_verdict(wb):
-    if wb < 100:
+    if wb < 0:
         return "kurang"
-    if wb > 300:
+    if wb > 150:
         return "berlebih"
     return "cukup"
 

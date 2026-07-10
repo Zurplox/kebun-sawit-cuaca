@@ -67,6 +67,7 @@ def fetch_daily(cfg):
             "weathercode",
             "precipitation_hours",
             "windgusts_10m_max",
+            "et0_fao_evapotranspiration",
             "winddirection_10m_dominant",
             "sunrise",
             "sunset",
@@ -91,6 +92,9 @@ def fetch_hourly(cfg):
             "windspeed_10m",
             "winddirection_10m",
             "windgusts_10m",
+            "soil_moisture_3_9cm",
+            "soil_moisture_9_27cm",
+            "soil_moisture_27_81cm",
         ]),
     }
     return _get(API + urllib.parse.urlencode(params))
@@ -119,6 +123,8 @@ def build_today(today, hourly, daily_by_date):
     rh = col("relativehumidity_2m")
     cloud = col("cloudcover")
     code_h = col("weathercode")
+    sm1 = col("soil_moisture_3_9cm")
+    sm2 = col("soil_moisture_9_27cm")
     hours = [int(times[i][11:13]) for i in idxs]
 
     windows = []
@@ -142,6 +148,14 @@ def build_today(today, hourly, daily_by_date):
     d = daily_by_date.get(tstr, {})
     code = d.get("weathercode")
     desc, emoji = weather_desc(code)
+
+    def _smean(vals):
+        v = [x for x in vals if x is not None]
+        return (sum(v) / len(v)) if v else None
+    _rz = _smean(sm2)
+    if _rz is None:
+        _rz = _smean(sm1)
+    _sm_pct = round(_rz * 100) if _rz is not None else None
 
     hourly_out = []
     for k, i in enumerate(idxs):
@@ -173,6 +187,7 @@ def build_today(today, hourly, daily_by_date):
         "rain_windows": rain_windows,
         "sunrise": _hm(d.get("sunrise")),
         "sunset": _hm(d.get("sunset")),
+        "soil_moist": _sm_pct,
         "hourly": hourly_out,
     }
 
@@ -200,6 +215,7 @@ def main():
     wdir = col("winddirection_10m_dominant")
     sunrise = col("sunrise")
     sunset = col("sunset")
+    et0 = col("et0_fao_evapotranspiration")
 
     daily_by_date = {}
     for i, dd in enumerate(dates):
@@ -215,6 +231,7 @@ def main():
             "winddirection_10m_dominant": wdir[i],
             "sunrise": sunrise[i],
             "sunset": sunset[i],
+            "et0": round(et0[i], 1) if et0[i] is not None else None,
         }
 
     existing = {}
@@ -240,6 +257,7 @@ def main():
             "gust": gust[i],
             "wdir": wdir[i],
             "phours": phours[i],
+            "et0": round(et0[i], 1) if et0[i] is not None else None,
             "kind": kind,
         }
 
