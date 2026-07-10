@@ -267,39 +267,46 @@ def fire_confidence(fire, air, wr=None):
 
 
 def env_lines(env, ins=None):
-    """Ringkasan lingkungan untuk DITARUH DI ATAS blok Jadwal kegiatan."""
+    """Ringkasan lingkungan (dikelompokkan per topik) untuk pesan terpisah."""
     if not env:
         return []
-    L = ["🌏 *LINGKUNGAN SEKITAR:*"]
+    L = ["🌏 *LINGKUNGAN SEKITAR*", ""]
     fire = env.get("fire") or {}
     st = fire.get("status")
     near = fire.get("nearest")
     wr = (fire.get("weather_risk") or {}).get("level")
     if st == "tidak tersedia":
-        L.append("🔥 Karhutla: data belum aktif (atur FIRMS_MAP_KEY)")
-    elif st == "aman" and not near:
-        L.append("🔥 Karhutla: *AMAN* — tak ada titik api terdeteksi di sekitar")
+        L.append("🔥 *Karhutla: data belum aktif*")
+        L.append(" - Atur FIRMS_MAP_KEY untuk mengaktifkan")
     elif near:
         icon = "🚨" if st == "bahaya" else ("⚠️" if st == "waspada" else "🔥")
         loc = (", " + near["place"]) if near.get("place") else ""
-        L.append(icon + " Karhutla: *" + str(st).upper() + "* — titik api terdekat *"
-                 + str(near["km"]) + " km* (" + str(near["dir"]) + loc + ")")
+        L.append(icon + " *Karhutla: " + str(st).upper() + "*")
+        L.append(" - Titik api terdekat " + str(near["km"]) + " km (" + str(near["dir"]) + loc + ")")
         tail = str(fire.get("count_within", 0)) + " titik ≤" + str(fire.get("warn_km", 50)) + " km"
         if near.get("acq"):
             tail += " · deteksi " + str(near["acq"])
-        L.append("   " + tail)
-        if fire.get("map"):
-            L.append("   🔎 peta hotspot " + fire["map"])
+        L.append(" - " + tail)
+    else:
+        L.append("🔥 *Karhutla: AMAN*")
+        L.append(" - Tak ada titik api terdeteksi di sekitar")
     _fc = fire_confidence(fire, env.get("air"), wr)
     if _fc:
-        L.append("   " + _fc)
+        _fc2 = _fc[2:] if _fc.startswith("🎯 ") else _fc
+        if " · risiko cuaca: " in _fc2:
+            _main, _risk = _fc2.split(" · risiko cuaca: ", 1)
+            L.append(" - " + _main.strip())
+            L.append(" - Risiko cuaca: " + _risk.strip())
+        else:
+            L.append(" - " + _fc2.strip())
+    if near and fire.get("map"):
+        L.append(" - 🔎 peta hotspot " + fire["map"])
     air = env.get("air") or {}
     if air.get("us_aqi") is not None:
-        line = "😷 Udara: *" + str(air.get("category")) + "* · AQI " + str(air["us_aqi"])
+        L.append("")
+        L.append("😷 *Udara: " + str(air.get("category")) + " (AQI " + str(air["us_aqi"]) + ")*")
         if air.get("pm2_5") is not None:
-            line += " · PM2.5 " + str(round(air["pm2_5"])) + " µg/m³"
-        L.append(line)
-        _extra = []
+            L.append(" - PM2.5 " + str(round(air["pm2_5"])) + " µg/m³")
         if air.get("uv") is not None:
             _uv = "UV skrg " + str(air["uv"])
             if air.get("uv_max") is not None:
@@ -309,39 +316,34 @@ def env_lines(env, ins=None):
                 _uv += " (maks " + ("%g" % air["uv_max"]) + _win + ")"
             else:
                 _uv += " (" + str(air.get("uv_cat")) + ")"
-            _extra.append(_uv)
+            L.append(" - " + _uv)
         if air.get("haze") and air.get("haze") != "tidak tersedia":
-            _hz = "kabut: " + str(air["haze"])
+            _hz = "Kabut: " + str(air["haze"])
             if air.get("aod") is not None:
                 _hz += " (AOD " + str(air["aod"]) + ")"
-            _extra.append(_hz)
-        if _extra:
-            L.append("   " + " · ".join(_extra))
+            L.append(" - " + _hz)
     tide = env.get("tide")
     if tide:
-        L.append("🌊 Air pasang (" + str(tide["point_name"]) + " ~" + str(tide["km"])
-                 + " km " + str(tide["dir"]) + "):")
+        L.append("")
+        L.append("🌊 *Air pasang* (" + str(tide["point_name"]) + " ~" + str(tide["km"]) + " km " + str(tide["dir"]) + ")")
         _ext = tide.get("extremes") or []
         if _ext:
-            _p = []
             for _e in _ext:
                 _ar = "↑ pasang" if _e["type"] == "pasang" else "↓ surut"
-                _p.append(_ar + " " + str(_e["time"]) + " (" + str(_e["h"]) + " m)")
-            for _i in range(0, len(_p), 2):
-                L.append("   " + " · ".join(_p[_i:_i + 2]))
+                L.append(" - " + _ar + " " + str(_e["time"]) + " (" + str(_e["h"]) + " m)")
         else:
-            L.append("   pasang tertinggi *" + str(tide["high"]["h"]) + " m* pukul " + str(tide["high"]["time"])
-                     + " · surut terendah *" + str(tide["low"]["h"]) + " m* pukul " + str(tide["low"]["time"]) + " WIB")
+            L.append(" - ↑ pasang tertinggi " + str(tide["high"]["h"]) + " m pukul " + str(tide["high"]["time"]))
+            L.append(" - ↓ surut terendah " + str(tide["low"]["h"]) + " m pukul " + str(tide["low"]["time"]))
     flood = env.get("flood")
     if flood and flood.get("river_discharge") is not None:
         _st = flood.get("status") or "-"
-        line = "🏞️ Debit sungai: *" + str(flood["river_discharge"]) + " m³/s* — " + _st
+        L.append("")
+        L.append("🏞️ *Debit sungai: " + str(flood["river_discharge"]) + " m³/s — " + _st + "*")
         if flood.get("baseline") is not None:
-            line += " (biasanya ~" + str(flood["baseline"]) + ")"
-        L.append(line)
+            L.append(" - Biasanya ~" + str(flood["baseline"]) + " m³/s")
         _note = FLOOD_NOTE.get(_st)
         if _note:
-            L.append("   " + _note)
+            L.append(" - " + _note)
     L.append("")
     return L
 
@@ -391,30 +393,62 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
     heavy = cfg.get("heavy_rain_mm", 25)
     dry = cfg.get("dry_threshold_mm", 2)
     ins = compute_insights(days, cfg, today, (cuaca.get("today") or {}).get("soil_moist"))
-
-    # ===== Bagian A: cuaca & rekomendasi =====
-    A = []
-    A.append("*Status " + cfg.get("farm_name", "Kebun") + "*")
-    A.append("")
+    td = cuaca.get("today") or {}
     t = by.get(today.isoformat())
+    _sm = td.get("soil_moist")
+
+    # ===== Bagian A1: cuaca hari ini + neraca air =====
+    A1 = []
+    A1.append("*Status " + cfg.get("farm_name", "Kebun") + "*")
+    A1.append(HARI[today.weekday()] + ", " + f"{today.day:02d} {BULAN[today.month]} {today.year}")
+    A1.append("")
+    cond = td.get("condition")
+    emoji = td.get("emoji") or "🌥️"
+    A1.append("☁️ *Cuaca hari ini*")
+    if cond:
+        A1.append(emoji + " " + cond)
     if t and t.get("precip") is not None:
         prob = (" (kemungkinan " + str(t["prob"]) + "%)") if t.get("prob") is not None else ""
-        A.append("☔ Hujan hari ini: *" + str(t["precip"]) + " mm*" + prob)
-    td = cuaca.get("today") or {}
-    for line in today_summary_lines(td):
-        A.append(line)
-    for line in today_detail_lines(td):
-        A.append(line)
-    A.append("💧 Neraca air 30 hari: *" + str(round(ins["water_balance"])) + " mm* (" + water_verdict(ins["water_balance"]) + ")")
+        A1.append(" - Hujan " + str(t["precip"]) + " mm" + prob)
+    _ch = []
+    if td.get("cloud") is not None:
+        _ch.append("awan " + str(td["cloud"]) + "%")
+    if td.get("humidity") is not None:
+        _ch.append("lembap " + str(td["humidity"]) + "%")
+    if _ch:
+        _chs = " · ".join(_ch)
+        A1.append(" - " + _chs[0].upper() + _chs[1:])
+    if td.get("tmin") is not None and td.get("tmax") is not None:
+        A1.append(" - Suhu " + str(round(td["tmin"])) + "–" + str(round(td["tmax"])) + "°C")
+    if td.get("wind") is not None:
+        _wt = " - Angin " + str(round(td["wind"])) + " km/j"
+        if td.get("wind_dir"):
+            _wt += " dari " + td["wind_dir"]
+        if td.get("gust") is not None:
+            _wt += " (maks " + str(round(td["gust"])) + ")"
+        A1.append(_wt)
+    _rw = td.get("rain_windows") or []
+    _ph = td.get("precip_hours")
+    if _rw:
+        _cap = (" (±" + str(int(round(_ph))) + " jam)") if _ph is not None else ""
+        A1.append(" - Jam hujan " + ", ".join(_rw) + " WIB" + _cap)
+    elif _ph is not None and _ph < 1:
+        A1.append(" - Cenderung tanpa hujan berarti hari ini")
+    if td.get("sunrise") and td.get("sunset"):
+        A1.append(" - Matahari " + td["sunrise"] + " – " + td["sunset"] + " WIB")
+    A1.append("")
+    A1.append("💧 *Neraca air 30 hari: " + str(round(ins["water_balance"])) + " mm (" + water_verdict(ins["water_balance"]) + ")*")
     if ins.get("rain_total") is not None and ins.get("et0_total") is not None:
-        A.append("   💦 Hujan: *" + str(round(ins["rain_total"])) + " mm* · ☀️ Penguapan ET₀: *" + str(round(ins["et0_total"])) + " mm*")
-    _sm = (cuaca.get("today") or {}).get("soil_moist")
+        A1.append(" - Hujan " + str(round(ins["rain_total"])) + " mm · Penguapan ET₀ " + str(round(ins["et0_total"])) + " mm")
     if _sm is not None:
-        A.append("🌱 Lembap tanah (akar ~10–27 cm): *" + str(_sm) + "%* (" + soil_label(_sm) + ")")
+        A1.append(" - Lembap tanah (~10–27 cm): " + str(_sm) + "% (" + soil_label(_sm) + ")")
     for _n in neraca_sinergi(env, ins, _sm):
-        A.append("   " + _n)
-    A.append("")
-    A.append("📅 *Prakiraan 3 hari:*")
+        _nn = _n[2:] if _n.startswith("↳ ") else _n
+        A1.append(" - " + _nn.strip())
+
+    # ===== Bagian A2: prakiraan + rekomendasi kerja =====
+    A2 = []
+    A2.append("📅 *Prakiraan 3 hari*")
     for i in range(1, 4):
         d = today + timedelta(days=i)
         row = by.get(d.isoformat())
@@ -423,35 +457,36 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
         p = row.get("precip")
         p = (str(p) + " mm") if p is not None else "-"
         emo = weather_desc(row.get("code"))[1] if row.get("code") is not None else ""
-        A.append("   • " + HARI[d.weekday()] + f" {d.day:02d} {BULAN[d.month]}: " + p + ((" " + emo) if emo else ""))
-    A.append("")
+        A2.append(" - " + HARI[d.weekday()] + f" {d.day:02d} {BULAN[d.month]}: " + p + ((" " + emo) if emo else ""))
     if ins["best"]:
         b = ins["best"]
         verdict = "ideal" if b["score"] >= 70 else ("cukup baik" if b["score"] >= 55 else "kurang ideal")
-        A.append("🎯 *Hari terbaik memupuk (16 hr):* " + fmt_dow(b["date"]) + " — " + verdict)
+        A2.append("")
+        A2.append("🎯 *Hari terbaik memupuk (16 hr): " + fmt_dow(b["date"]) + " — " + verdict + "*")
         why = b["why"][:2]
         _wy = ", ".join(why) if why else "kondisi seimbang untuk memupuk"
-        A.append("   " + _wy[0].upper() + _wy[1:])
+        A2.append(" - " + _wy[0].upper() + _wy[1:])
         if _sm is not None:
             _is_today = (b["date"] == today)
             if _sm >= 45:
                 if _is_today:
-                    A.append("   🌱 Tanah kini " + str(_sm) + "% (basah) → hara mudah tercuci; tunggu agak kering.")
+                    A2.append(" - Tanah kini " + str(_sm) + "% (basah) → hara mudah tercuci; tunggu agak kering")
                 else:
-                    A.append("   🌱 Tanah kini " + str(_sm) + "% (basah), terlalu becek hari ini → tunggu " + fmt_dow(b["date"]) + " saat tanah lebih kering.")
+                    A2.append(" - Tanah kini " + str(_sm) + "% (basah), terlalu becek hari ini → tunggu " + fmt_dow(b["date"]) + " saat tanah lebih kering")
             elif _sm < 20:
                 if _is_today:
-                    A.append("   🌱 Tanah kini " + str(_sm) + "% (kering) → butiran sukar larut; tunggu ada lembap.")
+                    A2.append(" - Tanah kini " + str(_sm) + "% (kering) → butiran sukar larut; tunggu ada lembap")
                 else:
-                    A.append("   🌱 Tanah kini " + str(_sm) + "% (kering) → " + fmt_dow(b["date"]) + " (setelah ada hujan ringan) lebih pas.")
+                    A2.append(" - Tanah kini " + str(_sm) + "% (kering) → " + fmt_dow(b["date"]) + " (setelah ada hujan ringan) lebih pas")
             else:
-                A.append("   🌱 Tanah kini " + str(_sm) + "% (lembap) → kelembapan pas untuk memupuk.")
+                A2.append(" - Tanah kini " + str(_sm) + "% (lembap) → kelembapan pas untuk memupuk")
     if ins["dry_longest"]:
-        s = ins["dry_longest"]
-        A.append("☀️ *Rentang kering terpanjang:* " + str(s["len"]) + " hari mulai " + fmt_dow(s["start"]))
-        A.append("   Cocok untuk tebas & semprot — herbisida tak terbilas hujan")
+        sdry = ins["dry_longest"]
+        A2.append("")
+        A2.append("☀️ *Rentang kering terpanjang: " + str(sdry["len"]) + " hari mulai " + fmt_dow(sdry["start"]) + "*")
+        A2.append(" - Cocok untuk tebas & semprot — herbisida tak terbilas hujan")
 
-    # ===== Bagian B: jadwal kegiatan + dashboard =====
+    # ===== Bagian B: jadwal kegiatan =====
     def rain_advice(dstr):
         row = by.get(dstr)
         if not row or row.get("precip") is None:
@@ -464,22 +499,22 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
         return "✅ Kondisi baik (" + str(p) + " mm)"
 
     B = []
-    B.append("🗓️ *" + cfg.get("farm_name", "Kebun") + "* — Jadwal kegiatan")
-    B.append("")
+    B.append("🗓️ *Jadwal kegiatan — " + cfg.get("farm_name", "Kebun") + "*")
     pupuk = next_event(jadwal, "pupuk", today)
     if pupuk:
         d = datetime.strptime(pupuk["date"], "%Y-%m-%d").date()
-        B.append("🌱 *Pupuk terjadwal:* " + pupuk["label"])
-        B.append("   " + fmt(pupuk["date"]) + " — " + str((d - today).days) + " hari lagi")
-        B.append("   " + rain_advice(pupuk["date"]))
+        B.append("")
+        B.append("🌱 *Pupuk terjadwal: " + pupuk["label"] + "*")
+        B.append(" - " + fmt(pupuk["date"]) + " — " + str((d - today).days) + " hari lagi")
+        B.append(" - " + rain_advice(pupuk["date"]))
     for jenis in ("pruning", "tebas"):
         e = next_event(jadwal, jenis, today)
         if e:
             d = datetime.strptime(e["date"], "%Y-%m-%d").date()
             _emoji, _word = JENIS[jenis].split(" ", 1)
-            _lbl = e["label"]
-            _head = (_emoji + " " + _lbl) if _lbl.lower().startswith(_word.lower()) else (JENIS[jenis] + ": " + _lbl)
-            B.append(_head + " — " + fmt(e["date"]) + " (" + str((d - today).days) + " hari lagi)")
+            B.append("")
+            B.append(_emoji + " *" + _word + "*")
+            B.append(" - " + e["label"] + " — " + fmt(e["date"]) + " (" + str((d - today).days) + " hari lagi)")
     if harv and harv.get("cloud") is not None:
         B.append("")
         B.append("🛰️ Citra satelit " + sat_label(harv) + " · awan " + str(harv["cloud"]) + "% (foto menyusul)")
@@ -491,11 +526,17 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
     if curl:
         B.append("🛰️ Dashboard citra: " + curl)
 
-    parts = ["\n".join(A)]
-    env_msg = "\n".join(env_lines(env, ins)).strip()
+    parts = []
+    a1 = chr(10).join(A1).strip()
+    if a1:
+        parts.append(a1)
+    a2 = chr(10).join(A2).strip()
+    if a2:
+        parts.append(a2)
+    env_msg = chr(10).join(env_lines(env, ins)).strip()
     if env_msg:
         parts.append(env_msg)
-    parts.append("\n".join(B))
+    parts.append(chr(10).join(B).strip())
     return parts
 
 
