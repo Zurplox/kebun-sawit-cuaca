@@ -2,7 +2,7 @@
 """Kirim notifikasi harian kebun.
 
 WhatsApp (CallMeBot) — GRATIS. Dipecah jadi beberapa pesan pendek supaya
-tidak terpotong (batas panjang CallMeBot ~900 karakter):
+tidak terpotong (dibatasi panjang URL ter-encode, bukan jumlah karakter):
   1) HEADLINE (+ PENGINGAT 7 HARI bila ada kegiatan dalam 0-7 hari)
   2) DETAIL A — cuaca & rekomendasi
   3) DETAIL B — jadwal kegiatan + dashboard
@@ -604,25 +604,44 @@ def mark_sent(now):
         print("Gagal simpan status:", e)
 
 
-WA_LIMIT = 900
+# Batas CallMeBot diukur dari panjang URL TER-ENCODE, bukan jumlah karakter
+# mentah. Emoji & simbol (—, →, ↳, °, ², dsb.) membengkak jadi banyak
+# karakter saat di-encode ke URL, jadi pesan yang tampak pendek pun bisa
+# terpotong. Uji nyata: teks ~730 karakter (banyak emoji) = ~1532 karakter
+# ter-encode dan CallMeBot memotongnya. Maka kita batasi panjang TER-ENCODE.
+ENC_LIMIT = 1300  # panjang teks ter-encode maksimum per pesan (aman < ~1500)
+WA_LIMIT = ENC_LIMIT  # kompatibilitas lama
 
 
-def split_message(text, limit=WA_LIMIT):
-    """Pecah pesan panjang di batas baris supaya tiap potongan <= limit karakter,
-    sehingga WhatsApp (CallMeBot) selalu bisa terkirim."""
-    if len(text) <= limit:
+def enc_len(text):
+    """Panjang teks setelah di-encode ke URL (ukuran nyata yang dilihat CallMeBot)."""
+    return len(urllib.parse.quote(text))
+
+
+def split_message(text, limit=ENC_LIMIT):
+    """Pecah pesan di batas baris supaya panjang TER-ENCODE tiap potongan <= limit,
+    sehingga CallMeBot tidak pernah memotong pesan di tengah kata."""
+    if enc_len(text) <= limit:
         return [text]
     out = []
     cur = ""
     for ln in text.split("\n"):
-        while len(ln) > limit:
+        # Baris tunggal yang terlalu panjang: pecah per karakter secara aman.
+        if enc_len(ln) > limit:
             if cur:
                 out.append(cur)
                 cur = ""
-            out.append(ln[:limit])
-            ln = ln[limit:]
+            piece = ""
+            for ch in ln:
+                if enc_len(piece + ch) > limit:
+                    out.append(piece)
+                    piece = ch
+                else:
+                    piece += ch
+            cur = piece
+            continue
         cand = ln if not cur else cur + "\n" + ln
-        if len(cand) > limit:
+        if enc_len(cand) > limit:
             if cur:
                 out.append(cur)
             cur = ln
@@ -634,11 +653,11 @@ def split_message(text, limit=WA_LIMIT):
 
 
 def wa_send_safe(text):
-    """Kirim pesan; kalau kepanjangan, pecah otomatis + beri penanda (i/n)."""
-    if len(text) <= WA_LIMIT:
+    """Kirim pesan; kalau ter-encode kepanjangan, pecah otomatis + penanda (i/n)."""
+    if enc_len(text) <= ENC_LIMIT:
         chunks = [text]
     else:
-        chunks = split_message(text, WA_LIMIT - 12)
+        chunks = split_message(text, ENC_LIMIT - 60)  # sisakan ruang penanda (i/n)
     n = len(chunks)
     ok = False
     for i, c in enumerate(chunks):
