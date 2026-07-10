@@ -326,11 +326,79 @@ def tide_extremes(pairs):
 
 
 # ---------- 4) AIR PASANG (Open-Meteo Marine) ----------
+# ---------- Prediksi pasang jangka panjang (analisis harmonik) ----------
+# Pasang bersifat astronomis & periodik, jadi bisa diprediksi jauh ke depan
+# dengan mencocokkan konstituen pasang utama (M2, S2, K1, O1, dll) ke data
+# historis + prakiraan, lalu memproyeksikannya ke depan. Hanya komponen
+# astronomis; efek cuaca/surge tak diprediksi di luar jangkauan model (~16 hr).
+TIDE_CONSTITUENTS = [
+    ("M2", 28.9841042), ("S2", 30.0), ("N2", 28.4397295), ("K2", 30.0821373),
+    ("K1", 15.0410686), ("O1", 13.9430356), ("P1", 14.9589314), ("Q1", 13.3986609),
+    ("Mf", 1.0980331), ("Mm", 0.5443747),
+]
+
+
+def _solve_linear(A, b):
+    n = len(A)
+    M = [list(A[i]) + [b[i]] for i in range(n)]
+    for col in range(n):
+        piv = max(range(col, n), key=lambda r: abs(M[r][col]))
+        if abs(M[piv][col]) < 1e-12:
+            return None
+        M[col], M[piv] = M[piv], M[col]
+        pv = M[col][col]
+        for j in range(col, n + 1):
+            M[col][j] /= pv
+        for r in range(n):
+            if r != col and M[r][col]:
+                f = M[r][col]
+                for j in range(col, n + 1):
+                    M[r][j] -= f * M[col][j]
+    return [M[i][n] for i in range(n)]
+
+
+def _tide_design(t):
+    row = [1.0]
+    for (_, sp) in TIDE_CONSTITUENTS:
+        ph = math.radians(sp * t)
+        row.append(math.cos(ph))
+        row.append(math.sin(ph))
+    return row
+
+
+def tide_harmonic_fit(times_h, heights):
+    ncol = 1 + 2 * len(TIDE_CONSTITUENTS)
+    ATA = [[0.0] * ncol for _ in range(ncol)]
+    ATb = [0.0] * ncol
+    for t, y in zip(times_h, heights):
+        row = _tide_design(t)
+        for i in range(ncol):
+            ATb[i] += row[i] * y
+            ri = row[i]
+            for j in range(i, ncol):
+                ATA[i][j] += ri * row[j]
+    for i in range(ncol):
+        for j in range(i):
+            ATA[i][j] = ATA[j][i]
+    return _solve_linear(ATA, ATb)
+
+
+def tide_harmonic_value(coef, t):
+    row = _tide_design(t)
+    return sum(coef[i] * row[i] for i in range(len(coef)))
+
+
 def fetch_tide(cfg):
     lat = cfg["farm_lat"]
     lon = cfg["farm_lon"]
     off = timezone(timedelta(hours=cfg.get("utc_offset_hours", 8)))
     today = datetime.now(off).date().isoformat()
+    fdays = int(cfg.get("tide_forecast_days", 16) or 16)
+    fdays = max(1, min(16, fdays))
+    pdays = int(cfg.get("tide_past_days", 60) or 0)
+    pdays = max(0, min(92, pdays))
+    predict_days = int(cfg.get("tide_predict_days", 30) or 30)
+    predict_days = max(fdays, min(60, predict_days))
     cands = []
     if cfg.get("tide_lat") is not None and cfg.get("tide_lon") is not None:
         cands.append((cfg["tide_lat"], cfg["tide_lon"],
@@ -340,29 +408,74 @@ def fetch_tide(cfg):
     for (tlat, tlon, name) in cands:
         url = ("https://marine-api.open-meteo.com/v1/marine?latitude="
                + str(tlat) + "&longitude=" + str(tlon)
-               + "&hourly=sea_level_height_msl&timezone=auto&forecast_days=1")
+               + "&hourly=sea_level_height_msl&timezone=auto&forecast_days=" + str(fdays)
+               + "&past_days=" + str(pdays))
         d = _get(url)
         if not isinstance(d, dict):
             continue
         h = d.get("hourly", {})
         times = h.get("time", [])
         lv = h.get("sea_level_height_msl", [])
-        pairs = [(times[i], lv[i]) for i in range(min(len(times), len(lv)))
-                 if lv[i] is not None and times[i][:10] == today]
-        if not pairs:
-            pairs = [(times[i], lv[i]) for i in range(min(len(times), len(lv)))
+        all_pairs = [(times[i], lv[i]) for i in range(min(len(times), len(lv)))
                      if lv[i] is not None]
-        if not pairs:
+        if not all_pairs:
             continue
-        pairs.sort(key=lambda p: p[0])
+        all_pairs.sort(key=lambda p: p[0])
+        pairs = [p for p in all_pairs if p[0][:10] == today] or all_pairs
         hi = max(pairs, key=lambda p: p[1])
         lo = min(pairs, key=lambda p: p[1])
+        t0 = datetime.strptime(all_pairs[0][0][:16], "%Y-%m-%dT%H:%M")
+
+        def _th(ts):
+            return (datetime.strptime(ts[:16], "%Y-%m-%dT%H:%M") - t0).total_seconds() / 3600.0
+
+        by_day = {}
+        for (tt, vv) in all_pairs:
+            by_day.setdefault(tt[:10], []).append((tt, vv))
+        daily = []
+        for day in sorted(by_day.keys()):
+            if day < today:
+                continue
+            dps = by_day[day]
+            dh = max(dps, key=lambda p: p[1])
+            dl = min(dps, key=lambda p: p[1])
+            daily.append({"date": day,
+                          "high": round(dh[1], 2), "high_time": dh[0][11:16],
+                          "low": round(dl[1], 2), "low_time": dl[0][11:16]})
+        # Perpanjang ke predict_days via prediksi harmonik (astronomis).
+        have = set(x["date"] for x in daily)
+        coef = None
+        try:
+            coef = tide_harmonic_fit([_th(p[0]) for p in all_pairs],
+                                     [p[1] for p in all_pairs])
+        except Exception as _e:
+            coef = None
+        if coef:
+            base = datetime.strptime(today, "%Y-%m-%d")
+            for k in range(predict_days):
+                day = (base + timedelta(days=k)).strftime("%Y-%m-%d")
+                if day in have:
+                    continue
+                best_h = best_t = low_h = low_t = None
+                for m in range(48):
+                    ts = day + "T%02d:%02d" % (m // 2, 30 * (m % 2))
+                    val = tide_harmonic_value(coef, _th(ts))
+                    if best_h is None or val > best_h:
+                        best_h, best_t = val, ts[11:16]
+                    if low_h is None or val < low_h:
+                        low_h, low_t = val, ts[11:16]
+                daily.append({"date": day,
+                              "high": round(best_h, 2), "high_time": best_t,
+                              "low": round(low_h, 2), "low_time": low_t,
+                              "est": True})
+            daily.sort(key=lambda x: x["date"])
         return {"point_name": name, "lat": tlat, "lon": tlon,
                 "km": round(haversine_km(lat, lon, tlat, tlon)),
                 "dir": bearing_compass(lat, lon, tlat, tlon),
                 "high": {"h": round(hi[1], 2), "time": hi[0][11:16]},
                 "low": {"h": round(lo[1], 2), "time": lo[0][11:16]},
-                "extremes": tide_extremes(pairs)}
+                "extremes": tide_extremes(pairs),
+                "daily": daily}
     return None
 
 

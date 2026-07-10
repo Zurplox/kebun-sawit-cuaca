@@ -26,5 +26,8 @@
   ],
   "tide_name": "",
   "tide_lat": null,
-  "tide_lon": null
+  "tide_lon": null,
+  "tide_forecast_days": 16,
+  "tide_past_days": 60,
+  "tide_predict_days": 30
 }

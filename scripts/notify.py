@@ -500,13 +500,16 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
 
     B = []
     B.append("🗓️ *Jadwal kegiatan — " + cfg.get("farm_name", "Kebun") + "*")
-    pupuk = next_event(jadwal, "pupuk", today)
-    if pupuk:
-        d = datetime.strptime(pupuk["date"], "%Y-%m-%d").date()
+    pupuk_next = next_event(jadwal, "pupuk", today)
+    if pupuk_next:
+        _pdate = pupuk_next["date"]
+        _same = [e for e in jadwal.get("events", []) if e.get("type") == "pupuk" and e["date"] == _pdate]
+        d = datetime.strptime(_pdate, "%Y-%m-%d").date()
         B.append("")
-        B.append("🌱 *Pupuk terjadwal: " + pupuk["label"] + "*")
-        B.append(" - " + fmt(pupuk["date"]) + " — " + str((d - today).days) + " hari lagi")
-        B.append(" - " + rain_advice(pupuk["date"]))
+        B.append("🌱 *Pupuk terjadwal — " + fmt(_pdate) + " (" + str((d - today).days) + " hari lagi)*")
+        for _e in _same:
+            B.append(" - " + _e["label"])
+        B.append(" - " + rain_advice(_pdate))
     for jenis in ("pruning", "tebas"):
         e = next_event(jadwal, jenis, today)
         if e:
