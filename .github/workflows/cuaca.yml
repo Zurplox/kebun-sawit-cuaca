@@ -30,13 +30,17 @@ jobs:
         run: pip install "matplotlib>=3.8,<4.0"
       - name: Ambil data cuaca (Open-Meteo)
         run: python scripts/fetch_weather.py
+      - name: Ambil data lingkungan (karhutla/udara/pasang/banjir)
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+        run: python scripts/fetch_env.py
       - name: Buat grafik (chart.png)
         run: python scripts/make_chart.py
       - name: Simpan data ke repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/cuaca.json chart.png
+          git add data/cuaca.json data/lingkungan.json chart.png
           git commit -m "Update data cuaca $(date -u +%F)" || echo "Tidak ada perubahan"
           git pull --rebase || true
           git push || echo push dilewati
