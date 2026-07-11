@@ -1,46 +1,35 @@
 {
-  "updated_at": "2026-07-11T15:00+08:00",
+  "updated_at": "2026-07-11T19:34+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "bahaya",
+    "status": "aman",
     "warn_km": 50,
-    "nearest": {
-      "km": 13.7,
-      "dir": "timur laut",
-      "lat": 0.9271,
-      "lon": 102.018,
-      "place": "Siak, Sumatera",
-      "acq": "2026-07-08",
-      "sat": "N",
-      "confidence": "n",
-      "frp": "1.16"
-    },
-    "count_within": 7,
+    "nearest": null,
+    "count_within": 0,
     "scanned_days": 5,
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
       "humidity": 92
     },
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.9271,102.018"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 68,
-    "pm2_5": 24.8,
-    "pm10": 29.5,
+    "us_aqi": 70,
+    "pm2_5": 28.2,
+    "pm10": 32.5,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.42,
+    "aod": 0.45,
     "dust": 0,
     "haze": "berkabut tipis",
     "haze_color": "gold",
-    "uv": 5.5,
-    "uv_cat": "sedang"
+    "uv": 0.1,
+    "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 449.8,
