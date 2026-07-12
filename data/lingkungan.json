@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-12T15:19+08:00",
+  "updated_at": "2026-07-12T19:35+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -30,17 +30,17 @@
     "map_google": "https://www.google.com/maps?q=0.9271,102.018"
   },
   "air": {
-    "us_aqi": 74,
-    "pm2_5": 22.3,
-    "pm10": 26.7,
+    "us_aqi": 69,
+    "pm2_5": 16.2,
+    "pm10": 17.5,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.41,
+    "aod": 0.33,
     "dust": 0,
     "haze": "berkabut tipis",
     "haze_color": "gold",
-    "uv": 5.6,
-    "uv_cat": "sedang"
+    "uv": 0.1,
+    "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 420.7,
