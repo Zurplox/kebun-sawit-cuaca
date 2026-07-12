@@ -1,0 +1,33 @@
+{
+  "farm_name": "Kebun Sawit (Rawang Air Putih)",
+  "lat": 0.835,
+  "lon": 101.976,
+  "utc_offset_hours": 8,
+  "past_days": 40,
+  "forecast_days": 16,
+  "heavy_rain_mm": 25,
+  "dry_threshold_mm": 2,
+  "dashboard_url": "https://zurplox.github.io/kebun-sawit-cuaca/",
+  "citra_dashboard_url": "https://zurplox.github.io/kebun-sawit/",
+  "harvin_owner": "Zurplox",
+  "harvin_repo": "kebun-sawit",
+  "harvin_branch": "main",
+  "harvin_pages_url": "https://zurplox.github.io/kebun-sawit",
+  "truecolor_name": "1_warna_asli_terbaru.png",
+  "ndvi_name": "2_ndvi_terbaru.png",
+  "farm_lat": 0.81573,
+  "farm_lon": 101.96621,
+  "karhutla_warn_km": 50,
+  "karhutla_scan_deg": 2.5,
+  "fire_day_range": 5,
+  "firms_sources": [
+    "VIIRS_NOAA20_NRT",
+    "VIIRS_SNPP_NRT"
+  ],
+  "tide_name": "",
+  "tide_lat": null,
+  "tide_lon": null,
+  "tide_forecast_days": 16,
+  "tide_past_days": 60,
+  "tide_predict_days": 30
+}

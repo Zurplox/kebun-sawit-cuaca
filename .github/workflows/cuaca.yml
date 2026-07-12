@@ -1,0 +1,97 @@
+name: Cuaca Kebun (harian)
+
+on:
+  schedule:
+    # Kirim 3x sehari di jam "ganjil" (menit non-bulat) biar tidak pas jam bulat.
+    # Waktu Singapura (SGT = UTC+8):
+    #   07:32 SGT  ->  cron "32 23" (UTC hari sebelumnya)
+    #   12:47 SGT  ->  cron "47 4"
+    #   18:23 SGT  ->  cron "23 10"
+    # notify.py punya jeda minimum antar-kirim (MIN_GAP_HOURS) biar tidak dobel.
+    - cron: "32 23 * * *"
+    - cron: "47 4 * * *"
+    - cron: "23 10 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cek sudah terkirim hari ini (guard)
+        id: guard
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone, timedelta
+          off = timezone(timedelta(hours=8))
+          today = datetime.now(off).date().isoformat()
+          sent_today = False
+          try:
+              with open("data/last_sent.json", encoding="utf-8") as f:
+                  sent_today = json.load(f).get("date") == today
+          except Exception:
+              sent_today = False
+          # Manual (workflow_dispatch) selalu boleh jalan, abaikan guard.
+          if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch":
+              sent_today = False
+          with open(os.environ["GITHUB_OUTPUT"], "a") as gh:
+              gh.write("sent_today=%s\n" % ("true" if sent_today else "false"))
+          print("sent_today =", sent_today, "| hari ini (WIB) =", today)
+          PY
+      - name: Setup Python
+        if: steps.guard.outputs.sent_today != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        if: steps.guard.outputs.sent_today != 'true'
+        run: pip install "matplotlib>=3.8,<4.0"
+      - name: Ambil data cuaca (Open-Meteo)
+        if: steps.guard.outputs.sent_today != 'true'
+        run: python scripts/fetch_weather.py
+      - name: Ambil data lingkungan (karhutla/udara/pasang/banjir)
+        if: steps.guard.outputs.sent_today != 'true'
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+        run: python scripts/fetch_env.py
+      - name: Buat grafik (chart.png)
+        if: steps.guard.outputs.sent_today != 'true'
+        run: python scripts/make_chart.py
+      - name: Simpan data ke repo
+        if: steps.guard.outputs.sent_today != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/cuaca.json data/lingkungan.json chart.png
+          git commit -m "Update data cuaca $(date -u +%F)" || echo "Tidak ada perubahan"
+          git pull --rebase || true
+          git push || echo push dilewati
+      - name: Kirim notifikasi harian
+        if: steps.guard.outputs.sent_today != 'true'
+        env:
+          WA_PHONE: ${{ secrets.WA_PHONE }}
+          WA_APIKEY: ${{ secrets.WA_APIKEY }}
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          FORCE_SEND: ${{ github.event_name == 'workflow_dispatch' }}
+        run: python scripts/notify.py
+      - name: Simpan status kirim
+        if: always() && steps.guard.outputs.sent_today != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/last_sent.json || true
+          git commit -m "Update status kirim $(date -u +%F)" || echo "Tidak ada perubahan"
+          git pull --rebase || true
+          git push || echo push dilewati
+      - name: Peringatan bila GAGAL (WhatsApp)
+        if: failure() && steps.guard.outputs.sent_today != 'true'
+        env:
+          WA_PHONE: ${{ secrets.WA_PHONE }}
+          WA_APIKEY: ${{ secrets.WA_APIKEY }}
+        run: python scripts/alert_fail.py
