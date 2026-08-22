@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-22T07:56+08:00",
+  "updated_at": "2026-08-22T19:53+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -13,18 +13,18 @@
     "scanned_days": 5,
     "weather_risk": {
       "level": "sedang",
-      "dry_streak": 3,
-      "humidity": 68
+      "dry_streak": 4,
+      "humidity": 67
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 83,
-    "pm2_5": 8.2,
-    "pm10": 9.4,
+    "us_aqi": 75,
+    "pm2_5": 27.5,
+    "pm10": 30.2,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.54,
+    "aod": 0.47,
     "dust": 0,
     "haze": "berkabut tipis",
     "haze_color": "gold",
