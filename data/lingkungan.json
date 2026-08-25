@@ -1,30 +1,20 @@
 {
-  "updated_at": "2026-08-25T23:27+08:00",
+  "updated_at": "2026-08-26T07:56+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "bahaya",
+    "status": "waspada",
     "warn_km": 50,
-    "nearest": {
-      "km": 11.4,
-      "dir": "barat",
-      "lat": 0.8137,
-      "lon": 101.8635,
-      "place": "Koto Gasib, Sumatera",
-      "acq": "2026-08-25",
-      "sat": "N",
-      "confidence": "l",
-      "frp": "18.77"
-    },
-    "count_within": 15,
+    "nearest": null,
+    "count_within": 0,
     "scanned_days": 5,
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 74
+      "humidity": 90
     },
     "sipongi": {
       "status": "bahaya",
@@ -47,16 +37,16 @@
       "source_label": "BMKG GeoHotspot"
     },
     "primary_src": "FIRMS",
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.8137,101.8635"
+    "crosscheck": "BMKG mendeteksi 39 titik ≤50 km · terdekat 7.7 km (timur laut) — FIRMS nihil/aman",
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 151,
-    "pm2_5": 29.3,
-    "pm10": 29.9,
-    "category": "Tidak sehat",
-    "color": "red",
-    "aod": 1.88,
+    "us_aqi": 124,
+    "pm2_5": 34.7,
+    "pm10": 35.4,
+    "category": "Tidak sehat (kel. sensitif)",
+    "color": "orange",
+    "aod": 1.64,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
@@ -64,12 +54,12 @@
     "uv_cat": "rendah"
   },
   "flood": {
-    "river_discharge": 62.2,
+    "river_discharge": 48.8,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 48.8,
-    "baseline": 60.5,
-    "ratio_pct": 103,
+    "peak_next3": 45.1,
+    "baseline": 62.2,
+    "ratio_pct": 78,
     "status": "Normal",
     "map": "https://sites.research.google/floods/l/0.816/101.966/9"
   },
@@ -80,43 +70,36 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 1.91,
-      "time": "20:00"
+      "h": 1.99,
+      "time": "21:00"
     },
     "low": {
-      "h": -0.13,
-      "time": "02:00"
+      "h": -0.34,
+      "time": "14:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.13,
-        "time": "02:00"
+        "h": -0.27,
+        "time": "03:00"
       },
       {
         "type": "pasang",
-        "h": 0.91,
+        "h": 1.12,
         "time": "08:00"
       },
       {
         "type": "surut",
-        "h": -0.07,
-        "time": "13:00"
+        "h": -0.34,
+        "time": "14:00"
       },
       {
         "type": "pasang",
-        "h": 1.91,
-        "time": "20:00"
+        "h": 1.99,
+        "time": "21:00"
       }
     ],
     "daily": [
-      {
-        "date": "2026-08-25",
-        "high": 1.91,
-        "high_time": "20:00",
-        "low": -0.13,
-        "low_time": "02:00"
-      },
       {
         "date": "2026-08-26",
         "high": 1.99,
@@ -207,7 +190,7 @@
         "date": "2026-09-07",
         "high": 1.79,
         "high_time": "18:00",
-        "low": 0.05,
+        "low": 0.04,
         "low_time": "11:00",
         "est": true
       },
@@ -245,7 +228,7 @@
       },
       {
         "date": "2026-09-12",
-        "high": 2.18,
+        "high": 2.17,
         "high_time": "22:00",
         "low": -0.98,
         "low_time": "15:30",
@@ -253,7 +236,7 @@
       },
       {
         "date": "2026-09-13",
-        "high": 2.11,
+        "high": 2.1,
         "high_time": "10:00",
         "low": -0.97,
         "low_time": "16:00",
@@ -263,7 +246,7 @@
         "date": "2026-09-14",
         "high": 2.14,
         "high_time": "10:30",
-        "low": -0.86,
+        "low": -0.85,
         "low_time": "17:00",
         "est": true
       },
@@ -279,7 +262,7 @@
         "date": "2026-09-16",
         "high": 1.97,
         "high_time": "11:30",
-        "low": -0.55,
+        "low": -0.54,
         "low_time": "05:00",
         "est": true
       },
@@ -295,7 +278,7 @@
         "date": "2026-09-18",
         "high": 1.57,
         "high_time": "13:00",
-        "low": -0.26,
+        "low": -0.25,
         "low_time": "06:00",
         "est": true
       },
@@ -325,7 +308,7 @@
       },
       {
         "date": "2026-09-22",
-        "high": 1.45,
+        "high": 1.44,
         "high_time": "19:00",
         "low": 0.17,
         "low_time": "01:00",
@@ -337,6 +320,14 @@
         "high_time": "19:30",
         "low": -0.04,
         "low_time": "13:00",
+        "est": true
+      },
+      {
+        "date": "2026-09-24",
+        "high": 1.75,
+        "high_time": "20:00",
+        "low": -0.3,
+        "low_time": "13:30",
         "est": true
       }
     ],
