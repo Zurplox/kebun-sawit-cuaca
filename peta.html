@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peta Titik Api — Kebun Sawit</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+ body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;margin:0;background:#f6f7f6;color:#222}
+ header{padding:14px 16px;background:#fff;border-bottom:1px solid #e3e5e3}
+ h1{font-size:17px;margin:0 0 4px}
+ .sub{font-size:12px;color:#667}
+ #map{height:calc(100vh - 130px);min-height:420px}
+ .legend{background:#fff;padding:8px 10px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.25);font-size:12px;line-height:1.7}
+ .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+ .note{padding:10px 16px;font-size:12px;color:#556;background:#fff;border-top:1px solid #e3e5e3}
+ a{color:#1a73e8}
+</style>
+</head>
+<body>
+<header>
+ <h1>🗺️ Peta Titik Api di sekitar kebun</h1>
+ <div class="sub" id="meta">Memuat data…</div>
+</header>
+<div id="map"></div>
+<div class="note" id="note"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+ var meta=document.getElementById('meta');
+ var note=document.getElementById('note');
+ if(typeof L==='undefined'){
+  meta.textContent='Gagal memuat pustaka peta (Leaflet). Cek koneksi internet.';
+  return;
+ }
+ fetch('data/lingkungan.json?t='+Date.now()).then(function(r){return r.json();}).then(function(env){
+  var farm=env.farm||{lat:0,lon:0,name:'Kebun'};
+  var fire=env.fire||{};
+  var warnKm=fire.warn_km||50;
+  var center=[farm.lat,farm.lon];
+  var map=L.map('map').setView(center,10);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+
+  // Kebun (hijau)
+  L.circleMarker(center,{radius:9,color:'#1b5e20',fillColor:'#2e7d32',fillOpacity:.9,weight:2}).addTo(map)
+   .bindPopup('<b>🌴 '+farm.name+'</b><br>Kebun (titik pantau)').openPopup();
+  // Lingkar radius pengawasan
+  var ring=L.circle(center,{radius:warnKm*1000,color:'#c62828',weight:1.5,dashArray:'6 5',fillOpacity:.04}).addTo(map)
+   .bindPopup('Radius pengawasan '+warnKm+' km');
+
+  var nF=0,nS=0;
+  // Titik FIRMS (primer) — merah
+  (fire.points||[]).forEach(function(p){
+   nF++;
+   L.circleMarker([p.lat,p.lon],{radius:6,color:'#b71c1c',fillColor:'#e53935',fillOpacity:.85,weight:1}).addTo(map)
+    .bindPopup('<b>FIRMS (NASA)</b><br>'+(p.km!=null?p.km+' km dari kebun<br>':'')
+      +(p.acq?('Deteksi: '+p.acq+'<br>'):'')+(p.confidence?('Confidence: '+p.confidence+'<br>'):'')
+      +(p.frp?('FRP: '+p.frp):''));
+  });
+  // Titik sekunder (SIPONGI/BMKG) — oranye
+  var sp=fire.sipongi||{};
+  var lbl=(sp.source_label||'SIPONGI').split(' ')[0].toUpperCase();
+  (sp.points||[]).forEach(function(p){
+   nS++;
+   L.circleMarker([p.lat,p.lon],{radius:6,color:'#e65100',fillColor:'#fb8c00',fillOpacity:.85,weight:1}).addTo(map)
+    .bindPopup('<b>Cek silang: '+lbl+'</b><br>'+(p.km!=null?p.km+' km dari kebun<br>':'')
+      +(p.date?('Deteksi: '+p.date+'<br>'):'')+(p.conf?('Confidence: '+p.conf+'<br>'):'')
+      +(p.name?('Wilayah: '+p.name):''));
+  });
+
+  // Cadangan: JSON lama tanpa daftar titik -> tandai titik TERDEKAT saja
+  var legacy=[];
+  if(!(fire.points&&fire.points.length)&&fire.nearest&&fire.nearest.lat!=null){
+   legacy.push({p:fire.nearest,label:'FIRMS (terdekat)',c:'#e53935',b:'#b71c1c'});
+  }
+  if(!(sp.points&&sp.points.length)&&sp.nearest&&sp.nearest.lat!=null){
+   legacy.push({p:sp.nearest,label:lbl+' (terdekat)',c:'#fb8c00',b:'#e65100'});
+  }
+  legacy.forEach(function(it){var p=it.p;
+   L.circleMarker([p.lat,p.lon],{radius:8,color:it.b,fillColor:it.c,fillOpacity:.85,weight:2}).addTo(map)
+    .bindPopup('<b>'+it.label+'</b><br>'+(p.km!=null?(p.km+' km ('+(p.dir||'')+') dari kebun'):''));
+  });
+
+  // Legenda
+  var legend=L.control({position:'bottomright'});
+  legend.onAdd=function(){
+   var d=L.DomUtil.create('div','legend');
+   d.innerHTML='<span class="dot" style="background:#2e7d32"></span>Kebun<br>'
+    +'<span class="dot" style="background:#e53935"></span>FIRMS NASA ('+nF+')<br>'
+    +'<span class="dot" style="background:#fb8c00"></span>'+lbl+' ('+nS+')<br>'
+    +'<span style="color:#c62828">- - -</span> Radius '+warnKm+' km';
+   return d;
+  };
+  legend.addTo(map);
+
+  // Zoom pas ke lingkar radius
+  try{map.fitBounds(ring.getBounds().pad(0.15));}catch(e){}
+
+  meta.textContent='Diperbarui '+(env.updated_at||'?')+' · status karhutla: '+String(fire.status||'?').toUpperCase()
+   +' · FIRMS '+(fire.count_within||0)+' titik · '+lbl+' '+(sp.count_within||0)+' titik (≤'+warnKm+' km)';
+  var links='Sumber: <a href="https://firms.modaps.eosdis.nasa.gov/map/" target="_blank">NASA FIRMS</a> · '
+   +'<a href="https://sipongi.gakkum.kehutanan.go.id/peta" target="_blank">SiPongi+</a> · '
+   +'<a href="https://www.bmkg.go.id/" target="_blank">BMKG</a> · peta dasar OSM. '
+   +'<a href="index.html">&larr; Kembali ke dashboard</a>';
+  if(!(fire.points&&fire.points.length)&&!(sp.points&&sp.points.length)){
+   links='<b>Daftar titik detail muncul setelah workflow berikutnya berjalan</b> '
+    +'(field "points" belum ada di data saat ini). '+links;
+  }
+  if(lbl==='BMKG'){
+   links='Catatan: titik oranye BMKG = anomali suhu satelit Himawari (indikatif, '
+    +'belum tervalidasi seperti FIRMS/SIPONGI, bisa termasuk lahan panas). '+links;
+  }
+  note.innerHTML=links;
+ }).catch(function(e){
+  meta.textContent='Gagal membaca data/lingkungan.json';
+  note.textContent=String(e);
+ });
+})();
+</script>
+</body>
+</html>
