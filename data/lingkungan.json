@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-26T13:24+08:00",
+  "updated_at": "2026-08-26T19:03+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -14,7 +14,7 @@
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 90
+      "humidity": 88
     },
     "sipongi": {
       "status": "bahaya",
@@ -41,17 +41,17 @@
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 134,
-    "pm2_5": 46.4,
-    "pm10": 49.7,
+    "us_aqi": 121,
+    "pm2_5": 40.3,
+    "pm10": 41.8,
     "category": "Tidak sehat (kel. sensitif)",
     "color": "orange",
-    "aod": 1.4,
+    "aod": 1.5,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 6.7,
-    "uv_cat": "tinggi"
+    "uv": 0.0,
+    "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 48.8,
