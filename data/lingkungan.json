@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-28T04:37+08:00",
+  "updated_at": "2026-08-28T15:01+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -19,7 +19,7 @@
       "confidence": "l",
       "frp": "18.77"
     },
-    "count_within": 35,
+    "count_within": 40,
     "scanned_days": 5,
     "points": [
       {
@@ -57,6 +57,15 @@
         "sat": "N",
         "confidence": "n",
         "frp": "0.93"
+      },
+      {
+        "lat": 0.6752,
+        "lon": 102.108,
+        "km": 22.2,
+        "acq": "2026-08-27",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "5.07"
       },
       {
         "lat": 0.6755,
@@ -122,6 +131,15 @@
         "frp": "3.72"
       },
       {
+        "lat": 0.6738,
+        "lon": 102.1085,
+        "km": 22.4,
+        "acq": "2026-08-27",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.01"
+      },
+      {
         "lat": 0.6747,
         "lon": 102.1102,
         "km": 22.4,
@@ -140,6 +158,15 @@
         "frp": "4.65"
       },
       {
+        "lat": 0.6717,
+        "lon": 102.1075,
+        "km": 22.4,
+        "acq": "2026-08-27",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "5.07"
+      },
+      {
         "lat": 0.672,
         "lon": 102.1082,
         "km": 22.5,
@@ -156,6 +183,15 @@
         "sat": "N20",
         "confidence": "n",
         "frp": "14.9"
+      },
+      {
+        "lat": 0.6746,
+        "lon": 102.1118,
+        "km": 22.5,
+        "acq": "2026-08-27",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "5.07"
       },
       {
         "lat": 0.6751,
@@ -212,6 +248,15 @@
         "frp": "2.34"
       },
       {
+        "lat": 0.6711,
+        "lon": 102.1113,
+        "km": 22.8,
+        "acq": "2026-08-27",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "5.07"
+      },
+      {
         "lat": 0.6715,
         "lon": 102.1118,
         "km": 22.8,
@@ -257,15 +302,6 @@
         "frp": "4.65"
       },
       {
-        "lat": 0.6855,
-        "lon": 101.6199,
-        "km": 41.1,
-        "acq": "2026-08-23",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "1.52"
-      },
-      {
         "lat": 0.4449,
         "lon": 101.893,
         "km": 42.0,
@@ -275,6 +311,15 @@
         "frp": "1.44"
       },
       {
+        "lat": 0.4447,
+        "lon": 101.89,
+        "km": 42.1,
+        "acq": "2026-08-27",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "3.28"
+      },
+      {
         "lat": 0.4436,
         "lon": 101.8937,
         "km": 42.2,
@@ -282,6 +327,15 @@
         "sat": "N20",
         "confidence": "n",
         "frp": "2.15"
+      },
+      {
+        "lat": 0.4428,
+        "lon": 101.8936,
+        "km": 42.2,
+        "acq": "2026-08-27",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "2.54"
       },
       {
         "lat": 0.443,
@@ -311,15 +365,6 @@
         "frp": "2.42"
       },
       {
-        "lat": 0.4429,
-        "lon": 101.8908,
-        "km": 42.3,
-        "acq": "2026-08-23",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "3.16"
-      },
-      {
         "lat": 0.4427,
         "lon": 101.8915,
         "km": 42.3,
@@ -329,19 +374,19 @@
         "frp": "1.8"
       },
       {
-        "lat": 0.4401,
-        "lon": 101.8917,
-        "km": 42.6,
-        "acq": "2026-08-23",
+        "lat": 1.1279,
+        "lon": 101.6427,
+        "km": 50.0,
+        "acq": "2026-08-27",
         "sat": "N",
         "confidence": "n",
-        "frp": "2.13"
+        "frp": "1.84"
       }
     ],
     "weather_risk": {
-      "level": "rendah",
-      "dry_streak": 0,
-      "humidity": 81
+      "level": "sedang",
+      "dry_streak": 5,
+      "humidity": 78
     },
     "sipongi": {
       "status": "bahaya",
@@ -682,23 +727,23 @@
     "map_google": "https://www.google.com/maps?q=0.8137,101.8635"
   },
   "air": {
-    "us_aqi": 132,
-    "pm2_5": 46.9,
-    "pm10": 48.3,
+    "us_aqi": 135,
+    "pm2_5": 77.5,
+    "pm10": 81.5,
     "category": "Tidak sehat (kel. sensitif)",
     "color": "orange",
-    "aod": 0.93,
+    "aod": 1.27,
     "dust": 0,
-    "haze": "berasap/berkabut",
-    "haze_color": "orange",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "haze": "asap tebal",
+    "haze_color": "red",
+    "uv": 5.0,
+    "uv_cat": "sedang"
   },
   "flood": {
     "river_discharge": 66.1,
     "unit": "m3/s",
     "trend": "naik",
-    "peak_next3": 111.5,
+    "peak_next3": 140.2,
     "baseline": 62.2,
     "ratio_pct": 106,
     "status": "Normal",
