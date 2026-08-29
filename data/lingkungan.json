@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-29T12:16+08:00",
+  "updated_at": "2026-08-29T19:22+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -19,7 +19,7 @@
       "confidence": "l",
       "frp": "18.77"
     },
-    "count_within": 54,
+    "count_within": 56,
     "scanned_days": 5,
     "points": [
       {
@@ -473,6 +473,15 @@
         "frp": "0.91"
       },
       {
+        "lat": 1.0706,
+        "lon": 101.6655,
+        "km": 43.8,
+        "acq": "2026-08-29",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "10.49"
+      },
+      {
         "lat": 1.0701,
         "lon": 101.6631,
         "km": 44.0,
@@ -507,12 +516,21 @@
         "sat": "N",
         "confidence": "n",
         "frp": "1.84"
+      },
+      {
+        "lat": 1.1285,
+        "lon": 101.6432,
+        "km": 50.0,
+        "acq": "2026-08-29",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "7.75"
       }
     ],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 78
+      "humidity": 77
     },
     "sipongi": {
       "status": "bahaya",
@@ -853,17 +871,17 @@
     "map_google": "https://www.google.com/maps?q=0.8137,101.8635"
   },
   "air": {
-    "us_aqi": 185,
-    "pm2_5": 62.2,
-    "pm10": 65.4,
-    "category": "Tidak sehat",
+    "us_aqi": 203,
+    "pm2_5": 255.2,
+    "pm10": 258.0,
+    "category": "Sangat tidak sehat",
     "color": "red",
-    "aod": 1.15,
+    "aod": 4.09,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 6.7,
-    "uv_cat": "tinggi"
+    "uv": 0.0,
+    "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 82.0,
