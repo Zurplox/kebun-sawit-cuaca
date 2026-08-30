@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-29T23:08+08:00",
+  "updated_at": "2026-08-30T09:31+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -9,37 +9,19 @@
     "status": "bahaya",
     "warn_km": 50,
     "nearest": {
-      "km": 11.4,
-      "dir": "barat",
-      "lat": 0.8137,
-      "lon": 101.8635,
-      "place": "Koto Gasib, Riau",
-      "acq": "2026-08-25",
+      "km": 22.1,
+      "dir": "tenggara",
+      "lat": 0.6726,
+      "lon": 102.1043,
+      "place": "Dayun, Riau",
+      "acq": "2026-08-26",
       "sat": "N",
-      "confidence": "l",
-      "frp": "18.77"
+      "confidence": "n",
+      "frp": "2.34"
     },
-    "count_within": 56,
+    "count_within": 47,
     "scanned_days": 5,
     "points": [
-      {
-        "lat": 0.8137,
-        "lon": 101.8635,
-        "km": 11.4,
-        "acq": "2026-08-25",
-        "sat": "N",
-        "confidence": "l",
-        "frp": "18.77"
-      },
-      {
-        "lat": 0.6761,
-        "lon": 102.1077,
-        "km": 22.1,
-        "acq": "2026-08-25",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.29"
-      },
       {
         "lat": 0.6726,
         "lon": 102.1043,
@@ -113,15 +95,6 @@
         "frp": "2.9"
       },
       {
-        "lat": 0.6723,
-        "lon": 102.1068,
-        "km": 22.3,
-        "acq": "2026-08-25",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "3.83"
-      },
-      {
         "lat": 0.6718,
         "lon": 102.1063,
         "km": 22.3,
@@ -129,24 +102,6 @@
         "sat": "N20",
         "confidence": "n",
         "frp": "2.9"
-      },
-      {
-        "lat": 0.6728,
-        "lon": 102.1074,
-        "km": 22.3,
-        "acq": "2026-08-25",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.1"
-      },
-      {
-        "lat": 0.6747,
-        "lon": 102.1094,
-        "km": 22.3,
-        "acq": "2026-08-25",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "3.72"
       },
       {
         "lat": 0.6738,
@@ -165,15 +120,6 @@
         "sat": "N20",
         "confidence": "n",
         "frp": "11.74"
-      },
-      {
-        "lat": 0.6726,
-        "lon": 102.1081,
-        "km": 22.4,
-        "acq": "2026-08-25",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "4.65"
       },
       {
         "lat": 0.6751,
@@ -266,15 +212,6 @@
         "frp": "13.54"
       },
       {
-        "lat": 0.669,
-        "lon": 102.1066,
-        "km": 22.6,
-        "acq": "2026-08-25",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "0.98"
-      },
-      {
         "lat": 0.6749,
         "lon": 102.1126,
         "km": 22.6,
@@ -282,6 +219,15 @@
         "sat": "N",
         "confidence": "n",
         "frp": "1.52"
+      },
+      {
+        "lat": 0.672,
+        "lon": 102.1101,
+        "km": 22.6,
+        "acq": "2026-08-29",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.57"
       },
       {
         "lat": 0.6713,
@@ -329,15 +275,6 @@
         "frp": "5.07"
       },
       {
-        "lat": 0.6715,
-        "lon": 102.1118,
-        "km": 22.8,
-        "acq": "2026-08-25",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "5.93"
-      },
-      {
         "lat": 0.6705,
         "lon": 102.1109,
         "km": 22.8,
@@ -363,15 +300,6 @@
         "sat": "N",
         "confidence": "n",
         "frp": "8.18"
-      },
-      {
-        "lat": 0.6718,
-        "lon": 102.1131,
-        "km": 22.9,
-        "acq": "2026-08-25",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "4.65"
       },
       {
         "lat": 0.4447,
@@ -408,15 +336,6 @@
         "sat": "N",
         "confidence": "n",
         "frp": "1.75"
-      },
-      {
-        "lat": 0.4427,
-        "lon": 101.8929,
-        "km": 42.3,
-        "acq": "2026-08-25",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "2.26"
       },
       {
         "lat": 0.4424,
@@ -529,8 +448,8 @@
     ],
     "weather_risk": {
       "level": "rendah",
-      "dry_streak": 1,
-      "humidity": 71
+      "dry_streak": 0,
+      "humidity": 84
     },
     "sipongi": {
       "status": "bahaya",
@@ -868,29 +787,29 @@
     },
     "primary_src": "FIRMS",
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.8137,101.8635"
+    "map_google": "https://www.google.com/maps?q=0.6726,102.1043"
   },
   "air": {
-    "us_aqi": 186,
-    "pm2_5": 96.6,
-    "pm10": 97.6,
+    "us_aqi": 193,
+    "pm2_5": 102.4,
+    "pm10": 103.8,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 3.69,
+    "aod": 1.71,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 0.8,
     "uv_cat": "rendah"
   },
   "flood": {
-    "river_discharge": 82.0,
+    "river_discharge": 68.0,
     "unit": "m3/s",
-    "trend": "naik",
-    "peak_next3": 68.0,
+    "trend": "stabil",
+    "peak_next3": 57.5,
     "baseline": 66.1,
-    "ratio_pct": 124,
-    "status": "Agak tinggi",
+    "ratio_pct": 103,
+    "status": "Normal",
     "map": "https://sites.research.google/floods/l/0.816/101.966/9"
   },
   "tide": {
@@ -900,43 +819,36 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 2.06,
+      "h": 2.0,
       "time": "22:00"
     },
     "low": {
-      "h": -0.74,
-      "time": "16:00"
+      "h": -0.71,
+      "time": "17:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.66,
-        "time": "04:00"
+        "h": -0.6,
+        "time": "05:00"
       },
       {
         "type": "pasang",
-        "h": 1.65,
-        "time": "09:00"
+        "h": 1.82,
+        "time": "10:00"
       },
       {
         "type": "surut",
-        "h": -0.74,
-        "time": "16:00"
+        "h": -0.71,
+        "time": "17:00"
       },
       {
         "type": "pasang",
-        "h": 2.06,
+        "h": 2.0,
         "time": "22:00"
       }
     ],
     "daily": [
-      {
-        "date": "2026-08-29",
-        "high": 2.06,
-        "high_time": "22:00",
-        "low": -0.74,
-        "low_time": "16:00"
-      },
       {
         "date": "2026-08-30",
         "high": 2.0,
@@ -1009,7 +921,7 @@
       },
       {
         "date": "2026-09-09",
-        "high": 2.21,
+        "high": 2.22,
         "high_time": "20:00",
         "low": -0.43,
         "low_time": "13:30",
@@ -1052,7 +964,7 @@
         "high": 2.14,
         "high_time": "10:30",
         "low": -0.85,
-        "low_time": "17:00",
+        "low_time": "16:30",
         "est": true
       },
       {
@@ -1067,23 +979,23 @@
         "date": "2026-09-16",
         "high": 1.96,
         "high_time": "11:30",
-        "low": -0.54,
+        "low": -0.53,
         "low_time": "05:00",
         "est": true
       },
       {
         "date": "2026-09-17",
-        "high": 1.78,
+        "high": 1.77,
         "high_time": "12:00",
-        "low": -0.42,
+        "low": -0.41,
         "low_time": "05:30",
         "est": true
       },
       {
         "date": "2026-09-18",
-        "high": 1.55,
+        "high": 1.54,
         "high_time": "13:00",
-        "low": -0.25,
+        "low": -0.24,
         "low_time": "06:00",
         "est": true
       },
@@ -1091,15 +1003,15 @@
         "date": "2026-09-19",
         "high": 1.32,
         "high_time": "13:30",
-        "low": -0.05,
+        "low": -0.04,
         "low_time": "06:30",
         "est": true
       },
       {
         "date": "2026-09-20",
-        "high": 1.18,
+        "high": 1.17,
         "high_time": "15:30",
-        "low": 0.17,
+        "low": 0.18,
         "low_time": "07:00",
         "est": true
       },
@@ -1129,9 +1041,9 @@
       },
       {
         "date": "2026-09-24",
-        "high": 1.77,
+        "high": 1.76,
         "high_time": "20:00",
-        "low": -0.31,
+        "low": -0.32,
         "low_time": "13:30",
         "est": true
       },
@@ -1139,7 +1051,7 @@
         "date": "2026-09-25",
         "high": 1.86,
         "high_time": "20:30",
-        "low": -0.56,
+        "low": -0.57,
         "low_time": "14:00",
         "est": true
       },
@@ -1153,10 +1065,18 @@
       },
       {
         "date": "2026-09-27",
-        "high": 1.91,
+        "high": 1.92,
         "high_time": "09:00",
         "low": -0.93,
         "low_time": "15:30",
+        "est": true
+      },
+      {
+        "date": "2026-09-28",
+        "high": 2.07,
+        "high_time": "09:30",
+        "low": -1.01,
+        "low_time": "16:00",
         "est": true
       }
     ],
