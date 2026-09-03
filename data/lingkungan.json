@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-03T09:20+08:00",
+  "updated_at": "2026-09-03T17:13+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -9,19 +9,82 @@
     "status": "bahaya",
     "warn_km": 50,
     "nearest": {
-      "km": 42.2,
-      "dir": "selatan",
-      "lat": 0.444,
-      "lon": 101.8915,
-      "place": "Pangkalan Kerinci, Pelalawan, Riau",
-      "acq": "2026-09-01",
+      "km": 21.4,
+      "dir": "utara",
+      "lat": 1.0047,
+      "lon": 102.0016,
+      "place": "Bunga Raya, Siak Kecil, Riau",
+      "acq": "2026-09-03",
       "sat": "N20",
       "confidence": "n",
-      "frp": "1.92"
+      "frp": "10.99"
     },
-    "count_within": 7,
+    "count_within": 14,
     "scanned_days": 5,
     "points": [
+      {
+        "lat": 1.0047,
+        "lon": 102.0016,
+        "km": 21.4,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "10.99"
+      },
+      {
+        "lat": 1.0064,
+        "lon": 102.0029,
+        "km": 21.6,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "31.76"
+      },
+      {
+        "lat": 1.0058,
+        "lon": 102.0085,
+        "km": 21.6,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "10.34"
+      },
+      {
+        "lat": 1.0099,
+        "lon": 101.9987,
+        "km": 21.9,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "19.72"
+      },
+      {
+        "lat": 1.0105,
+        "lon": 102.0023,
+        "km": 22.0,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "31.76"
+      },
+      {
+        "lat": 0.6737,
+        "lon": 102.1059,
+        "km": 22.1,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "28.88"
+      },
+      {
+        "lat": 1.0128,
+        "lon": 102.001,
+        "km": 22.2,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "49.49"
+      },
       {
         "lat": 0.444,
         "lon": 101.8915,
@@ -88,8 +151,8 @@
     ],
     "weather_risk": {
       "level": "sedang",
-      "dry_streak": 6,
-      "humidity": 70
+      "dry_streak": 5,
+      "humidity": 64
     },
     "sipongi": {
       "status": "bahaya",
@@ -427,19 +490,19 @@
     },
     "primary_src": "FIRMS",
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.444,101.8915"
+    "map_google": "https://www.google.com/maps?q=1.0047,102.0016"
   },
   "air": {
-    "us_aqi": 80,
-    "pm2_5": 26.0,
-    "pm10": 26.6,
+    "us_aqi": 79,
+    "pm2_5": 32.1,
+    "pm10": 34.2,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.63,
+    "aod": 0.61,
     "dust": 0,
     "haze": "berasap/berkabut",
     "haze_color": "orange",
-    "uv": 1.6,
+    "uv": 1.7,
     "uv_cat": "rendah"
   },
   "flood": {
