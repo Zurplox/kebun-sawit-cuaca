@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-04T17:06+08:00",
+  "updated_at": "2026-09-04T22:26+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -19,7 +19,7 @@
       "confidence": "n",
       "frp": "1.52"
     },
-    "count_within": 49,
+    "count_within": 54,
     "scanned_days": 5,
     "points": [
       {
@@ -75,6 +75,15 @@
         "sat": "N",
         "confidence": "n",
         "frp": "31.76"
+      },
+      {
+        "lat": 0.6768,
+        "lon": 102.1024,
+        "km": 21.6,
+        "acq": "2026-09-04",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "44.78"
       },
       {
         "lat": 0.6758,
@@ -138,6 +147,15 @@
         "sat": "N",
         "confidence": "n",
         "frp": "2.64"
+      },
+      {
+        "lat": 1.0085,
+        "lon": 102.0012,
+        "km": 21.8,
+        "acq": "2026-09-04",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "5.42"
       },
       {
         "lat": 1.008,
@@ -230,6 +248,15 @@
         "frp": "1.9"
       },
       {
+        "lat": 0.6775,
+        "lon": 102.1071,
+        "km": 21.9,
+        "acq": "2026-09-04",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "44.78"
+      },
+      {
         "lat": 1.0105,
         "lon": 102.0023,
         "km": 22.0,
@@ -237,6 +264,15 @@
         "sat": "N",
         "confidence": "n",
         "frp": "31.76"
+      },
+      {
+        "lat": 0.6722,
+        "lon": 102.103,
+        "km": 22.0,
+        "acq": "2026-09-04",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "10.05"
       },
       {
         "lat": 0.6724,
@@ -374,6 +410,15 @@
         "frp": "1.48"
       },
       {
+        "lat": 0.6729,
+        "lon": 102.1078,
+        "km": 22.4,
+        "acq": "2026-09-04",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "10.05"
+      },
+      {
         "lat": 0.6717,
         "lon": 102.1078,
         "km": 22.5,
@@ -467,364 +512,39 @@
     "weather_risk": {
       "level": "sedang",
       "dry_streak": 5,
-      "humidity": 66
+      "humidity": 65
     },
     "sipongi": {
-      "status": "bahaya",
+      "status": "tidak tersedia",
+      "note": "SiPongi+ tidak menyediakan endpoint publik dan sumber pengganti juga gagal dibaca",
       "warn_km": 50,
-      "nearest": {
-        "km": 7.7,
-        "dir": "timur laut",
-        "lat": 0.86,
-        "lon": 102.02,
-        "place": "Siak, Riau",
-        "acq": "2023-03-26",
-        "sat": "BMKG",
-        "confidence": null,
-        "frp": null,
-        "src": "BMKG"
-      },
-      "count_within": 39,
-      "total_points": 246,
-      "points": [
-        {
-          "lat": 0.86,
-          "lon": 102.02,
-          "km": 7.7,
-          "conf": null,
-          "date": "2023-03-26",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.88,
-          "lon": 102.02,
-          "km": 9.3,
-          "conf": null,
-          "date": "2023-03-26",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.88,
-          "lon": 102.06,
-          "km": 12.6,
-          "conf": null,
-          "date": "2023-03-26",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.0,
-          "lon": 101.84,
-          "km": 24.8,
-          "conf": null,
-          "date": "2023-03-20",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.82,
-          "lon": 102.2,
-          "km": 26.0,
-          "conf": null,
-          "date": "2023-04-04",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.04,
-          "lon": 102.06,
-          "km": 27.0,
-          "conf": null,
-          "date": "2023-03-20",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.04,
-          "lon": 102.08,
-          "km": 28.0,
-          "conf": null,
-          "date": "2023-03-20",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.68,
-          "lon": 102.18,
-          "km": 28.2,
-          "conf": null,
-          "date": "2023-03-26",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.04,
-          "lon": 102.1,
-          "km": 29.0,
-          "conf": null,
-          "date": "2023-03-20",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.02,
-          "lon": 101.8,
-          "km": 29.3,
-          "conf": null,
-          "date": "2023-03-20",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.66,
-          "lon": 102.18,
-          "km": 29.4,
-          "conf": null,
-          "date": "2023-03-12",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.68,
-          "lon": 102.2,
-          "km": 30.1,
-          "conf": null,
-          "date": "2023-03-12",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.04,
-          "lon": 101.8,
-          "km": 31.0,
-          "conf": null,
-          "date": "2023-03-20",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.66,
-          "lon": 102.2,
-          "km": 31.2,
-          "conf": null,
-          "date": "2023-03-09",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.1,
-          "lon": 101.96,
-          "km": 31.6,
-          "conf": null,
-          "date": "2023-04-12",
-          "name": "KAB. BENGKALIS"
-        },
-        {
-          "lat": 1.06,
-          "lon": 102.12,
-          "km": 32.1,
-          "conf": null,
-          "date": "2023-03-24",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.82,
-          "lon": 102.26,
-          "km": 32.7,
-          "conf": null,
-          "date": "2023-03-26",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.66,
-          "lon": 102.22,
-          "km": 33.1,
-          "conf": null,
-          "date": "2023-03-09",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.1,
-          "lon": 102.06,
-          "km": 33.3,
-          "conf": null,
-          "date": "2023-03-26",
-          "name": "KAB. BENGKALIS"
-        },
-        {
-          "lat": 0.88,
-          "lon": 102.26,
-          "km": 33.4,
-          "conf": null,
-          "date": "2023-03-29",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.68,
-          "lon": 102.24,
-          "km": 34.0,
-          "conf": null,
-          "date": "2023-03-12",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.9,
-          "lon": 102.26,
-          "km": 34.0,
-          "conf": null,
-          "date": "2023-03-09",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.08,
-          "lon": 102.12,
-          "km": 34.0,
-          "conf": null,
-          "date": "2023-03-18",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.82,
-          "lon": 102.28,
-          "km": 34.9,
-          "conf": null,
-          "date": "2023-03-29",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.1,
-          "lon": 102.1,
-          "km": 34.9,
-          "conf": null,
-          "date": "2023-03-22",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.66,
-          "lon": 102.24,
-          "km": 35.0,
-          "conf": null,
-          "date": "2023-03-09",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.16,
-          "lon": 102.06,
-          "km": 39.7,
-          "conf": null,
-          "date": "2023-03-26",
-          "name": "KAB. BENGKALIS"
-        },
-        {
-          "lat": 0.54,
-          "lon": 102.2,
-          "km": 40.2,
-          "conf": null,
-          "date": "2023-03-29",
-          "name": "KAB. PELALAWAN"
-        },
-        {
-          "lat": 0.84,
-          "lon": 101.6,
-          "km": 40.8,
-          "conf": null,
-          "date": "2023-04-04",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.86,
-          "lon": 101.6,
-          "km": 41.0,
-          "conf": null,
-          "date": "2023-04-04",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 1.16,
-          "lon": 102.1,
-          "km": 41.1,
-          "conf": null,
-          "date": "2023-03-22",
-          "name": "KAB. BENGKALIS"
-        },
-        {
-          "lat": 0.54,
-          "lon": 102.22,
-          "km": 41.7,
-          "conf": null,
-          "date": "2023-03-29",
-          "name": "KAB. PELALAWAN"
-        },
-        {
-          "lat": 1.08,
-          "lon": 101.7,
-          "km": 41.7,
-          "conf": null,
-          "date": "2023-03-20",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.48,
-          "lon": 102.18,
-          "km": 44.3,
-          "conf": null,
-          "date": "2023-04-12",
-          "name": "KAB. PELALAWAN"
-        },
-        {
-          "lat": 0.42,
-          "lon": 102.02,
-          "km": 44.4,
-          "conf": null,
-          "date": "2023-03-22",
-          "name": "KAB. PELALAWAN"
-        },
-        {
-          "lat": 1.06,
-          "lon": 101.64,
-          "km": 45.3,
-          "conf": null,
-          "date": "2023-03-26",
-          "name": "KAB. SIAK"
-        },
-        {
-          "lat": 0.5,
-          "lon": 102.24,
-          "km": 46.5,
-          "conf": null,
-          "date": "2023-05-03",
-          "name": "KAB. PELALAWAN"
-        },
-        {
-          "lat": 1.16,
-          "lon": 101.68,
-          "km": 49.8,
-          "conf": null,
-          "date": "2023-03-16",
-          "name": "KAB. BENGKALIS"
-        },
-        {
-          "lat": 0.64,
-          "lon": 102.38,
-          "km": 50.0,
-          "conf": null,
-          "date": "2023-03-22",
-          "name": "KAB. SIAK"
-        }
-      ],
-      "source_url": "https://datacuaca.bmkg.go.id/arcgis/rest/services/production/geohotspot/MapServer/0/query?where=1%3D1&geometry=100.9662,-0.1843,102.9662,1.8157&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&resultRecordCount=2000&f=json",
-      "source_label": "BMKG GeoHotspot"
+      "nearest": null,
+      "count_within": 0,
+      "points": [],
+      "total_points": 0,
+      "source_label": null
     },
-    "primary_src": "FIRMS",
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
     "map_google": "https://www.google.com/maps?q=0.7398,101.9411"
   },
   "air": {
-    "us_aqi": 114,
-    "pm2_5": 59.5,
-    "pm10": 64.3,
-    "category": "Tidak sehat (kel. sensitif)",
-    "color": "orange",
-    "aod": 0.9,
+    "us_aqi": 162,
+    "pm2_5": 149.0,
+    "pm10": 155.1,
+    "category": "Tidak sehat",
+    "color": "red",
+    "aod": 1.08,
     "dust": 0,
-    "haze": "berasap/berkabut",
-    "haze_color": "orange",
-    "uv": 1.5,
+    "haze": "asap tebal",
+    "haze_color": "red",
+    "uv": 0.0,
     "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 23.3,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 20.6,
+    "peak_next3": 21.6,
     "baseline": 58.4,
     "ratio_pct": 40,
     "status": "Normal",
@@ -837,22 +557,22 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 1.81,
+      "h": 1.8,
       "time": "13:00"
     },
     "low": {
-      "h": -0.29,
+      "h": -0.24,
       "time": "07:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.29,
+        "h": -0.24,
         "time": "07:00"
       },
       {
         "type": "pasang",
-        "h": 1.81,
+        "h": 1.8,
         "time": "13:00"
       },
       {
@@ -864,14 +584,14 @@
     "daily": [
       {
         "date": "2026-09-04",
-        "high": 1.81,
+        "high": 1.8,
         "high_time": "13:00",
-        "low": -0.29,
+        "low": -0.24,
         "low_time": "07:00"
       },
       {
         "date": "2026-09-05",
-        "high": 1.52,
+        "high": 1.55,
         "high_time": "14:00",
         "low": -0.08,
         "low_time": "07:00"
@@ -881,25 +601,25 @@
         "high": 1.5,
         "high_time": "17:00",
         "low": 0.05,
-        "low_time": "09:00"
+        "low_time": "08:00"
       },
       {
         "date": "2026-09-07",
-        "high": 1.73,
+        "high": 1.74,
         "high_time": "18:00",
         "low": 0.02,
         "low_time": "00:00"
       },
       {
         "date": "2026-09-08",
-        "high": 1.98,
+        "high": 2.0,
         "high_time": "19:00",
-        "low": -0.21,
+        "low": -0.22,
         "low_time": "01:00"
       },
       {
         "date": "2026-09-09",
-        "high": 2.19,
+        "high": 2.2,
         "high_time": "20:00",
         "low": -0.46,
         "low_time": "14:00"
@@ -908,37 +628,36 @@
         "date": "2026-09-10",
         "high": 2.25,
         "high_time": "21:00",
-        "low": -0.77,
+        "low": -0.76,
         "low_time": "15:00"
       },
       {
         "date": "2026-09-11",
-        "high": 2.15,
+        "high": 2.17,
         "high_time": "21:00",
-        "low": -0.96,
+        "low": -0.94,
         "low_time": "15:00"
       },
       {
         "date": "2026-09-12",
-        "high": 2.06,
+        "high": 2.07,
         "high_time": "22:00",
-        "low": -1.06,
+        "low": -1.02,
         "low_time": "16:00"
       },
       {
         "date": "2026-09-13",
-        "high": 1.24,
-        "high_time": "00:00",
-        "low": -0.7,
-        "low_time": "04:00"
+        "high": 2.02,
+        "high_time": "10:00",
+        "low": -0.98,
+        "low_time": "17:00"
       },
       {
         "date": "2026-09-14",
-        "high": 2.14,
-        "high_time": "10:30",
-        "low": -0.87,
-        "low_time": "17:00",
-        "est": true
+        "high": 1.35,
+        "high_time": "00:00",
+        "low": -0.66,
+        "low_time": "05:00"
       },
       {
         "date": "2026-09-15",
@@ -960,7 +679,7 @@
         "date": "2026-09-17",
         "high": 1.76,
         "high_time": "12:00",
-        "low": -0.38,
+        "low": -0.39,
         "low_time": "05:30",
         "est": true
       },
@@ -982,7 +701,7 @@
       },
       {
         "date": "2026-09-20",
-        "high": 1.14,
+        "high": 1.15,
         "high_time": "15:30",
         "low": 0.21,
         "low_time": "06:30",
@@ -998,7 +717,7 @@
       },
       {
         "date": "2026-09-22",
-        "high": 1.44,
+        "high": 1.43,
         "high_time": "19:00",
         "low": 0.13,
         "low_time": "01:30",
@@ -1006,7 +725,7 @@
       },
       {
         "date": "2026-09-23",
-        "high": 1.62,
+        "high": 1.61,
         "high_time": "19:30",
         "low": -0.05,
         "low_time": "13:00",
@@ -1014,9 +733,9 @@
       },
       {
         "date": "2026-09-24",
-        "high": 1.76,
+        "high": 1.75,
         "high_time": "20:00",
-        "low": -0.33,
+        "low": -0.32,
         "low_time": "13:30",
         "est": true
       },
@@ -1024,31 +743,31 @@
         "date": "2026-09-25",
         "high": 1.85,
         "high_time": "20:30",
-        "low": -0.59,
+        "low": -0.58,
         "low_time": "14:00",
         "est": true
       },
       {
         "date": "2026-09-26",
-        "high": 1.9,
+        "high": 1.89,
         "high_time": "21:00",
-        "low": -0.8,
+        "low": -0.79,
         "low_time": "15:00",
         "est": true
       },
       {
         "date": "2026-09-27",
-        "high": 1.94,
+        "high": 1.93,
         "high_time": "09:00",
-        "low": -0.96,
+        "low": -0.95,
         "low_time": "15:30",
         "est": true
       },
       {
         "date": "2026-09-28",
-        "high": 2.1,
+        "high": 2.09,
         "high_time": "09:30",
-        "low": -1.03,
+        "low": -1.02,
         "low_time": "16:00",
         "est": true
       },
@@ -1086,7 +805,7 @@
       },
       {
         "date": "2026-10-03",
-        "high": 1.79,
+        "high": 1.8,
         "high_time": "13:00",
         "low": -0.27,
         "low_time": "06:00",
