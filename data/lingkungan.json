@@ -1,21 +1,473 @@
 {
-  "updated_at": "2026-09-04T09:18+08:00",
+  "updated_at": "2026-09-04T17:06+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "aman",
+    "status": "bahaya",
     "warn_km": 50,
-    "nearest": null,
-    "count_within": 0,
+    "nearest": {
+      "km": 8.9,
+      "dir": "selatan",
+      "lat": 0.7398,
+      "lon": 101.9411,
+      "place": "Koto Gasib, Riau",
+      "acq": "2026-09-03",
+      "sat": "N20",
+      "confidence": "n",
+      "frp": "1.52"
+    },
+    "count_within": 49,
     "scanned_days": 5,
-    "points": [],
+    "points": [
+      {
+        "lat": 0.7398,
+        "lon": 101.9411,
+        "km": 8.9,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.52"
+      },
+      {
+        "lat": 0.6787,
+        "lon": 102.1008,
+        "km": 21.4,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "3.83"
+      },
+      {
+        "lat": 1.0047,
+        "lon": 102.0016,
+        "km": 21.4,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "10.99"
+      },
+      {
+        "lat": 0.6768,
+        "lon": 102.1003,
+        "km": 21.5,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "21.3"
+      },
+      {
+        "lat": 0.6797,
+        "lon": 102.1046,
+        "km": 21.6,
+        "acq": "2026-09-04",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "30.33"
+      },
+      {
+        "lat": 1.0064,
+        "lon": 102.0029,
+        "km": 21.6,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "31.76"
+      },
+      {
+        "lat": 0.6758,
+        "lon": 102.1017,
+        "km": 21.6,
+        "acq": "2026-09-04",
+        "sat": "N",
+        "confidence": "l",
+        "frp": "15.64"
+      },
+      {
+        "lat": 1.0058,
+        "lon": 102.0085,
+        "km": 21.6,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "10.34"
+      },
+      {
+        "lat": 1.0074,
+        "lon": 102.0021,
+        "km": 21.7,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.62"
+      },
+      {
+        "lat": 0.6781,
+        "lon": 102.1048,
+        "km": 21.7,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "3.83"
+      },
+      {
+        "lat": 0.673,
+        "lon": 102.0999,
+        "km": 21.7,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "4.53"
+      },
+      {
+        "lat": 1.0075,
+        "lon": 102.0057,
+        "km": 21.8,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "23.18"
+      },
+      {
+        "lat": 1.0087,
+        "lon": 101.9998,
+        "km": 21.8,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "2.64"
+      },
+      {
+        "lat": 1.008,
+        "lon": 102.0039,
+        "km": 21.8,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.26"
+      },
+      {
+        "lat": 0.6802,
+        "lon": 102.1081,
+        "km": 21.8,
+        "acq": "2026-09-04",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "30.33"
+      },
+      {
+        "lat": 1.0087,
+        "lon": 102.0017,
+        "km": 21.8,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "3.52"
+      },
+      {
+        "lat": 1.009,
+        "lon": 102.0029,
+        "km": 21.9,
+        "acq": "2026-09-04",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "4.1"
+      },
+      {
+        "lat": 0.6761,
+        "lon": 102.1047,
+        "km": 21.9,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "21.3"
+      },
+      {
+        "lat": 0.6764,
+        "lon": 102.1051,
+        "km": 21.9,
+        "acq": "2026-09-04",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "19.24"
+      },
+      {
+        "lat": 1.0099,
+        "lon": 101.9987,
+        "km": 21.9,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "19.72"
+      },
+      {
+        "lat": 1.0098,
+        "lon": 101.9996,
+        "km": 21.9,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.97"
+      },
+      {
+        "lat": 1.0091,
+        "lon": 102.0041,
+        "km": 21.9,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.97"
+      },
+      {
+        "lat": 0.6718,
+        "lon": 102.1009,
+        "km": 21.9,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.9"
+      },
+      {
+        "lat": 1.0105,
+        "lon": 102.0023,
+        "km": 22.0,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "31.76"
+      },
+      {
+        "lat": 0.6724,
+        "lon": 102.1039,
+        "km": 22.1,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "4.53"
+      },
+      {
+        "lat": 0.6769,
+        "lon": 102.1086,
+        "km": 22.1,
+        "acq": "2026-09-04",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "19.24"
+      },
+      {
+        "lat": 0.6724,
+        "lon": 102.1041,
+        "km": 22.1,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.57"
+      },
+      {
+        "lat": 0.6737,
+        "lon": 102.1059,
+        "km": 22.1,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "28.88"
+      },
+      {
+        "lat": 0.6731,
+        "lon": 102.1056,
+        "km": 22.2,
+        "acq": "2026-09-04",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "19.24"
+      },
+      {
+        "lat": 1.0123,
+        "lon": 102.0024,
+        "km": 22.2,
+        "acq": "2026-09-04",
+        "sat": "N",
+        "confidence": "l",
+        "frp": "4.1"
+      },
+      {
+        "lat": 1.0132,
+        "lon": 101.9977,
+        "km": 22.2,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.86"
+      },
+      {
+        "lat": 1.0125,
+        "lon": 102.0022,
+        "km": 22.2,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "3.52"
+      },
+      {
+        "lat": 1.0128,
+        "lon": 102.001,
+        "km": 22.2,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "49.49"
+      },
+      {
+        "lat": 1.013,
+        "lon": 101.9998,
+        "km": 22.3,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "30.14"
+      },
+      {
+        "lat": 0.6712,
+        "lon": 102.1048,
+        "km": 22.3,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.9"
+      },
+      {
+        "lat": 0.6754,
+        "lon": 102.1091,
+        "km": 22.3,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.22"
+      },
+      {
+        "lat": 0.6713,
+        "lon": 102.1055,
+        "km": 22.3,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "27.81"
+      },
+      {
+        "lat": 1.0135,
+        "lon": 102.0002,
+        "km": 22.3,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.97"
+      },
+      {
+        "lat": 1.0139,
+        "lon": 101.9989,
+        "km": 22.3,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.48"
+      },
+      {
+        "lat": 0.6717,
+        "lon": 102.1078,
+        "km": 22.5,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "2.77"
+      },
+      {
+        "lat": 0.6721,
+        "lon": 102.1105,
+        "km": 22.6,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "20.27"
+      },
+      {
+        "lat": 0.4449,
+        "lon": 101.8906,
+        "km": 42.1,
+        "acq": "2026-09-03",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "2.3"
+      },
+      {
+        "lat": 0.444,
+        "lon": 101.8915,
+        "km": 42.2,
+        "acq": "2026-09-01",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.92"
+      },
+      {
+        "lat": 0.4432,
+        "lon": 101.8926,
+        "km": 42.2,
+        "acq": "2026-09-02",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "3.25"
+      },
+      {
+        "lat": 0.4424,
+        "lon": 101.8942,
+        "km": 42.3,
+        "acq": "2026-09-01",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "2.01"
+      },
+      {
+        "lat": 0.443,
+        "lon": 101.8908,
+        "km": 42.3,
+        "acq": "2026-09-01",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.87"
+      },
+      {
+        "lat": 0.4424,
+        "lon": 101.8936,
+        "km": 42.3,
+        "acq": "2026-09-02",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.66"
+      },
+      {
+        "lat": 0.4429,
+        "lon": 101.8901,
+        "km": 42.3,
+        "acq": "2026-09-02",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.66"
+      },
+      {
+        "lat": 0.4415,
+        "lon": 101.8906,
+        "km": 42.5,
+        "acq": "2026-09-03",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "0.98"
+      }
+    ],
     "weather_risk": {
-      "level": "rendah",
-      "dry_streak": 0,
-      "humidity": 70
+      "level": "sedang",
+      "dry_streak": 5,
+      "humidity": 66
     },
     "sipongi": {
       "status": "bahaya",
@@ -352,19 +804,20 @@
       "source_label": "BMKG GeoHotspot"
     },
     "primary_src": "FIRMS",
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
+    "map_google": "https://www.google.com/maps?q=0.7398,101.9411"
   },
   "air": {
-    "us_aqi": 95,
-    "pm2_5": 25.0,
-    "pm10": 25.3,
-    "category": "Sedang",
-    "color": "gold",
-    "aod": 1.04,
+    "us_aqi": 114,
+    "pm2_5": 59.5,
+    "pm10": 64.3,
+    "category": "Tidak sehat (kel. sensitif)",
+    "color": "orange",
+    "aod": 0.9,
     "dust": 0,
-    "haze": "asap tebal",
-    "haze_color": "red",
-    "uv": 1.1,
+    "haze": "berasap/berkabut",
+    "haze_color": "orange",
+    "uv": 1.5,
     "uv_cat": "rendah"
   },
   "flood": {
