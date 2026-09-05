@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-05T09:24+08:00",
+  "updated_at": "2026-09-05T16:45+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -15,31 +15,356 @@
     "weather_risk": {
       "level": "sedang",
       "dry_streak": 4,
-      "humidity": 67
+      "humidity": 66
     },
     "sipongi": {
-      "status": "tidak tersedia",
-      "note": "SiPongi+ tidak menyediakan endpoint publik dan sumber pengganti juga gagal dibaca",
+      "status": "bahaya",
       "warn_km": 50,
-      "nearest": null,
-      "count_within": 0,
-      "points": [],
-      "total_points": 0,
-      "source_label": null
+      "nearest": {
+        "km": 7.7,
+        "dir": "timur laut",
+        "lat": 0.86,
+        "lon": 102.02,
+        "place": "Siak, Riau",
+        "acq": "2023-03-26",
+        "sat": "BMKG",
+        "confidence": null,
+        "frp": null,
+        "src": "BMKG"
+      },
+      "count_within": 39,
+      "total_points": 246,
+      "points": [
+        {
+          "lat": 0.86,
+          "lon": 102.02,
+          "km": 7.7,
+          "conf": null,
+          "date": "2023-03-26",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.88,
+          "lon": 102.02,
+          "km": 9.3,
+          "conf": null,
+          "date": "2023-03-26",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.88,
+          "lon": 102.06,
+          "km": 12.6,
+          "conf": null,
+          "date": "2023-03-26",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.0,
+          "lon": 101.84,
+          "km": 24.8,
+          "conf": null,
+          "date": "2023-03-20",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.82,
+          "lon": 102.2,
+          "km": 26.0,
+          "conf": null,
+          "date": "2023-04-04",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.04,
+          "lon": 102.06,
+          "km": 27.0,
+          "conf": null,
+          "date": "2023-03-20",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.04,
+          "lon": 102.08,
+          "km": 28.0,
+          "conf": null,
+          "date": "2023-03-20",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.68,
+          "lon": 102.18,
+          "km": 28.2,
+          "conf": null,
+          "date": "2023-03-26",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.04,
+          "lon": 102.1,
+          "km": 29.0,
+          "conf": null,
+          "date": "2023-03-20",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.02,
+          "lon": 101.8,
+          "km": 29.3,
+          "conf": null,
+          "date": "2023-03-20",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.66,
+          "lon": 102.18,
+          "km": 29.4,
+          "conf": null,
+          "date": "2023-03-12",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.68,
+          "lon": 102.2,
+          "km": 30.1,
+          "conf": null,
+          "date": "2023-03-12",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.04,
+          "lon": 101.8,
+          "km": 31.0,
+          "conf": null,
+          "date": "2023-03-20",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.66,
+          "lon": 102.2,
+          "km": 31.2,
+          "conf": null,
+          "date": "2023-03-09",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.1,
+          "lon": 101.96,
+          "km": 31.6,
+          "conf": null,
+          "date": "2023-04-12",
+          "name": "KAB. BENGKALIS"
+        },
+        {
+          "lat": 1.06,
+          "lon": 102.12,
+          "km": 32.1,
+          "conf": null,
+          "date": "2023-03-24",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.82,
+          "lon": 102.26,
+          "km": 32.7,
+          "conf": null,
+          "date": "2023-03-26",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.66,
+          "lon": 102.22,
+          "km": 33.1,
+          "conf": null,
+          "date": "2023-03-09",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.1,
+          "lon": 102.06,
+          "km": 33.3,
+          "conf": null,
+          "date": "2023-03-26",
+          "name": "KAB. BENGKALIS"
+        },
+        {
+          "lat": 0.88,
+          "lon": 102.26,
+          "km": 33.4,
+          "conf": null,
+          "date": "2023-03-29",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.68,
+          "lon": 102.24,
+          "km": 34.0,
+          "conf": null,
+          "date": "2023-03-12",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.9,
+          "lon": 102.26,
+          "km": 34.0,
+          "conf": null,
+          "date": "2023-03-09",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.08,
+          "lon": 102.12,
+          "km": 34.0,
+          "conf": null,
+          "date": "2023-03-18",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.82,
+          "lon": 102.28,
+          "km": 34.9,
+          "conf": null,
+          "date": "2023-03-29",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.1,
+          "lon": 102.1,
+          "km": 34.9,
+          "conf": null,
+          "date": "2023-03-22",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.66,
+          "lon": 102.24,
+          "km": 35.0,
+          "conf": null,
+          "date": "2023-03-09",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.16,
+          "lon": 102.06,
+          "km": 39.7,
+          "conf": null,
+          "date": "2023-03-26",
+          "name": "KAB. BENGKALIS"
+        },
+        {
+          "lat": 0.54,
+          "lon": 102.2,
+          "km": 40.2,
+          "conf": null,
+          "date": "2023-03-29",
+          "name": "KAB. PELALAWAN"
+        },
+        {
+          "lat": 0.84,
+          "lon": 101.6,
+          "km": 40.8,
+          "conf": null,
+          "date": "2023-04-04",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.86,
+          "lon": 101.6,
+          "km": 41.0,
+          "conf": null,
+          "date": "2023-04-04",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 1.16,
+          "lon": 102.1,
+          "km": 41.1,
+          "conf": null,
+          "date": "2023-03-22",
+          "name": "KAB. BENGKALIS"
+        },
+        {
+          "lat": 0.54,
+          "lon": 102.22,
+          "km": 41.7,
+          "conf": null,
+          "date": "2023-03-29",
+          "name": "KAB. PELALAWAN"
+        },
+        {
+          "lat": 1.08,
+          "lon": 101.7,
+          "km": 41.7,
+          "conf": null,
+          "date": "2023-03-20",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.48,
+          "lon": 102.18,
+          "km": 44.3,
+          "conf": null,
+          "date": "2023-04-12",
+          "name": "KAB. PELALAWAN"
+        },
+        {
+          "lat": 0.42,
+          "lon": 102.02,
+          "km": 44.4,
+          "conf": null,
+          "date": "2023-03-22",
+          "name": "KAB. PELALAWAN"
+        },
+        {
+          "lat": 1.06,
+          "lon": 101.64,
+          "km": 45.3,
+          "conf": null,
+          "date": "2023-03-26",
+          "name": "KAB. SIAK"
+        },
+        {
+          "lat": 0.5,
+          "lon": 102.24,
+          "km": 46.5,
+          "conf": null,
+          "date": "2023-05-03",
+          "name": "KAB. PELALAWAN"
+        },
+        {
+          "lat": 1.16,
+          "lon": 101.68,
+          "km": 49.8,
+          "conf": null,
+          "date": "2023-03-16",
+          "name": "KAB. BENGKALIS"
+        },
+        {
+          "lat": 0.64,
+          "lon": 102.38,
+          "km": 50.0,
+          "conf": null,
+          "date": "2023-03-22",
+          "name": "KAB. SIAK"
+        }
+      ],
+      "source_url": "https://datacuaca.bmkg.go.id/arcgis/rest/services/production/geohotspot/MapServer/0/query?where=1%3D1&geometry=100.9662,-0.1843,102.9662,1.8157&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&resultRecordCount=2000&f=json",
+      "source_label": "BMKG GeoHotspot"
     },
+    "primary_src": "FIRMS",
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 192,
-    "pm2_5": 100.1,
-    "pm10": 102.7,
+    "us_aqi": 196,
+    "pm2_5": 102.9,
+    "pm10": 107.3,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 1.85,
+    "aod": 1.78,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.9,
+    "uv": 2.3,
     "uv_cat": "rendah"
   },
   "flood": {
