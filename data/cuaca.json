@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-06T16:57+08:00",
+  "updated_at": "2026-09-06T21:43+08:00",
   "location": {
     "lat": 0.835,
     "lon": 101.976
@@ -8,21 +8,21 @@
   "today": {
     "date": "2026-09-06",
     "precip": 0.2,
-    "prob": 10,
-    "tmax": 34.9,
+    "prob": 14,
+    "tmax": 34.8,
     "tmin": 23.8,
     "humidity": 66,
-    "cloud": 43,
+    "cloud": 40,
     "code": 51,
     "condition": "Gerimis ringan",
     "emoji": "🌦️",
-    "wind": 11.4,
-    "gust": 27.0,
+    "wind": 11.5,
+    "gust": 27.4,
     "wind_dir": "Tenggara",
-    "wind_dir_deg": 138,
+    "wind_dir_deg": 134,
     "precip_hours": 2.0,
     "rain_windows": [],
-    "sunrise": "06:06",
+    "sunrise": "06:07",
     "sunset": "18:14",
     "soil_moist": 57,
     "hourly": [
@@ -101,7 +101,7 @@
       {
         "t": "09:00",
         "p": 0.0,
-        "prob": 1,
+        "prob": 0,
         "rh": 73,
         "cloud": 88,
         "code": 3
@@ -109,7 +109,7 @@
       {
         "t": "10:00",
         "p": 0.1,
-        "prob": 2,
+        "prob": 0,
         "rh": 63,
         "cloud": 98,
         "code": 51
@@ -125,7 +125,7 @@
       {
         "t": "12:00",
         "p": 0.0,
-        "prob": 8,
+        "prob": 11,
         "rh": 49,
         "cloud": 21,
         "code": 1
@@ -133,65 +133,65 @@
       {
         "t": "13:00",
         "p": 0.0,
-        "prob": 10,
-        "rh": 42,
-        "cloud": 16,
+        "prob": 14,
+        "rh": 41,
+        "cloud": 9,
         "code": 0
       },
       {
         "t": "14:00",
         "p": 0.0,
-        "prob": 9,
+        "prob": 11,
         "rh": 40,
-        "cloud": 9,
+        "cloud": 5,
         "code": 0
       },
       {
         "t": "15:00",
         "p": 0.0,
-        "prob": 6,
-        "rh": 39,
-        "cloud": 20,
-        "code": 1
+        "prob": 5,
+        "rh": 40,
+        "cloud": 16,
+        "code": 0
       },
       {
         "t": "16:00",
         "p": 0.0,
-        "prob": 4,
-        "rh": 40,
-        "cloud": 30,
-        "code": 1
+        "prob": 0,
+        "rh": 41,
+        "cloud": 9,
+        "code": 0
       },
       {
         "t": "17:00",
         "p": 0.0,
-        "prob": 2,
-        "rh": 42,
-        "cloud": 11,
+        "prob": 0,
+        "rh": 43,
+        "cloud": 3,
         "code": 0
       },
       {
         "t": "18:00",
         "p": 0.0,
-        "prob": 1,
-        "rh": 51,
-        "cloud": 6,
+        "prob": 0,
+        "rh": 53,
+        "cloud": 16,
         "code": 0
       },
       {
         "t": "19:00",
         "p": 0.0,
         "prob": 0,
-        "rh": 56,
-        "cloud": 8,
+        "rh": 59,
+        "cloud": 11,
         "code": 0
       },
       {
         "t": "20:00",
         "p": 0.0,
         "prob": 0,
-        "rh": 60,
-        "cloud": 9,
+        "rh": 61,
+        "cloud": 8,
         "code": 0
       },
       {
@@ -199,23 +199,23 @@
         "p": 0.0,
         "prob": 0,
         "rh": 61,
-        "cloud": 37,
+        "cloud": 29,
         "code": 1
       },
       {
         "t": "22:00",
         "p": 0.0,
         "prob": 0,
-        "rh": 64,
-        "cloud": 43,
-        "code": 1
+        "rh": 63,
+        "cloud": 17,
+        "code": 0
       },
       {
         "t": "23:00",
         "p": 0.0,
         "prob": 0,
-        "rh": 68,
-        "cloud": 25,
+        "rh": 67,
+        "cloud": 31,
         "code": 1
       }
     ]
@@ -1030,7 +1030,7 @@
       "gust": 26.3,
       "wdir": 136,
       "phours": 4.0,
-      "et0": 4.0,
+      "et0": 4.1,
       "kind": "actual"
     },
     {
@@ -1114,7 +1114,7 @@
       "gust": 36.4,
       "wdir": 158,
       "phours": 8.0,
-      "et0": 4.5,
+      "et0": 4.6,
       "kind": "actual"
     },
     {
@@ -1128,7 +1128,7 @@
       "gust": 30.2,
       "wdir": 188,
       "phours": 0.0,
-      "et0": 4.6,
+      "et0": 4.7,
       "kind": "actual"
     },
     {
@@ -1156,7 +1156,7 @@
       "gust": 24.8,
       "wdir": 148,
       "phours": 7.0,
-      "et0": 4.1,
+      "et0": 4.2,
       "kind": "actual"
     },
     {
@@ -1170,7 +1170,7 @@
       "gust": 30.6,
       "wdir": 154,
       "phours": 0.0,
-      "et0": 4.7,
+      "et0": 4.8,
       "kind": "actual"
     },
     {
@@ -1184,7 +1184,7 @@
       "gust": 32.4,
       "wdir": 151,
       "phours": 2.0,
-      "et0": 4.7,
+      "et0": 4.8,
       "kind": "actual"
     },
     {
@@ -1198,7 +1198,7 @@
       "gust": 29.5,
       "wdir": 150,
       "phours": 0.0,
-      "et0": 4.8,
+      "et0": 4.9,
       "kind": "actual"
     },
     {
@@ -1212,7 +1212,7 @@
       "gust": 29.5,
       "wdir": 149,
       "phours": 0.0,
-      "et0": 4.7,
+      "et0": 4.8,
       "kind": "actual"
     },
     {
@@ -1226,7 +1226,7 @@
       "gust": 32.0,
       "wdir": 147,
       "phours": 0.0,
-      "et0": 4.6,
+      "et0": 4.7,
       "kind": "actual"
     },
     {
@@ -1240,7 +1240,7 @@
       "gust": 26.6,
       "wdir": 143,
       "phours": 0.0,
-      "et0": 5.1,
+      "et0": 5.2,
       "kind": "actual"
     },
     {
@@ -1254,7 +1254,7 @@
       "gust": 29.5,
       "wdir": 143,
       "phours": 0.0,
-      "et0": 4.7,
+      "et0": 4.8,
       "kind": "actual"
     },
     {
@@ -1268,7 +1268,7 @@
       "gust": 40.3,
       "wdir": 181,
       "phours": 8.0,
-      "et0": 4.5,
+      "et0": 4.6,
       "kind": "actual"
     },
     {
@@ -1296,13 +1296,13 @@
       "gust": 24.1,
       "wdir": 115,
       "phours": 12.0,
-      "et0": 3.4,
+      "et0": 3.5,
       "kind": "actual"
     },
     {
       "date": "2026-08-17",
       "precip": 1.3,
-      "prob": 56,
+      "prob": 80,
       "tmax": 32.6,
       "tmin": 24.5,
       "wind": 12.9,
@@ -1324,7 +1324,7 @@
       "gust": 38.2,
       "wdir": 112,
       "phours": 9.0,
-      "et0": 4.8,
+      "et0": 4.9,
       "kind": "actual"
     },
     {
@@ -1366,7 +1366,7 @@
       "gust": 37.1,
       "wdir": 140,
       "phours": 0.0,
-      "et0": 5.2,
+      "et0": 5.3,
       "kind": "actual"
     },
     {
@@ -1394,7 +1394,7 @@
       "gust": 34.9,
       "wdir": 147,
       "phours": 2.0,
-      "et0": 5.2,
+      "et0": 5.3,
       "kind": "actual"
     },
     {
@@ -1408,7 +1408,7 @@
       "gust": 32.0,
       "wdir": 150,
       "phours": 0.0,
-      "et0": 5.2,
+      "et0": 5.3,
       "kind": "actual"
     },
     {
@@ -1450,7 +1450,7 @@
       "gust": 30.2,
       "wdir": 152,
       "phours": 10.0,
-      "et0": 4.5,
+      "et0": 4.6,
       "kind": "actual"
     },
     {
@@ -1464,7 +1464,7 @@
       "gust": 33.8,
       "wdir": 145,
       "phours": 6.0,
-      "et0": 4.9,
+      "et0": 5.0,
       "kind": "actual"
     },
     {
@@ -1478,7 +1478,7 @@
       "gust": 28.8,
       "wdir": 136,
       "phours": 0.0,
-      "et0": 4.8,
+      "et0": 4.9,
       "kind": "actual"
     },
     {
@@ -1520,7 +1520,7 @@
       "gust": 32.4,
       "wdir": 118,
       "phours": 7.0,
-      "et0": 4.7,
+      "et0": 4.8,
       "kind": "actual"
     },
     {
@@ -1576,111 +1576,111 @@
       "gust": 33.5,
       "wdir": 133,
       "phours": 4.0,
-      "et0": 5.2,
+      "et0": 5.3,
       "kind": "actual"
     },
     {
       "date": "2026-09-06",
       "precip": 0.2,
-      "prob": 10,
-      "tmax": 34.9,
+      "prob": 14,
+      "tmax": 34.8,
       "tmin": 23.8,
-      "wind": 11.4,
+      "wind": 11.5,
       "code": 51,
-      "gust": 27.0,
-      "wdir": 138,
+      "gust": 27.4,
+      "wdir": 134,
       "phours": 2.0,
       "et0": 5.4,
       "kind": "forecast"
     },
     {
       "date": "2026-09-07",
-      "precip": 0.1,
-      "prob": 23,
-      "tmax": 34.8,
-      "tmin": 22.9,
-      "wind": 11.1,
+      "precip": 1.0,
+      "prob": 38,
+      "tmax": 34.5,
+      "tmin": 23.1,
+      "wind": 13.2,
       "code": 51,
-      "gust": 25.2,
-      "wdir": 127,
-      "phours": 1.0,
-      "et0": 5.2,
+      "gust": 29.2,
+      "wdir": 125,
+      "phours": 6.0,
+      "et0": 5.0,
       "kind": "forecast"
     },
     {
       "date": "2026-09-08",
-      "precip": 1.0,
+      "precip": 0.3,
       "prob": 47,
-      "tmax": 34.3,
-      "tmin": 24.9,
-      "wind": 9.9,
+      "tmax": 33.8,
+      "tmin": 24.7,
+      "wind": 8.9,
       "code": 51,
       "gust": 24.1,
-      "wdir": 138,
-      "phours": 4.0,
-      "et0": 4.7,
+      "wdir": 141,
+      "phours": 3.0,
+      "et0": 4.6,
       "kind": "forecast"
     },
     {
       "date": "2026-09-09",
-      "precip": 4.7,
-      "prob": 68,
-      "tmax": 33.6,
-      "tmin": 23.7,
-      "wind": 12.0,
-      "code": 81,
-      "gust": 29.2,
-      "wdir": 141,
-      "phours": 10.0,
+      "precip": 3.6,
+      "prob": 67,
+      "tmax": 33.2,
+      "tmin": 23.9,
+      "wind": 14.1,
+      "code": 80,
+      "gust": 29.9,
+      "wdir": 114,
+      "phours": 12.0,
       "et0": 4.5,
       "kind": "forecast"
     },
     {
       "date": "2026-09-10",
-      "precip": 9.7,
-      "prob": 65,
-      "tmax": 32.4,
-      "tmin": 23.1,
-      "wind": 11.5,
-      "code": 80,
-      "gust": 26.6,
-      "wdir": 161,
-      "phours": 16.0,
-      "et0": 4.0,
+      "precip": 14.4,
+      "prob": 67,
+      "tmax": 31.5,
+      "tmin": 23.8,
+      "wind": 8.6,
+      "code": 95,
+      "gust": 22.3,
+      "wdir": 144,
+      "phours": 17.0,
+      "et0": 3.5,
       "kind": "forecast"
     },
     {
       "date": "2026-09-11",
-      "precip": 16.0,
-      "prob": 74,
-      "tmax": 29.7,
-      "tmin": 23.2,
-      "wind": 10.4,
+      "precip": 9.3,
+      "prob": 71,
+      "tmax": 30.2,
+      "tmin": 23.5,
+      "wind": 12.1,
       "code": 80,
-      "gust": 23.0,
-      "wdir": 164,
-      "phours": 24.0,
-      "et0": 3.0,
+      "gust": 32.4,
+      "wdir": 168,
+      "phours": 16.0,
+      "et0": 3.2,
       "kind": "forecast"
     },
     {
       "date": "2026-09-12",
-      "precip": 1.6,
-      "prob": 49,
+      "precip": 1.8,
+      "prob": 47,
       "tmax": 29.9,
-      "tmin": 23.0,
-      "wind": 8.8,
-      "code": 51,
+      "tmin": 22.9,
+      "wind": 7.6,
+      "code": 53,
       "gust": 23.0,
-      "wdir": 162,
-      "phours": 14.0,
-      "et0": 3.1,
+      "wdir": 159,
+      "phours": 8.0,
+      "et0": 3.0,
       "kind": "forecast"
     },
     {
       "date": "2026-09-13",
       "precip": 0.0,
-      "prob": 29,
+      "prob": 39,
       "tmax": 31.9,
       "tmin": 22.6,
       "wind": 11.6,
@@ -1688,13 +1688,13 @@
       "gust": 29.5,
       "wdir": 162,
       "phours": 0.0,
-      "et0": 4.4,
+      "et0": 4.5,
       "kind": "forecast"
     },
     {
       "date": "2026-09-14",
       "precip": 0.0,
-      "prob": 11,
+      "prob": 20,
       "tmax": 32.3,
       "tmin": 23.7,
       "wind": 12.8,
@@ -1708,7 +1708,7 @@
     {
       "date": "2026-09-15",
       "precip": 0.6,
-      "prob": 25,
+      "prob": 29,
       "tmax": 32.2,
       "tmin": 23.4,
       "wind": 11.3,
@@ -1722,7 +1722,7 @@
     {
       "date": "2026-09-16",
       "precip": 6.4,
-      "prob": 45,
+      "prob": 41,
       "tmax": 32.6,
       "tmin": 24.1,
       "wind": 9.4,
@@ -1736,7 +1736,7 @@
     {
       "date": "2026-09-17",
       "precip": 10.4,
-      "prob": 45,
+      "prob": 51,
       "tmax": 30.6,
       "tmin": 23.1,
       "wind": 7.8,
@@ -1750,7 +1750,7 @@
     {
       "date": "2026-09-18",
       "precip": 7.4,
-      "prob": 65,
+      "prob": 55,
       "tmax": 32.2,
       "tmin": 24.1,
       "wind": 5.2,
@@ -1764,7 +1764,7 @@
     {
       "date": "2026-09-19",
       "precip": 7.0,
-      "prob": 69,
+      "prob": 52,
       "tmax": 32.1,
       "tmin": 23.7,
       "wind": 10.1,
@@ -1778,7 +1778,7 @@
     {
       "date": "2026-09-20",
       "precip": 5.8,
-      "prob": 63,
+      "prob": 67,
       "tmax": 30.8,
       "tmin": 23.1,
       "wind": 9.2,
@@ -1791,16 +1791,16 @@
     },
     {
       "date": "2026-09-21",
-      "precip": 13.3,
-      "prob": 42,
-      "tmax": 32.2,
+      "precip": 3.4,
+      "prob": 68,
+      "tmax": 35.0,
       "tmin": 23.8,
       "wind": 9.4,
-      "code": 55,
+      "code": 53,
       "gust": 19.1,
-      "wdir": 4,
-      "phours": 21.0,
-      "et0": 4.0,
+      "wdir": 73,
+      "phours": 11.0,
+      "et0": 3.5,
       "kind": "forecast"
     }
   ]
