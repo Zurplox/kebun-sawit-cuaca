@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09T09:24+08:00",
+  "updated_at": "2026-09-09T17:14+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -19,7 +19,7 @@
       "confidence": "n",
       "frp": "1.1"
     },
-    "count_within": 53,
+    "count_within": 54,
     "scanned_days": 5,
     "points": [
       {
@@ -446,6 +446,15 @@
         "frp": "1.36"
       },
       {
+        "lat": 0.6401,
+        "lon": 101.6009,
+        "km": 45.1,
+        "acq": "2026-09-09",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "42.95"
+      },
+      {
         "lat": 0.9386,
         "lon": 101.5593,
         "km": 47.3,
@@ -503,7 +512,7 @@
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 80
+      "humidity": 79
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -519,16 +528,16 @@
     "map_google": "https://www.google.com/maps?q=0.7435,101.8962"
   },
   "air": {
-    "us_aqi": 157,
-    "pm2_5": 64.5,
-    "pm10": 66.1,
+    "us_aqi": 165,
+    "pm2_5": 85.7,
+    "pm10": 88.7,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 2.32,
+    "aod": 1.92,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.7,
+    "uv": 0.9,
     "uv_cat": "rendah"
   },
   "flood": {
