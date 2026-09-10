@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-10T09:19+08:00",
+  "updated_at": "2026-09-10T17:13+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -384,16 +384,16 @@
     "map_google": "https://www.google.com/maps?q=0.7435,101.8962"
   },
   "air": {
-    "us_aqi": 170,
-    "pm2_5": 96.9,
-    "pm10": 98.7,
+    "us_aqi": 168,
+    "pm2_5": 69.8,
+    "pm10": 72.2,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 2.46,
+    "aod": 1.58,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.7,
+    "uv": 1.1,
     "uv_cat": "rendah"
   },
   "flood": {
