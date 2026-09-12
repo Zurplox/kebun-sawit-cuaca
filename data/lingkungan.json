@@ -1,21 +1,257 @@
 {
-  "updated_at": "2026-09-12T09:30+08:00",
+  "updated_at": "2026-09-12T16:52+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "aman",
+    "status": "bahaya",
     "warn_km": 50,
-    "nearest": null,
-    "count_within": 0,
+    "nearest": {
+      "km": 11.2,
+      "dir": "barat daya",
+      "lat": 0.7435,
+      "lon": 101.8962,
+      "place": "Koto Gasib, Riau",
+      "acq": "2026-09-08",
+      "sat": "N20",
+      "confidence": "n",
+      "frp": "1.1"
+    },
+    "count_within": 25,
     "scanned_days": 5,
-    "points": [],
+    "points": [
+      {
+        "lat": 0.7435,
+        "lon": 101.8962,
+        "km": 11.2,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.1"
+      },
+      {
+        "lat": 0.5681,
+        "lon": 101.917,
+        "km": 28.1,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "11.25"
+      },
+      {
+        "lat": 0.5676,
+        "lon": 101.9168,
+        "km": 28.1,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "0.94"
+      },
+      {
+        "lat": 0.5683,
+        "lon": 101.913,
+        "km": 28.1,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "0.94"
+      },
+      {
+        "lat": 0.5688,
+        "lon": 101.9093,
+        "km": 28.2,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.11"
+      },
+      {
+        "lat": 0.5669,
+        "lon": 101.918,
+        "km": 28.2,
+        "acq": "2026-09-08",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "9.84"
+      },
+      {
+        "lat": 0.5662,
+        "lon": 101.9135,
+        "km": 28.4,
+        "acq": "2026-09-08",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "9.84"
+      },
+      {
+        "lat": 0.5654,
+        "lon": 101.9087,
+        "km": 28.6,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1"
+      },
+      {
+        "lat": 0.9376,
+        "lon": 102.261,
+        "km": 35.5,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.52"
+      },
+      {
+        "lat": 0.9379,
+        "lon": 102.2639,
+        "km": 35.8,
+        "acq": "2026-09-08",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "0.8"
+      },
+      {
+        "lat": 0.937,
+        "lon": 102.2647,
+        "km": 35.8,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.52"
+      },
+      {
+        "lat": 0.6863,
+        "lon": 101.6199,
+        "km": 41.1,
+        "acq": "2026-09-08",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.48"
+      },
+      {
+        "lat": 0.4462,
+        "lon": 101.8919,
+        "km": 41.9,
+        "acq": "2026-09-09",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "2.61"
+      },
+      {
+        "lat": 0.4452,
+        "lon": 101.8935,
+        "km": 42.0,
+        "acq": "2026-09-09",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "3.01"
+      },
+      {
+        "lat": 0.4441,
+        "lon": 101.8905,
+        "km": 42.2,
+        "acq": "2026-09-08",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.42"
+      },
+      {
+        "lat": 0.4418,
+        "lon": 101.8919,
+        "km": 42.4,
+        "acq": "2026-09-11",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.82"
+      },
+      {
+        "lat": 0.4413,
+        "lon": 101.8935,
+        "km": 42.4,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.59"
+      },
+      {
+        "lat": 0.4419,
+        "lon": 101.8897,
+        "km": 42.4,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.3"
+      },
+      {
+        "lat": 0.6383,
+        "lon": 101.6023,
+        "km": 45.0,
+        "acq": "2026-09-09",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "25.42"
+      },
+      {
+        "lat": 0.6401,
+        "lon": 101.6009,
+        "km": 45.1,
+        "acq": "2026-09-09",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "42.95"
+      },
+      {
+        "lat": 0.9386,
+        "lon": 101.5593,
+        "km": 47.3,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "3.8"
+      },
+      {
+        "lat": 0.3976,
+        "lon": 101.8873,
+        "km": 47.3,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "0.46"
+      },
+      {
+        "lat": 0.9366,
+        "lon": 101.5578,
+        "km": 47.4,
+        "acq": "2026-09-08",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "18.29"
+      },
+      {
+        "lat": 0.9368,
+        "lon": 101.5575,
+        "km": 47.4,
+        "acq": "2026-09-08",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "6.21"
+      },
+      {
+        "lat": 0.9397,
+        "lon": 101.5577,
+        "km": 47.5,
+        "acq": "2026-09-08",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "2.5"
+      }
+    ],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 89
+      "humidity": 86
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -27,19 +263,20 @@
       "total_points": 0,
       "source_label": null
     },
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
+    "map_google": "https://www.google.com/maps?q=0.7435,101.8962"
   },
   "air": {
-    "us_aqi": 90,
-    "pm2_5": 20.8,
-    "pm10": 21.0,
+    "us_aqi": 85,
+    "pm2_5": 30.6,
+    "pm10": 31.2,
     "category": "Sedang",
     "color": "gold",
-    "aod": 1.42,
+    "aod": 1.26,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.5,
+    "uv": 2.5,
     "uv_cat": "rendah"
   },
   "flood": {
