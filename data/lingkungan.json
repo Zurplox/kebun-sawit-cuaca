@@ -1,95 +1,21 @@
 {
-  "updated_at": "2026-09-13T09:20+08:00",
+  "updated_at": "2026-09-13T17:53+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "bahaya",
+    "status": "aman",
     "warn_km": 50,
-    "nearest": {
-      "km": 41.9,
-      "dir": "selatan",
-      "lat": 0.4462,
-      "lon": 101.8919,
-      "place": "Pelalawan, Riau",
-      "acq": "2026-09-09",
-      "sat": "N",
-      "confidence": "n",
-      "frp": "2.61"
-    },
-    "count_within": 7,
+    "nearest": null,
+    "count_within": 0,
     "scanned_days": 5,
-    "points": [
-      {
-        "lat": 0.4462,
-        "lon": 101.8919,
-        "km": 41.9,
-        "acq": "2026-09-09",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "2.61"
-      },
-      {
-        "lat": 0.4452,
-        "lon": 101.8935,
-        "km": 42.0,
-        "acq": "2026-09-09",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "3.01"
-      },
-      {
-        "lat": 0.443,
-        "lon": 101.8927,
-        "km": 42.2,
-        "acq": "2026-09-12",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "2.67"
-      },
-      {
-        "lat": 0.4422,
-        "lon": 101.8937,
-        "km": 42.3,
-        "acq": "2026-09-12",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.99"
-      },
-      {
-        "lat": 0.4418,
-        "lon": 101.8919,
-        "km": 42.4,
-        "acq": "2026-09-11",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "1.82"
-      },
-      {
-        "lat": 0.6383,
-        "lon": 101.6023,
-        "km": 45.0,
-        "acq": "2026-09-09",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "25.42"
-      },
-      {
-        "lat": 0.6401,
-        "lon": 101.6009,
-        "km": 45.1,
-        "acq": "2026-09-09",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "42.95"
-      }
-    ],
+    "points": [],
     "weather_risk": {
-      "level": "rendah",
-      "dry_streak": 1,
-      "humidity": 80
+      "level": "sedang",
+      "dry_streak": 4,
+      "humidity": 79
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -101,20 +27,19 @@
       "total_points": 0,
       "source_label": null
     },
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4462,101.8919"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 112,
-    "pm2_5": 29.9,
-    "pm10": 31.8,
+    "us_aqi": 118,
+    "pm2_5": 62.9,
+    "pm10": 65.2,
     "category": "Tidak sehat (kel. sensitif)",
     "color": "orange",
-    "aod": 1.13,
+    "aod": 1.62,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 1.2,
+    "uv": 0.9,
     "uv_cat": "rendah"
   },
   "flood": {
