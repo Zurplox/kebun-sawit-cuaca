@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15T00:24+08:00",
+  "updated_at": "2026-09-15T09:46+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -9,19 +9,28 @@
     "status": "bahaya",
     "warn_km": 50,
     "nearest": {
-      "km": 42.2,
+      "km": 42.0,
       "dir": "selatan",
-      "lat": 0.4432,
-      "lon": 101.8938,
-      "place": "Pangkalan Kerinci, Riau",
-      "acq": "2026-09-13",
+      "lat": 0.4452,
+      "lon": 101.893,
+      "place": "Pangkalan Kerinci, Pelalawan, Riau",
+      "acq": "2026-09-14",
       "sat": "N20",
       "confidence": "n",
-      "frp": "1.53"
+      "frp": "1.04"
     },
-    "count_within": 6,
+    "count_within": 9,
     "scanned_days": 5,
     "points": [
+      {
+        "lat": 0.4452,
+        "lon": 101.893,
+        "km": 42.0,
+        "acq": "2026-09-14",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.04"
+      },
       {
         "lat": 0.4432,
         "lon": 101.8938,
@@ -39,6 +48,15 @@
         "sat": "N20",
         "confidence": "n",
         "frp": "1.53"
+      },
+      {
+        "lat": 0.443,
+        "lon": 101.8928,
+        "km": 42.2,
+        "acq": "2026-09-14",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.45"
       },
       {
         "lat": 0.443,
@@ -75,12 +93,21 @@
         "sat": "N",
         "confidence": "n",
         "frp": "1.82"
+      },
+      {
+        "lat": 0.4411,
+        "lon": 101.8923,
+        "km": 42.5,
+        "acq": "2026-09-14",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.82"
       }
     ],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 2,
-      "humidity": 74
+      "humidity": 72
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -93,19 +120,19 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4432,101.8938"
+    "map_google": "https://www.google.com/maps?q=0.4452,101.893"
   },
   "air": {
-    "us_aqi": 154,
-    "pm2_5": 72.9,
-    "pm10": 76.8,
+    "us_aqi": 172,
+    "pm2_5": 49.4,
+    "pm10": 51.7,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 2.4,
+    "aod": 1.8,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 0.9,
     "uv_cat": "rendah"
   },
   "flood": {
@@ -270,15 +297,15 @@
       },
       {
         "date": "2026-10-01",
-        "high": 2.13,
+        "high": 2.14,
         "high_time": "11:30",
-        "low": -0.63,
+        "low": -0.64,
         "low_time": "05:00",
         "est": true
       },
       {
         "date": "2026-10-02",
-        "high": 1.98,
+        "high": 1.99,
         "high_time": "12:00",
         "low": -0.48,
         "low_time": "05:30",
@@ -288,7 +315,7 @@
         "date": "2026-10-03",
         "high": 1.77,
         "high_time": "13:00",
-        "low": -0.27,
+        "low": -0.28,
         "low_time": "06:00",
         "est": true
       },
@@ -302,9 +329,9 @@
       },
       {
         "date": "2026-10-05",
-        "high": 1.53,
+        "high": 1.52,
         "high_time": "16:30",
-        "low": 0.07,
+        "low": 0.08,
         "low_time": "23:30",
         "est": true
       },
@@ -318,7 +345,7 @@
       },
       {
         "date": "2026-10-07",
-        "high": 1.84,
+        "high": 1.83,
         "high_time": "19:00",
         "low": -0.23,
         "low_time": "12:30",
@@ -336,13 +363,13 @@
         "date": "2026-10-09",
         "high": 1.96,
         "high_time": "20:30",
-        "low": -0.77,
+        "low": -0.78,
         "low_time": "14:00",
         "est": true
       },
       {
         "date": "2026-10-10",
-        "high": 1.99,
+        "high": 2.0,
         "high_time": "08:30",
         "low": -0.93,
         "low_time": "14:30",
@@ -350,7 +377,7 @@
       },
       {
         "date": "2026-10-11",
-        "high": 2.15,
+        "high": 2.16,
         "high_time": "09:00",
         "low": -0.98,
         "low_time": "15:30",
@@ -360,13 +387,13 @@
         "date": "2026-10-12",
         "high": 2.23,
         "high_time": "09:30",
-        "low": -0.94,
+        "low": -0.95,
         "low_time": "16:00",
         "est": true
       },
       {
         "date": "2026-10-13",
-        "high": 2.21,
+        "high": 2.22,
         "high_time": "10:00",
         "low": -0.82,
         "low_time": "16:30",
@@ -376,7 +403,7 @@
         "date": "2026-10-14",
         "high": 2.13,
         "high_time": "10:30",
-        "low": -0.62,
+        "low": -0.63,
         "low_time": "17:00",
         "est": true
       }
