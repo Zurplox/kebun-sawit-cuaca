@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-17T23:06+08:00",
+  "updated_at": "2026-09-18T09:24+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -19,7 +19,7 @@
       "confidence": "n",
       "frp": "8.72"
     },
-    "count_within": 11,
+    "count_within": 8,
     "scanned_days": 5,
     "points": [
       {
@@ -51,24 +51,6 @@
       },
       {
         "lat": 0.4432,
-        "lon": 101.8938,
-        "km": 42.2,
-        "acq": "2026-09-13",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.53"
-      },
-      {
-        "lat": 0.4438,
-        "lon": 101.8904,
-        "km": 42.2,
-        "acq": "2026-09-13",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.53"
-      },
-      {
-        "lat": 0.4432,
         "lon": 101.8923,
         "km": 42.2,
         "acq": "2026-09-16",
@@ -95,15 +77,6 @@
         "frp": "0.85"
       },
       {
-        "lat": 0.4418,
-        "lon": 101.8919,
-        "km": 42.4,
-        "acq": "2026-09-13",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "3.48"
-      },
-      {
         "lat": 0.4411,
         "lon": 101.8923,
         "km": 42.5,
@@ -124,8 +97,8 @@
     ],
     "weather_risk": {
       "level": "rendah",
-      "dry_streak": 1,
-      "humidity": 68
+      "dry_streak": 0,
+      "humidity": 84
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -141,26 +114,26 @@
     "map_google": "https://www.google.com/maps?q=0.7725,101.8218"
   },
   "air": {
-    "us_aqi": 137,
-    "pm2_5": 57.7,
-    "pm10": 59.6,
+    "us_aqi": 150,
+    "pm2_5": 41.9,
+    "pm10": 43.0,
     "category": "Tidak sehat (kel. sensitif)",
     "color": "orange",
-    "aod": 2.02,
+    "aod": 2.05,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 0.9,
     "uv_cat": "rendah"
   },
   "flood": {
-    "river_discharge": 71.4,
+    "river_discharge": 50.3,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 50.3,
-    "baseline": 34.5,
-    "ratio_pct": 207,
-    "status": "Sangat tinggi",
+    "peak_next3": 37.4,
+    "baseline": 71.4,
+    "ratio_pct": 70,
+    "status": "Normal",
     "map": "https://sites.research.google/floods/l/0.816/101.966/9"
   },
   "tide": {
@@ -170,38 +143,31 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 1.75,
-      "time": "11:00"
+      "h": 1.56,
+      "time": "12:00"
     },
     "low": {
-      "h": -0.36,
+      "h": -0.31,
       "time": "06:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.36,
+        "h": -0.31,
         "time": "06:00"
       },
       {
         "type": "pasang",
-        "h": 1.75,
+        "h": 1.56,
         "time": "12:00"
       },
       {
         "type": "surut",
-        "h": -0.23,
-        "time": "19:00"
+        "h": 0.03,
+        "time": "20:00"
       }
     ],
     "daily": [
-      {
-        "date": "2026-09-17",
-        "high": 1.75,
-        "high_time": "11:00",
-        "low": -0.36,
-        "low_time": "06:00"
-      },
       {
         "date": "2026-09-18",
         "high": 1.56,
@@ -292,7 +258,7 @@
         "date": "2026-09-30",
         "high": 2.21,
         "high_time": "10:30",
-        "low": -0.85,
+        "low": -0.86,
         "low_time": "17:00",
         "est": true
       },
@@ -314,9 +280,9 @@
       },
       {
         "date": "2026-10-03",
-        "high": 1.77,
+        "high": 1.78,
         "high_time": "13:00",
-        "low": -0.29,
+        "low": -0.3,
         "low_time": "06:00",
         "est": true
       },
@@ -330,9 +296,9 @@
       },
       {
         "date": "2026-10-05",
-        "high": 1.51,
+        "high": 1.5,
         "high_time": "16:30",
-        "low": 0.1,
+        "low": 0.11,
         "low_time": "23:30",
         "est": true
       },
@@ -362,7 +328,7 @@
       },
       {
         "date": "2026-10-09",
-        "high": 1.97,
+        "high": 1.96,
         "high_time": "20:30",
         "low": -0.78,
         "low_time": "14:00",
@@ -402,7 +368,7 @@
       },
       {
         "date": "2026-10-14",
-        "high": 2.15,
+        "high": 2.16,
         "high_time": "10:30",
         "low": -0.65,
         "low_time": "17:00",
@@ -410,9 +376,9 @@
       },
       {
         "date": "2026-10-15",
-        "high": 2.0,
+        "high": 2.01,
         "high_time": "11:00",
-        "low": -0.52,
+        "low": -0.53,
         "low_time": "04:30",
         "est": true
       },
@@ -420,8 +386,16 @@
         "date": "2026-10-16",
         "high": 1.8,
         "high_time": "11:30",
-        "low": -0.38,
+        "low": -0.39,
         "low_time": "05:00",
+        "est": true
+      },
+      {
+        "date": "2026-10-17",
+        "high": 1.57,
+        "high_time": "12:00",
+        "low": -0.21,
+        "low_time": "05:30",
         "est": true
       }
     ],
