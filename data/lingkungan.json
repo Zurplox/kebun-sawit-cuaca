@@ -1,104 +1,21 @@
 {
-  "updated_at": "2026-09-18T22:35+08:00",
+  "updated_at": "2026-09-19T17:07+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "bahaya",
+    "status": "aman",
     "warn_km": 50,
-    "nearest": {
-      "km": 16.8,
-      "dir": "barat",
-      "lat": 0.7725,
-      "lon": 101.8218,
-      "place": "Koto Gasib, Riau",
-      "acq": "2026-09-16",
-      "sat": "N20",
-      "confidence": "n",
-      "frp": "8.72"
-    },
-    "count_within": 8,
+    "nearest": null,
+    "count_within": 0,
     "scanned_days": 5,
-    "points": [
-      {
-        "lat": 0.7725,
-        "lon": 101.8218,
-        "km": 16.8,
-        "acq": "2026-09-16",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "8.72"
-      },
-      {
-        "lat": 0.9862,
-        "lon": 102.2161,
-        "km": 33.6,
-        "acq": "2026-09-16",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "1.03"
-      },
-      {
-        "lat": 0.4452,
-        "lon": 101.893,
-        "km": 42.0,
-        "acq": "2026-09-14",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.04"
-      },
-      {
-        "lat": 0.4432,
-        "lon": 101.8923,
-        "km": 42.2,
-        "acq": "2026-09-16",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "3.83"
-      },
-      {
-        "lat": 0.443,
-        "lon": 101.8928,
-        "km": 42.2,
-        "acq": "2026-09-14",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "2.45"
-      },
-      {
-        "lat": 0.4429,
-        "lon": 101.8929,
-        "km": 42.2,
-        "acq": "2026-09-15",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "0.85"
-      },
-      {
-        "lat": 0.4411,
-        "lon": 101.8923,
-        "km": 42.5,
-        "acq": "2026-09-14",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.82"
-      },
-      {
-        "lat": 0.441,
-        "lon": 101.8912,
-        "km": 42.5,
-        "acq": "2026-09-16",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.34"
-      }
-    ],
+    "points": [],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 81
+      "humidity": 91
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -110,29 +27,28 @@
       "total_points": 0,
       "source_label": null
     },
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.7725,101.8218"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 146,
-    "pm2_5": 33.2,
-    "pm10": 34.1,
-    "category": "Tidak sehat (kel. sensitif)",
-    "color": "orange",
-    "aod": 1.35,
+    "us_aqi": 85,
+    "pm2_5": 55.6,
+    "pm10": 57.2,
+    "category": "Sedang",
+    "color": "gold",
+    "aod": 1.08,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 1.1,
     "uv_cat": "rendah"
   },
   "flood": {
-    "river_discharge": 50.3,
+    "river_discharge": 36.1,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 36.1,
+    "peak_next3": 37.8,
     "baseline": 71.4,
-    "ratio_pct": 70,
+    "ratio_pct": 50,
     "status": "Normal",
     "map": "https://sites.research.google/floods/l/0.816/101.966/9"
   },
@@ -143,38 +59,31 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 1.58,
-      "time": "12:00"
+      "h": 1.27,
+      "time": "13:00"
     },
     "low": {
-      "h": -0.31,
-      "time": "06:00"
+      "h": -0.12,
+      "time": "07:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.31,
-        "time": "06:00"
+        "h": -0.12,
+        "time": "07:00"
       },
       {
         "type": "pasang",
-        "h": 1.58,
-        "time": "12:00"
+        "h": 1.27,
+        "time": "13:00"
       },
       {
         "type": "surut",
-        "h": 0.05,
-        "time": "20:00"
+        "h": 0.15,
+        "time": "21:00"
       }
     ],
     "daily": [
-      {
-        "date": "2026-09-18",
-        "high": 1.58,
-        "high_time": "12:00",
-        "low": -0.31,
-        "low_time": "06:00"
-      },
       {
         "date": "2026-09-19",
         "high": 1.27,
@@ -273,7 +182,7 @@
         "date": "2026-10-02",
         "high": 1.99,
         "high_time": "12:00",
-        "low": -0.5,
+        "low": -0.51,
         "low_time": "05:30",
         "est": true
       },
@@ -311,17 +220,17 @@
       },
       {
         "date": "2026-10-07",
-        "high": 1.82,
+        "high": 1.81,
         "high_time": "19:00",
-        "low": -0.21,
+        "low": -0.2,
         "low_time": "12:30",
         "est": true
       },
       {
         "date": "2026-10-08",
-        "high": 1.93,
+        "high": 1.92,
         "high_time": "19:30",
-        "low": -0.51,
+        "low": -0.5,
         "low_time": "13:30",
         "est": true
       },
@@ -329,7 +238,7 @@
         "date": "2026-10-09",
         "high": 1.96,
         "high_time": "20:30",
-        "low": -0.77,
+        "low": -0.76,
         "low_time": "14:00",
         "est": true
       },
@@ -345,7 +254,7 @@
         "date": "2026-10-11",
         "high": 2.16,
         "high_time": "09:00",
-        "low": -1.0,
+        "low": -0.99,
         "low_time": "15:30",
         "est": true
       },
@@ -385,16 +294,24 @@
         "date": "2026-10-16",
         "high": 1.81,
         "high_time": "11:30",
-        "low": -0.39,
+        "low": -0.4,
         "low_time": "05:00",
         "est": true
       },
       {
         "date": "2026-10-17",
-        "high": 1.57,
+        "high": 1.58,
         "high_time": "12:00",
-        "low": -0.21,
+        "low": -0.22,
         "low_time": "05:30",
+        "est": true
+      },
+      {
+        "date": "2026-10-18",
+        "high": 1.34,
+        "high_time": "13:00",
+        "low": -0.0,
+        "low_time": "06:00",
         "est": true
       }
     ],
