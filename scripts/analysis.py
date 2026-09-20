@@ -111,6 +111,36 @@ def compute_insights(days, cfg, today, soil=None):
             break
 
     soon = sum((P(today + timedelta(days=i)) or 0) for i in range(3))
+
+    # Analisis Risiko Genangan & Tanggul Blok 5 HA (Lahan Gambut Siak)
+    p_today = P(today) or 0
+    p_tmrw = P(today + timedelta(days=1)) or 0
+    rain_48h = p_today + p_tmrw
+    rain_3d_prior = sum((P(today - timedelta(days=i)) or 0) for i in range(1, 4))
+
+    if rain_48h >= 80 or p_today >= 50:
+        flood_level = "SIAGA"
+        flood_tag = "🚨 SIAGA BANJIR 5 HA"
+        flood_desc = "Risiko luapan bendungan & genangan pokok muda"
+    elif rain_48h >= 50 or (rain_48h >= 35 and rain_3d_prior >= 40):
+        flood_level = "WASPADA"
+        flood_tag = "⚠️ WASPADA GENANGAN 5 HA"
+        flood_desc = "Parit sekunder penuh; pantau tanggul & pintu air"
+    else:
+        flood_level = "AMAN"
+        flood_tag = "✅ AMAN"
+        flood_desc = "Tanggul bendungan & drainase dalam batas normal"
+
+    flood_5ha = {
+        "level": flood_level,
+        "tag": flood_tag,
+        "desc": flood_desc,
+        "rain_48h": round(rain_48h, 1),
+        "rain_today": round(p_today, 1),
+        "rain_tmrw": round(p_tmrw, 1),
+        "rain_3d_prior": round(rain_3d_prior, 1),
+    }
+
     return {
         "best": best,
         "water_balance": wb,
@@ -119,6 +149,7 @@ def compute_insights(days, cfg, today, soil=None):
         "dry_longest": best_run,
         "upcoming_dry": upcoming_dry,
         "soon3": soon,
+        "flood_5ha": flood_5ha,
     }
 
 
@@ -131,6 +162,9 @@ def water_verdict(wb):
 
 
 def headline(ins, cfg):
+    f5 = ins.get("flood_5ha") or {}
+    if f5.get("level") in ("SIAGA", "WASPADA"):
+        return f"{f5['tag']} — Prediksi hujan 48 jam: {f5['rain_48h']} mm. {f5['desc']}."
     heavy = cfg.get("heavy_rain_mm", 25)
     if ins["soon3"] >= heavy * 1.5:
         return "⛈️ Hujan deras 3 hari ke depan — tunda pemupukan, akses panen bisa becek."

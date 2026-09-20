@@ -357,6 +357,16 @@ def env_lines(env, ins=None):
         _note = FLOOD_NOTE.get(_st)
         if _note:
             L.append(" - " + _note)
+
+    # Tanggul & Genangan Blok 5 HA (Lahan Gambut Rawang Air Putih)
+    if ins and ins.get("flood_5ha"):
+        f5 = ins["flood_5ha"]
+        L.append("")
+        L.append("🌱 *Tanggul & Genangan 5 HA: " + f5["tag"] + "*")
+        L.append(" - Prediksi hujan 48 jam: " + str(f5["rain_48h"]) + " mm (hari ini " + str(f5["rain_today"]) + " mm, besok " + str(f5["rain_tmrw"]) + " mm)")
+        if f5["rain_3d_prior"] > 0:
+            L.append(" - Riwayat 3 hari lalu: " + str(f5["rain_3d_prior"]) + " mm")
+        L.append(" - " + f5["desc"])
     L.append("")
     return L
 
