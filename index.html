@@ -177,6 +177,9 @@ function computeInsights(days, cfg, today){
     if(pv!=null && pv<dry){ if(curLen===0) curStart=cd; curLen++; if(!bestRun||curLen>bestRun.len) bestRun={start:new Date(curStart),len:curLen}; }
     else { curLen=0; curStart=null; }
   }
+  // consecutive dry starting today/tomorrow
+  let upcomingDry=0; for(let i=0;i<16;i++){ const pv=P(iso(addDays(today,i))); if(pv!=null&&pv<dry) upcomingDry++; else break; }
+
   // 4) Analisis risiko genangan & tanggul 5 HA (lahan gambut Siak)
   const pToday = P(iso(today)) || 0;
   const pTmrw = P(iso(addDays(today,1))) || 0;
