@@ -357,16 +357,6 @@ def env_lines(env, ins=None):
         _note = FLOOD_NOTE.get(_st)
         if _note:
             L.append(" - " + _note)
-
-    # Tanggul & Genangan Blok 5 HA (Lahan Gambut Rawang Air Putih)
-    if ins and ins.get("flood_5ha"):
-        f5 = ins["flood_5ha"]
-        L.append("")
-        L.append("🌱 *Tanggul & Genangan 5 HA: " + f5["tag"] + "*")
-        L.append(" - Prediksi hujan 48 jam: " + str(f5["rain_48h"]) + " mm (hari ini " + str(f5["rain_today"]) + " mm, besok " + str(f5["rain_tmrw"]) + " mm)")
-        if f5["rain_3d_prior"] > 0:
-            L.append(" - Riwayat 3 hari lalu: " + str(f5["rain_3d_prior"]) + " mm")
-        L.append(" - " + f5["desc"])
     L.append("")
     return L
 
@@ -468,6 +458,15 @@ def build_detail(cfg, jadwal, cuaca, today, harv, env=None):
     for _n in neraca_sinergi(env, ins, _sm):
         _nn = _n[2:] if _n.startswith("↳ ") else _n
         A1.append(" - " + _nn.strip())
+    if ins.get("flood_5ha"):
+        f5 = ins["flood_5ha"]
+        _rain48 = str(round(f5["rain_48h"])) + " mm"
+        if f5["level"] == "SIAGA":
+            A1.append(" - 🚨 Tanggul 5 HA: SIAGA BANJIR (prediksi 48 jam " + _rain48 + ") — " + f5["desc"])
+        elif f5["level"] == "WASPADA":
+            A1.append(" - ⚠️ Tanggul 5 HA: Waspada genangan (prediksi 48 jam " + _rain48 + ") — " + f5["desc"])
+        else:
+            A1.append(" - Tanggul 5 HA: aman (prediksi 48 jam " + _rain48 + ")")
 
     # ===== Bagian A2: prakiraan + rekomendasi kerja =====
     A2 = []
