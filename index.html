@@ -177,10 +177,32 @@ function computeInsights(days, cfg, today){
     if(pv!=null && pv<dry){ if(curLen===0) curStart=cd; curLen++; if(!bestRun||curLen>bestRun.len) bestRun={start:new Date(curStart),len:curLen}; }
     else { curLen=0; curStart=null; }
   }
-  // consecutive dry starting today/tomorrow
-  let upcomingDry=0; for(let i=0;i<16;i++){ const pv=P(iso(addDays(today,i))); if(pv!=null&&pv<dry) upcomingDry++; else break; }
+  // 4) Analisis risiko genangan & tanggul 5 HA (lahan gambut Siak)
+  const pToday = P(iso(today)) || 0;
+  const pTmrw = P(iso(addDays(today,1))) || 0;
+  const rain48h = pToday + pTmrw;
+  let rain3dPrior = 0;
+  for(let i=1;i<=3;i++){ const v = P(iso(addDays(today,-i))); if(v!=null) rain3dPrior += v; }
 
-  return {best, waterBalance:{sum:wb,n:wbn,rain:rain,et0:et}, drySpell:{longest:bestRun, upcoming:upcomingDry}};
+  let floodLevel = 'AMAN', floodTag = '✅ Aman', floodCls = 'b-green', floodDesc = 'tanggul & drainase normal';
+  if(rain48h >= 80 || pToday >= 50){
+    floodLevel = 'SIAGA'; floodTag = '🚨 SIAGA BANJIR 5 HA'; floodCls = 'b-red'; floodDesc = 'risiko luapan bendungan & genangan pokok muda';
+  } else if(rain48h >= 50 || (rain48h >= 35 && rain3dPrior >= 40)){
+    floodLevel = 'WASPADA'; floodTag = '⚠️ Waspada genangan 5 HA'; floodCls = 'b-orange'; floodDesc = 'parit sekunder penuh, pantau tanggul & pintu air';
+  }
+
+  const flood5ha = {
+    level: floodLevel,
+    tag: floodTag,
+    cls: floodCls,
+    desc: floodDesc,
+    rain48h: Math.round(rain48h),
+    rainToday: Math.round(pToday),
+    rainTmrw: Math.round(pTmrw),
+    rain3dPrior: Math.round(rain3dPrior)
+  };
+
+  return {best, waterBalance:{sum:wb,n:wbn,rain:rain,et0:et}, drySpell:{longest:bestRun, upcoming:upcomingDry}, flood5ha};
 }
 
 function fireConf(fire, air){ fire=fire||{}; air=air||{}; var aod=air.aod; var hot=((fire.count_within||0)>0)||!!fire.nearest; var smoky=aod!=null&&aod>=0.6; var hazy=aod!=null&&aod>=0.3&&aod<0.6; var m=""; if(hot&&smoky) m="🎯 Keyakinan tinggi: ada titik api + udara berasap → asap kemungkinan nyata."; else if(hot&&hazy) m="🎯 Titik api + udara agak berkabut → pantau, asap mulai terasa."; else if(hot&&aod!=null) m="🎯 Titik api terdeteksi, tapi udara masih bersih → asap belum sampai sini."; else if(hot) m="🎯 Titik api terdeteksi; data udara belum tersedia."; else if(smoky) m="🎯 Tak ada titik api dekat, tapi udara berasap → mungkin asap kiriman dari jauh."; return m; }
@@ -301,7 +323,7 @@ function render(cfg, jadwal, cuaca, env){
   const dry = cfg.dry_threshold_mm || 2;
   document.getElementById('title').textContent = (cuaca.farm_name || cfg.farm_name || 'Kebun') + ' — Cuaca & Hujan';
   const loc = cuaca.location || {lat:cfg.lat, lon:cfg.lon};
-  document.getElementById('subtitle').textContent = 'Lokasi '+Number(loc.lat).toFixed(4)+', '+Number(loc.lon).toFixed(4);
+  document.getElementById('subtitle').textContent = 'Lokasi '+Number(loc.lat).toFixed(5)+', '+Number(loc.lon).toFixed(5) + ' (Rawang Air Putih)';
   if(cuaca.updated_at){ document.getElementById('updated').textContent = 'Diperbarui '+cuaca.updated_at.replace('T',' '); }
 
   const byDate = {}; days.forEach(d=>byDate[d.date]=d);
@@ -333,7 +355,11 @@ function render(cfg, jadwal, cuaca, env){
   // ---- Smart headline ----
   const soon = (P0=>{ let s=0; for(let i=0;i<3;i++){const r=byDate[iso(addDays(today,i))]; if(r&&r.precip!=null)s+=r.precip;} return s; })();
   let hEmoji='🌤️', hTxt='Cuaca campur beberapa hari ke depan.', hSub='Cek grafik untuk atur pekerjaan kebun.';
-  if(soon>=heavy*1.5){ hEmoji='⛈️'; hTxt='Hujan deras 3 hari ke depan.'; hSub='Tunda pemupukan; akses panen bisa becek.'; }
+  if(ins.flood5ha && ins.flood5ha.level === 'SIAGA'){
+    hEmoji = '🚨'; hTxt = 'SIAGA BANJIR 5 HA — Prediksi hujan 48 jam: ' + ins.flood5ha.rain48h + ' mm.'; hSub = 'Risiko luapan bendungan & genangan pokok muda. Pantau tanggul segera.';
+  } else if(ins.flood5ha && ins.flood5ha.level === 'WASPADA'){
+    hEmoji = '⚠️'; hTxt = 'Waspada genangan 5 HA — Prediksi hujan 48 jam: ' + ins.flood5ha.rain48h + ' mm.'; hSub = 'Parit sekunder mulai penuh. Pantau tanggul & pintu air.';
+  } else if(soon>=heavy*1.5){ hEmoji='⛈️'; hTxt='Hujan deras 3 hari ke depan.'; hSub='Tunda pemupukan; akses panen bisa becek.'; }
   else if(ins.drySpell.upcoming>=3){ hEmoji='☀️'; hTxt=ins.drySpell.upcoming+' hari kering berturut-turut ke depan.'; hSub='Bagus untuk tebas, semprot, dan akses panen.'; }
   else if(ins.best && ins.best.score>=70){ hEmoji='🌱'; hTxt='Ada jendela bagus untuk memupuk: '+fmtDow(ins.best.dt)+'.'; hSub='Tanah lembap, tanpa hujan deras sesudahnya.'; }
 
@@ -421,6 +447,15 @@ function render(cfg, jadwal, cuaca, env){
   }
   var _tsm=(cuaca.today||{}).soil_moist;
   if(_tsm!=null){ var _ok = wb<0 ? (_tsm<25) : (wb>150 ? (_tsm>=40) : (_tsm>=25&&_tsm<45)); wbNote += '<p class="small">'+(_ok?'✅ Neraca air & lembap tanah sepakat → keyakinan tinggi.':'⚠️ Neraca air & lembap tanah beda arah → tafsir hati-hati.')+'</p>'; }
+  if(ins.flood5ha){
+    const f5 = ins.flood5ha;
+    const r48Txt = f5.rain48h > 0 ? (f5.rain48h + ' mm') : '0 mm';
+    if(f5.level !== 'AMAN'){
+      wbNote += '<p class="small" style="margin-top:6px">🌱 <b>Tanggul 5 HA:</b> <span class="badge '+f5.cls+'">'+f5.tag+'</span> <span style="color:var(--muted)">(prediksi 48 jam '+r48Txt+')</span> — '+f5.desc+'.</p>';
+    } else {
+      wbNote += '<p class="small" style="margin-top:6px">🌱 <b>Tanggul 5 HA:</b> <span class="badge b-green">✅ Aman</span> <span style="color:var(--muted)">(prediksi 48 jam '+r48Txt+')</span>.</p>';
+    }
+  }
   const wbHTML = '<p class="big">'+wb.toFixed(0)+' <span style="font-size:14px;font-weight:500;color:var(--muted)">mm / 30 hari</span></p>'+
     '<p class="small"><span class="badge '+wbCls+'">'+wbTxt+'</span></p>'+'<p class="small">hujan '+Math.round(ins.waterBalance.rain)+' mm − penguapan '+Math.round(ins.waterBalance.et0)+' mm</p>'+wbNote+
     '<div class="gauge"><span class="pin" style="left:'+pinPct.toFixed(0)+'%"></span></div>'+
