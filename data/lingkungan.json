@@ -1,31 +1,50 @@
 {
-  "updated_at": "2026-09-24T23:18+08:00",
+  "updated_at": "2026-09-25T09:45+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "aman",
+    "status": "waspada",
     "warn_km": 50,
     "nearest": {
-      "km": 108.6,
-      "dir": "utara",
-      "lat": 1.7318,
-      "lon": 101.6273,
-      "place": "Rupat, Riau",
-      "acq": "2026-09-20",
+      "km": 42.1,
+      "dir": "selatan",
+      "lat": 0.4443,
+      "lon": 101.8908,
+      "place": "Pangkalan Kerinci, Pelalawan, Riau",
+      "acq": "2026-09-24",
       "sat": "N",
       "confidence": "n",
-      "frp": "12.06"
+      "frp": "1.17"
     },
-    "count_within": 0,
+    "count_within": 2,
     "scanned_days": 5,
-    "points": [],
+    "points": [
+      {
+        "lat": 0.4443,
+        "lon": 101.8908,
+        "km": 42.1,
+        "acq": "2026-09-24",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.17"
+      },
+      {
+        "lat": 0.4433,
+        "lon": 101.8928,
+        "km": 42.2,
+        "acq": "2026-09-24",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "3.46"
+      }
+    ],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 90
+      "humidity": 86
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -38,29 +57,29 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=1.7318,101.6273"
+    "map_google": "https://www.google.com/maps?q=0.4443,101.8908"
   },
   "air": {
-    "us_aqi": 53,
-    "pm2_5": 17.1,
-    "pm10": 17.2,
+    "us_aqi": 61,
+    "pm2_5": 24.2,
+    "pm10": 24.4,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.36,
+    "aod": 0.62,
     "dust": 0,
-    "haze": "berkabut tipis",
-    "haze_color": "gold",
-    "uv": 0.0,
+    "haze": "berasap/berkabut",
+    "haze_color": "orange",
+    "uv": 1.4,
     "uv_cat": "rendah"
   },
   "flood": {
-    "river_discharge": 47.9,
+    "river_discharge": 60.7,
     "unit": "m3/s",
     "trend": "naik",
-    "peak_next3": 85.1,
+    "peak_next3": 107.4,
     "baseline": 36.1,
-    "ratio_pct": 133,
-    "status": "Agak tinggi",
+    "ratio_pct": 168,
+    "status": "Tinggi",
     "map": "https://sites.research.google/floods/l/0.816/101.966/9"
   },
   "tide": {
@@ -70,43 +89,36 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 1.8,
-      "time": "20:00"
+      "h": 1.85,
+      "time": "21:00"
     },
     "low": {
-      "h": -0.42,
+      "h": -0.65,
       "time": "14:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.31,
+        "h": -0.43,
         "time": "02:00"
       },
       {
         "type": "pasang",
-        "h": 1.25,
+        "h": 1.48,
         "time": "08:00"
       },
       {
         "type": "surut",
-        "h": -0.42,
+        "h": -0.65,
         "time": "14:00"
       },
       {
         "type": "pasang",
-        "h": 1.8,
-        "time": "20:00"
+        "h": 1.85,
+        "time": "21:00"
       }
     ],
     "daily": [
-      {
-        "date": "2026-09-24",
-        "high": 1.8,
-        "high_time": "20:00",
-        "low": -0.42,
-        "low_time": "14:00"
-      },
       {
         "date": "2026-09-25",
         "high": 1.85,
@@ -219,7 +231,7 @@
       },
       {
         "date": "2026-10-10",
-        "high": 1.99,
+        "high": 1.98,
         "high_time": "08:30",
         "low": -0.9,
         "low_time": "14:30",
@@ -227,7 +239,7 @@
       },
       {
         "date": "2026-10-11",
-        "high": 2.16,
+        "high": 2.15,
         "high_time": "09:00",
         "low": -0.96,
         "low_time": "15:30",
@@ -235,7 +247,7 @@
       },
       {
         "date": "2026-10-12",
-        "high": 2.24,
+        "high": 2.23,
         "high_time": "09:30",
         "low": -0.94,
         "low_time": "16:00",
@@ -243,7 +255,7 @@
       },
       {
         "date": "2026-10-13",
-        "high": 2.24,
+        "high": 2.23,
         "high_time": "10:00",
         "low": -0.82,
         "low_time": "16:30",
@@ -251,7 +263,7 @@
       },
       {
         "date": "2026-10-14",
-        "high": 2.15,
+        "high": 2.14,
         "high_time": "10:30",
         "low": -0.64,
         "low_time": "17:00",
@@ -259,9 +271,9 @@
       },
       {
         "date": "2026-10-15",
-        "high": 2.0,
+        "high": 1.99,
         "high_time": "11:00",
-        "low": -0.52,
+        "low": -0.51,
         "low_time": "04:30",
         "est": true
       },
@@ -269,13 +281,13 @@
         "date": "2026-10-16",
         "high": 1.8,
         "high_time": "11:30",
-        "low": -0.39,
+        "low": -0.38,
         "low_time": "05:00",
         "est": true
       },
       {
         "date": "2026-10-17",
-        "high": 1.57,
+        "high": 1.56,
         "high_time": "12:00",
         "low": -0.21,
         "low_time": "05:30",
@@ -327,6 +339,14 @@
         "high_time": "19:30",
         "low": -0.39,
         "low_time": "13:00",
+        "est": true
+      },
+      {
+        "date": "2026-10-24",
+        "high": 1.67,
+        "high_time": "07:30",
+        "low": -0.65,
+        "low_time": "14:00",
         "est": true
       }
     ],
