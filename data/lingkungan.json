@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-29T02:12+08:00",
+  "updated_at": "2026-09-29T18:55+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -32,22 +32,13 @@
         "frp": "0.6"
       },
       {
-        "lat": 0.4443,
-        "lon": 101.8908,
-        "km": 42.1,
-        "acq": "2026-09-24",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "1.17"
-      },
-      {
-        "lat": 0.4433,
-        "lon": 101.8928,
+        "lat": 0.4435,
+        "lon": 101.8904,
         "km": 42.2,
-        "acq": "2026-09-24",
+        "acq": "2026-09-28",
         "sat": "N20",
         "confidence": "n",
-        "frp": "3.46"
+        "frp": "2.05"
       },
       {
         "lat": 0.4424,
@@ -66,6 +57,15 @@
         "sat": "N",
         "confidence": "n",
         "frp": "1.56"
+      },
+      {
+        "lat": 0.4415,
+        "lon": 101.8903,
+        "km": 42.5,
+        "acq": "2026-09-28",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "2.22"
       }
     ],
     "weather_risk": {
@@ -87,16 +87,16 @@
     "map_google": "https://www.google.com/maps?q=0.4452,101.8919"
   },
   "air": {
-    "us_aqi": 88,
-    "pm2_5": 23.5,
-    "pm10": 23.9,
+    "us_aqi": 80,
+    "pm2_5": 10.9,
+    "pm10": 12.4,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.59,
+    "aod": 0.6,
     "dust": 0,
-    "haze": "berkabut tipis",
-    "haze_color": "gold",
-    "uv": 0.0,
+    "haze": "berasap/berkabut",
+    "haze_color": "orange",
+    "uv": 0.3,
     "uv_cat": "rendah"
   },
   "flood": {
