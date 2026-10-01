@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-01T10:18+08:00",
+  "updated_at": "2026-10-01T19:12+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -96,17 +96,17 @@
     "map_google": "https://www.google.com/maps?q=0.4452,101.8919"
   },
   "air": {
-    "us_aqi": 94,
-    "pm2_5": 16.6,
-    "pm10": 16.9,
+    "us_aqi": 77,
+    "pm2_5": 23.9,
+    "pm10": 24.2,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.81,
+    "aod": 1.39,
     "dust": 0,
-    "haze": "berasap/berkabut",
-    "haze_color": "orange",
-    "uv": 3.5,
-    "uv_cat": "sedang"
+    "haze": "asap tebal",
+    "haze_color": "red",
+    "uv": 0.0,
+    "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 242.2,
