@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-02T01:04+08:00",
+  "updated_at": "2026-10-02T10:29+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -9,27 +9,36 @@
     "status": "bahaya",
     "warn_km": 50,
     "nearest": {
-      "km": 42.0,
+      "km": 42.2,
       "dir": "selatan",
-      "lat": 0.4452,
-      "lon": 101.8919,
+      "lat": 0.4434,
+      "lon": 101.8927,
       "place": "Pangkalan Kerinci, Pelalawan, Riau",
-      "acq": "2026-09-27",
-      "sat": "N20",
+      "acq": "2026-10-01",
+      "sat": "N",
       "confidence": "n",
-      "frp": "0.6"
+      "frp": "1.36"
     },
     "count_within": 6,
     "scanned_days": 5,
     "points": [
       {
-        "lat": 0.4452,
-        "lon": 101.8919,
-        "km": 42.0,
-        "acq": "2026-09-27",
+        "lat": 0.4434,
+        "lon": 101.8927,
+        "km": 42.2,
+        "acq": "2026-10-01",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "1.36"
+      },
+      {
+        "lat": 0.4437,
+        "lon": 101.8903,
+        "km": 42.2,
+        "acq": "2026-10-01",
         "sat": "N20",
         "confidence": "n",
-        "frp": "0.6"
+        "frp": "1.46"
       },
       {
         "lat": 0.4435,
@@ -41,19 +50,10 @@
         "frp": "2.05"
       },
       {
-        "lat": 0.4424,
-        "lon": 101.8917,
+        "lat": 0.4423,
+        "lon": 101.8919,
         "km": 42.3,
-        "acq": "2026-09-27",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "1.05"
-      },
-      {
-        "lat": 0.4415,
-        "lon": 101.8918,
-        "km": 42.4,
-        "acq": "2026-09-27",
+        "acq": "2026-10-01",
         "sat": "N",
         "confidence": "n",
         "frp": "1.56"
@@ -80,7 +80,7 @@
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 90
+      "humidity": 93
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -93,26 +93,26 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4452,101.8919"
+    "map_google": "https://www.google.com/maps?q=0.4434,101.8927"
   },
   "air": {
-    "us_aqi": 77,
-    "pm2_5": 27.8,
-    "pm10": 28.1,
+    "us_aqi": 91,
+    "pm2_5": 30.2,
+    "pm10": 30.4,
     "category": "Sedang",
     "color": "gold",
-    "aod": 1.8,
+    "aod": 1.46,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 2.5,
     "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 204.6,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 223.9,
+    "peak_next3": 245.6,
     "baseline": 164.2,
     "ratio_pct": 125,
     "status": "Agak tinggi",
