@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T18:05+08:00",
+  "updated_at": "2026-10-03T22:46+08:00",
   "location": {
     "lat": 0.81573,
     "lon": 101.96621
@@ -7,24 +7,24 @@
   "farm_name": "Kebun Sawit (Rawang Air Putih)",
   "today": {
     "date": "2026-10-03",
-    "precip": 16.9,
-    "prob": 92,
-    "tmax": 31.2,
+    "precip": 8.8,
+    "prob": 88,
+    "tmax": 31.9,
     "tmin": 23.8,
-    "humidity": 88,
-    "cloud": 85,
+    "humidity": 85,
+    "cloud": 88,
     "code": 81,
     "condition": "Hujan lokal sedang",
     "emoji": "🌧️",
     "wind": 12.3,
     "gust": 24.5,
     "wind_dir": "Barat",
-    "wind_dir_deg": 287,
-    "precip_hours": 18.0,
+    "wind_dir_deg": 286,
+    "precip_hours": 11.0,
     "rain_windows": [
       "01:00–06:00",
-      "14:00–15:00",
-      "16:00–24:00"
+      "20:00–21:00",
+      "22:00–24:00"
     ],
     "sunrise": "05:58",
     "sunset": "18:04",
@@ -81,7 +81,7 @@
       {
         "t": "06:00",
         "p": 0.1,
-        "prob": 59,
+        "prob": 60,
         "rh": 99,
         "cloud": 99,
         "code": 51
@@ -97,7 +97,7 @@
       {
         "t": "08:00",
         "p": 0.0,
-        "prob": 47,
+        "prob": 42,
         "rh": 90,
         "cloud": 79,
         "code": 2
@@ -105,7 +105,7 @@
       {
         "t": "09:00",
         "p": 0.0,
-        "prob": 41,
+        "prob": 30,
         "rh": 82,
         "cloud": 78,
         "code": 2
@@ -113,7 +113,7 @@
       {
         "t": "10:00",
         "p": 0.1,
-        "prob": 39,
+        "prob": 25,
         "rh": 73,
         "cloud": 85,
         "code": 51
@@ -121,7 +121,7 @@
       {
         "t": "11:00",
         "p": 0.0,
-        "prob": 42,
+        "prob": 33,
         "rh": 72,
         "cloud": 99,
         "code": 3
@@ -137,90 +137,90 @@
       {
         "t": "13:00",
         "p": 0.1,
-        "prob": 55,
-        "rh": 69,
-        "cloud": 83,
+        "prob": 59,
+        "rh": 61,
+        "cloud": 86,
         "code": 51
       },
       {
         "t": "14:00",
-        "p": 0.3,
-        "prob": 63,
-        "rh": 68,
-        "cloud": 80,
-        "code": 51
+        "p": 0.0,
+        "prob": 62,
+        "rh": 60,
+        "cloud": 93,
+        "code": 3
       },
       {
         "t": "15:00",
-        "p": 0.1,
-        "prob": 72,
-        "rh": 68,
-        "cloud": 84,
-        "code": 51
+        "p": 0.0,
+        "prob": 61,
+        "rh": 61,
+        "cloud": 95,
+        "code": 3
       },
       {
         "t": "16:00",
-        "p": 0.2,
-        "prob": 80,
-        "rh": 70,
-        "cloud": 71,
-        "code": 51
+        "p": 0.0,
+        "prob": 63,
+        "rh": 61,
+        "cloud": 88,
+        "code": 3
       },
       {
         "t": "17:00",
-        "p": 0.7,
-        "prob": 87,
-        "rh": 81,
-        "cloud": 92,
-        "code": 53
+        "p": 0.0,
+        "prob": 70,
+        "rh": 67,
+        "cloud": 95,
+        "code": 3
       },
       {
         "t": "18:00",
-        "p": 0.8,
-        "prob": 92,
-        "rh": 91,
-        "cloud": 52,
-        "code": 53
+        "p": 0.0,
+        "prob": 79,
+        "rh": 82,
+        "cloud": 90,
+        "code": 3
       },
       {
         "t": "19:00",
-        "p": 2.0,
-        "prob": 92,
-        "rh": 96,
-        "cloud": 60,
-        "code": 80
+        "p": 0.0,
+        "prob": 86,
+        "rh": 87,
+        "cloud": 80,
+        "code": 3
       },
       {
         "t": "20:00",
-        "p": 0.3,
-        "prob": 85,
-        "rh": 97,
-        "cloud": 59,
+        "p": 0.2,
+        "prob": 88,
+        "rh": 88,
+        "cloud": 77,
         "code": 51
       },
       {
         "t": "21:00",
-        "p": 3.4,
-        "prob": 73,
-        "rh": 95,
-        "cloud": 100,
-        "code": 81
+        "p": 0.0,
+        "prob": 88,
+        "rh": 91,
+        "cloud": 84,
+        "code": 3
       },
       {
         "t": "22:00",
-        "p": 5.4,
-        "prob": 61,
+        "p": 4.5,
+        "prob": 84,
         "rh": 98,
-        "cloud": 93,
+        "cloud": 98,
         "code": 81
       },
       {
         "t": "23:00",
-        "p": 0.4,
-        "prob": 49,
-        "rh": 99,
-        "cloud": 88,
-        "code": 51
+        "p": 0.8,
+        "prob": 76,
+        "rh": 98,
+        "cloud": 50,
+        "code": 53
       }
     ]
   },
@@ -1963,100 +1963,100 @@
     },
     {
       "date": "2026-10-03",
-      "precip": 16.9,
-      "prob": 92,
-      "tmax": 31.2,
+      "precip": 8.8,
+      "prob": 88,
+      "tmax": 31.9,
       "tmin": 23.8,
       "wind": 12.3,
       "code": 81,
       "gust": 24.5,
-      "wdir": 287,
-      "phours": 18.0,
+      "wdir": 286,
+      "phours": 11.0,
       "et0": 4.1,
       "kind": "forecast"
     },
     {
       "date": "2026-10-04",
-      "precip": 11.5,
-      "prob": 71,
+      "precip": 8.0,
+      "prob": 73,
       "tmax": 31.2,
-      "tmin": 23.3,
-      "wind": 9.0,
+      "tmin": 23.9,
+      "wind": 10.1,
       "code": 81,
-      "gust": 19.8,
-      "wdir": 239,
-      "phours": 13.0,
-      "et0": 4.1,
+      "gust": 22.3,
+      "wdir": 271,
+      "phours": 10.0,
+      "et0": 4.2,
       "kind": "forecast"
     },
     {
       "date": "2026-10-05",
-      "precip": 6.2,
-      "prob": 73,
-      "tmax": 31.1,
-      "tmin": 23.2,
-      "wind": 10.5,
-      "code": 81,
-      "gust": 22.7,
-      "wdir": 245,
-      "phours": 9.0,
-      "et0": 3.9,
-      "kind": "forecast"
-    },
-    {
-      "date": "2026-10-06",
-      "precip": 2.1,
-      "prob": 43,
-      "tmax": 31.6,
-      "tmin": 23.0,
-      "wind": 13.1,
-      "code": 55,
-      "gust": 24.8,
-      "wdir": 177,
-      "phours": 7.0,
-      "et0": 4.4,
-      "kind": "forecast"
-    },
-    {
-      "date": "2026-10-07",
-      "precip": 14.9,
-      "prob": 57,
-      "tmax": 31.0,
-      "tmin": 23.3,
-      "wind": 8.4,
-      "code": 81,
-      "gust": 34.6,
-      "wdir": 40,
-      "phours": 13.0,
-      "et0": 4.3,
-      "kind": "forecast"
-    },
-    {
-      "date": "2026-10-08",
-      "precip": 3.7,
-      "prob": 57,
+      "precip": 1.8,
+      "prob": 68,
       "tmax": 30.9,
-      "tmin": 23.2,
-      "wind": 5.1,
-      "code": 55,
-      "gust": 20.2,
-      "wdir": 277,
-      "phours": 5.0,
+      "tmin": 23.5,
+      "wind": 8.5,
+      "code": 53,
+      "gust": 16.9,
+      "wdir": 244,
+      "phours": 6.0,
       "et0": 3.7,
       "kind": "forecast"
     },
     {
-      "date": "2026-10-09",
-      "precip": 9.2,
-      "prob": 75,
+      "date": "2026-10-06",
+      "precip": 3.1,
+      "prob": 55,
+      "tmax": 31.7,
+      "tmin": 23.2,
+      "wind": 8.0,
+      "code": 80,
+      "gust": 28.4,
+      "wdir": 153,
+      "phours": 8.0,
+      "et0": 4.3,
+      "kind": "forecast"
+    },
+    {
+      "date": "2026-10-07",
+      "precip": 3.7,
+      "prob": 71,
       "tmax": 31.0,
-      "tmin": 23.9,
+      "tmin": 23.1,
+      "wind": 8.6,
+      "code": 53,
+      "gust": 24.5,
+      "wdir": 240,
+      "phours": 10.0,
+      "et0": 4.2,
+      "kind": "forecast"
+    },
+    {
+      "date": "2026-10-08",
+      "precip": 1.8,
+      "prob": 70,
+      "tmax": 31.1,
+      "tmin": 23.2,
+      "wind": 7.2,
+      "code": 51,
+      "gust": 16.6,
+      "wdir": 233,
+      "phours": 9.0,
+      "et0": 4.0,
+      "kind": "forecast"
+    },
+    {
+      "date": "2026-10-09",
+      "precip": 8.6,
+      "prob": 80,
+      "tmax": 31.0,
+      "tmin": 24.1,
       "wind": 11.0,
       "code": 55,
       "gust": 20.9,
-      "wdir": 278,
-      "phours": 16.0,
-      "et0": 4.1,
+      "wdir": 276,
+      "phours": 10.0,
+      "et0": 3.9,
       "kind": "forecast"
     },
     {
@@ -2076,7 +2076,7 @@
     {
       "date": "2026-10-11",
       "precip": 13.8,
-      "prob": 96,
+      "prob": 90,
       "tmax": 28.5,
       "tmin": 23.9,
       "wind": 5.9,
@@ -2090,7 +2090,7 @@
     {
       "date": "2026-10-12",
       "precip": 5.4,
-      "prob": 80,
+      "prob": 82,
       "tmax": 30.1,
       "tmin": 23.1,
       "wind": 3.9,
@@ -2104,7 +2104,7 @@
     {
       "date": "2026-10-13",
       "precip": 1.2,
-      "prob": 84,
+      "prob": 73,
       "tmax": 30.6,
       "tmin": 23.2,
       "wind": 7.8,
@@ -2118,7 +2118,7 @@
     {
       "date": "2026-10-14",
       "precip": 1.2,
-      "prob": 80,
+      "prob": 86,
       "tmax": 31.8,
       "tmin": 23.7,
       "wind": 7.8,
@@ -2132,7 +2132,7 @@
     {
       "date": "2026-10-15",
       "precip": 1.8,
-      "prob": 65,
+      "prob": 76,
       "tmax": 31.3,
       "tmin": 23.5,
       "wind": 8.1,
@@ -2146,7 +2146,7 @@
     {
       "date": "2026-10-16",
       "precip": 6.4,
-      "prob": 73,
+      "prob": 78,
       "tmax": 30.6,
       "tmin": 23.8,
       "wind": 6.9,
@@ -2160,7 +2160,7 @@
     {
       "date": "2026-10-17",
       "precip": 3.2,
-      "prob": 64,
+      "prob": 73,
       "tmax": 30.7,
       "tmin": 23.0,
       "wind": 8.2,
@@ -2173,16 +2173,16 @@
     },
     {
       "date": "2026-10-18",
-      "precip": 3.3,
-      "prob": 68,
-      "tmax": 32.4,
-      "tmin": 23.8,
-      "wind": 5.0,
+      "precip": 3.9,
+      "prob": 82,
+      "tmax": 30.3,
+      "tmin": 23.9,
+      "wind": 12.0,
       "code": 53,
-      "gust": 14.4,
-      "wdir": 108,
-      "phours": 6.0,
-      "et0": 3.8,
+      "gust": 40.0,
+      "wdir": 312,
+      "phours": 9.0,
+      "et0": 3.6,
       "kind": "forecast"
     }
   ]
