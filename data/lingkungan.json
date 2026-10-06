@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-06T03:20+08:00",
+  "updated_at": "2026-10-06T11:13+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -19,7 +19,7 @@
       "confidence": "n",
       "frp": "1.77"
     },
-    "count_within": 8,
+    "count_within": 6,
     "scanned_days": 5,
     "points": [
       {
@@ -41,6 +41,15 @@
         "frp": "0.84"
       },
       {
+        "lat": 0.4443,
+        "lon": 101.8924,
+        "km": 42.1,
+        "acq": "2026-10-05",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.79"
+      },
+      {
         "lat": 0.4442,
         "lon": 101.8928,
         "km": 42.1,
@@ -50,15 +59,6 @@
         "frp": "1.45"
       },
       {
-        "lat": 0.4434,
-        "lon": 101.8927,
-        "km": 42.2,
-        "acq": "2026-10-01",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "1.36"
-      },
-      {
         "lat": 0.4433,
         "lon": 101.8927,
         "km": 42.2,
@@ -66,24 +66,6 @@
         "sat": "N",
         "confidence": "n",
         "frp": "1.7"
-      },
-      {
-        "lat": 0.4437,
-        "lon": 101.8903,
-        "km": 42.2,
-        "acq": "2026-10-01",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.46"
-      },
-      {
-        "lat": 0.4423,
-        "lon": 101.8919,
-        "km": 42.3,
-        "acq": "2026-10-01",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "1.56"
       },
       {
         "lat": 0.4402,
@@ -98,7 +80,7 @@
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 90
+      "humidity": 87
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -114,23 +96,23 @@
     "map_google": "https://www.google.com/maps?q=0.4462,101.8918"
   },
   "air": {
-    "us_aqi": 151,
-    "pm2_5": 29.2,
-    "pm10": 29.7,
+    "us_aqi": 167,
+    "pm2_5": 82.0,
+    "pm10": 84.3,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 1.68,
+    "aod": 2.49,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "uv": 3.0,
+    "uv_cat": "sedang"
   },
   "flood": {
     "river_discharge": 265.7,
     "unit": "m3/s",
     "trend": "naik",
-    "peak_next3": 268.8,
+    "peak_next3": 273.8,
     "baseline": 241.1,
     "ratio_pct": 110,
     "status": "Normal",
