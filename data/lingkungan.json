@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-07T10:37+08:00",
+  "updated_at": "2026-10-07T19:22+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -9,19 +9,28 @@
     "status": "bahaya",
     "warn_km": 50,
     "nearest": {
-      "km": 42.1,
-      "dir": "selatan",
-      "lat": 0.4444,
-      "lon": 101.8919,
-      "place": "Pangkalan Kerinci, Pelalawan, Riau",
-      "acq": "2026-10-04",
-      "sat": "N",
+      "km": 39.5,
+      "dir": "barat",
+      "lat": 0.8969,
+      "lon": 101.62,
+      "place": "Sungai Mandau, Riau",
+      "acq": "2026-10-07",
+      "sat": "N20",
       "confidence": "n",
-      "frp": "0.84"
+      "frp": "12.68"
     },
-    "count_within": 5,
+    "count_within": 6,
     "scanned_days": 5,
     "points": [
+      {
+        "lat": 0.8969,
+        "lon": 101.62,
+        "km": 39.5,
+        "acq": "2026-10-07",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "12.68"
+      },
       {
         "lat": 0.4444,
         "lon": 101.8919,
@@ -70,8 +79,8 @@
     ],
     "weather_risk": {
       "level": "rendah",
-      "dry_streak": 0,
-      "humidity": 86
+      "dry_streak": 1,
+      "humidity": 83
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -84,19 +93,19 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4444,101.8919"
+    "map_google": "https://www.google.com/maps?q=0.8969,101.62"
   },
   "air": {
-    "us_aqi": 171,
-    "pm2_5": 24.0,
-    "pm10": 27.8,
+    "us_aqi": 161,
+    "pm2_5": 83.8,
+    "pm10": 86.1,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 2.0,
+    "aod": 2.86,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 2.2,
+    "uv": 0.0,
     "uv_cat": "rendah"
   },
   "flood": {
