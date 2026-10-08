@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T01:28+08:00",
+  "updated_at": "2026-10-08T10:51+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -19,7 +19,7 @@
       "confidence": "n",
       "frp": "12.68"
     },
-    "count_within": 6,
+    "count_within": 7,
     "scanned_days": 5,
     "points": [
       {
@@ -50,13 +50,13 @@
         "frp": "2.79"
       },
       {
-        "lat": 0.4442,
-        "lon": 101.8928,
-        "km": 42.1,
-        "acq": "2026-10-03",
-        "sat": "N20",
+        "lat": 0.4427,
+        "lon": 101.8908,
+        "km": 42.3,
+        "acq": "2026-10-07",
+        "sat": "N",
         "confidence": "n",
-        "frp": "1.45"
+        "frp": "1.18"
       },
       {
         "lat": 0.442,
@@ -66,6 +66,15 @@
         "sat": "N",
         "confidence": "l",
         "frp": "3.25"
+      },
+      {
+        "lat": 0.4422,
+        "lon": 101.8903,
+        "km": 42.4,
+        "acq": "2026-10-07",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "1.81"
       },
       {
         "lat": 0.4402,
@@ -79,8 +88,8 @@
     ],
     "weather_risk": {
       "level": "rendah",
-      "dry_streak": 1,
-      "humidity": 81
+      "dry_streak": 0,
+      "humidity": 85
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -96,16 +105,16 @@
     "map_google": "https://www.google.com/maps?q=0.8969,101.62"
   },
   "air": {
-    "us_aqi": 154,
-    "pm2_5": 49.2,
-    "pm10": 49.8,
+    "us_aqi": 169,
+    "pm2_5": 78.7,
+    "pm10": 82.7,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 1.53,
+    "aod": 2.63,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 1.9,
     "uv_cat": "rendah"
   },
   "flood": {
