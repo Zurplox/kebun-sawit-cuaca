@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T10:51+08:00",
+  "updated_at": "2026-10-08T19:38+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -89,7 +89,7 @@
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 85
+      "humidity": 83
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -106,15 +106,15 @@
   },
   "air": {
     "us_aqi": 169,
-    "pm2_5": 78.7,
-    "pm10": 82.7,
+    "pm2_5": 49.0,
+    "pm10": 51.9,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 2.63,
+    "aod": 2.23,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 1.9,
+    "uv": 0.0,
     "uv_cat": "rendah"
   },
   "flood": {
