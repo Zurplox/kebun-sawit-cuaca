@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T01:05+08:00",
+  "updated_at": "2026-10-10T10:35+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -32,13 +32,13 @@
         "frp": "12.68"
       },
       {
-        "lat": 0.4443,
-        "lon": 101.8924,
-        "km": 42.1,
-        "acq": "2026-10-05",
-        "sat": "N20",
+        "lat": 0.4435,
+        "lon": 101.8922,
+        "km": 42.2,
+        "acq": "2026-10-09",
+        "sat": "N",
         "confidence": "n",
-        "frp": "2.79"
+        "frp": "4.21"
       },
       {
         "lat": 0.4436,
@@ -96,23 +96,23 @@
     "map_google": "https://www.google.com/maps?q=0.8969,101.62"
   },
   "air": {
-    "us_aqi": 155,
-    "pm2_5": 37.6,
-    "pm10": 38.1,
+    "us_aqi": 151,
+    "pm2_5": 31.9,
+    "pm10": 32.2,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 3.1,
+    "aod": 3.57,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 0.5,
     "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 168.8,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 159.7,
+    "peak_next3": 168.0,
     "baseline": 241.1,
     "ratio_pct": 70,
     "status": "Normal",
