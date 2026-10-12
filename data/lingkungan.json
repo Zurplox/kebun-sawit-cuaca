@@ -1,36 +1,27 @@
 {
-  "updated_at": "2026-10-12T00:21+08:00",
+  "updated_at": "2026-10-12T10:35+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "bahaya",
+    "status": "waspada",
     "warn_km": 50,
     "nearest": {
-      "km": 39.5,
-      "dir": "barat",
-      "lat": 0.8969,
-      "lon": 101.62,
-      "place": "Sungai Mandau, Riau",
-      "acq": "2026-10-07",
-      "sat": "N20",
+      "km": 42.2,
+      "dir": "selatan",
+      "lat": 0.4435,
+      "lon": 101.8922,
+      "place": "Pangkalan Kerinci, Pelalawan, Riau",
+      "acq": "2026-10-09",
+      "sat": "N",
       "confidence": "n",
-      "frp": "12.68"
+      "frp": "4.21"
     },
-    "count_within": 5,
+    "count_within": 3,
     "scanned_days": 5,
     "points": [
-      {
-        "lat": 0.8969,
-        "lon": 101.62,
-        "km": 39.5,
-        "acq": "2026-10-07",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "12.68"
-      },
       {
         "lat": 0.4435,
         "lon": 101.8922,
@@ -50,28 +41,19 @@
         "frp": "2.05"
       },
       {
-        "lat": 0.4427,
-        "lon": 101.8908,
-        "km": 42.3,
-        "acq": "2026-10-07",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "1.18"
-      },
-      {
-        "lat": 0.4422,
-        "lon": 101.8903,
-        "km": 42.4,
-        "acq": "2026-10-07",
+        "lat": 0.4435,
+        "lon": 101.8919,
+        "km": 42.2,
+        "acq": "2026-10-11",
         "sat": "N20",
         "confidence": "n",
-        "frp": "1.81"
+        "frp": "2.18"
       }
     ],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 91
+      "humidity": 94
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -84,26 +66,26 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.8969,101.62"
+    "map_google": "https://www.google.com/maps?q=0.4435,101.8922"
   },
   "air": {
-    "us_aqi": 151,
-    "pm2_5": 47.1,
-    "pm10": 47.4,
+    "us_aqi": 157,
+    "pm2_5": 40.5,
+    "pm10": 40.9,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 2.98,
+    "aod": 2.48,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 1.2,
     "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 142.9,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 192.6,
+    "peak_next3": 255.4,
     "baseline": 232.3,
     "ratio_pct": 61,
     "status": "Normal",
@@ -250,7 +232,7 @@
       },
       {
         "date": "2026-10-26",
-        "high": 2.16,
+        "high": 2.17,
         "high_time": "08:30",
         "low": -1.04,
         "low_time": "15:00",
@@ -292,7 +274,7 @@
         "date": "2026-10-31",
         "high": 1.98,
         "high_time": "12:00",
-        "low": -0.42,
+        "low": -0.43,
         "low_time": "05:00",
         "est": true
       },
@@ -300,13 +282,13 @@
         "date": "2026-11-01",
         "high": 1.72,
         "high_time": "13:00",
-        "low": -0.23,
+        "low": -0.24,
         "low_time": "06:00",
         "est": true
       },
       {
         "date": "2026-11-02",
-        "high": 1.49,
+        "high": 1.48,
         "high_time": "14:00",
         "low": -0.02,
         "low_time": "07:00",
@@ -324,7 +306,7 @@
         "date": "2026-11-04",
         "high": 1.4,
         "high_time": "17:30",
-        "low": -0.01,
+        "low": -0.02,
         "low_time": "11:00",
         "est": true
       },
@@ -362,7 +344,7 @@
       },
       {
         "date": "2026-11-09",
-        "high": 2.17,
+        "high": 2.18,
         "high_time": "08:30",
         "low": -0.88,
         "low_time": "15:00",
