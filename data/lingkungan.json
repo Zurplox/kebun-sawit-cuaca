@@ -1,59 +1,21 @@
 {
-  "updated_at": "2026-10-15T23:09+08:00",
+  "updated_at": "2026-10-16T09:41+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "waspada",
+    "status": "aman",
     "warn_km": 50,
-    "nearest": {
-      "km": 42.2,
-      "dir": "selatan",
-      "lat": 0.4435,
-      "lon": 101.8919,
-      "place": "Pangkalan Kerinci, Pelalawan, Riau",
-      "acq": "2026-10-11",
-      "sat": "N20",
-      "confidence": "n",
-      "frp": "2.18"
-    },
-    "count_within": 3,
+    "nearest": null,
+    "count_within": 0,
     "scanned_days": 5,
-    "points": [
-      {
-        "lat": 0.4435,
-        "lon": 101.8919,
-        "km": 42.2,
-        "acq": "2026-10-11",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "2.18"
-      },
-      {
-        "lat": 0.4426,
-        "lon": 101.8907,
-        "km": 42.3,
-        "acq": "2026-10-14",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "2.96"
-      },
-      {
-        "lat": 0.4413,
-        "lon": 101.8937,
-        "km": 42.4,
-        "acq": "2026-10-14",
-        "sat": "N",
-        "confidence": "n",
-        "frp": "3.26"
-      }
-    ],
+    "points": [],
     "weather_risk": {
       "level": "rendah",
-      "dry_streak": 1,
-      "humidity": 82
+      "dry_streak": 0,
+      "humidity": 89
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -65,29 +27,28 @@
       "total_points": 0,
       "source_label": null
     },
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4435,101.8919"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 166,
-    "pm2_5": 71.9,
-    "pm10": 73.6,
+    "us_aqi": 175,
+    "pm2_5": 83.4,
+    "pm10": 84.8,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 2.42,
+    "aod": 3.34,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 0.5,
     "uv_cat": "rendah"
   },
   "flood": {
-    "river_discharge": 170.0,
+    "river_discharge": 146.2,
     "unit": "m3/s",
-    "trend": "naik",
-    "peak_next3": 146.2,
+    "trend": "stabil",
+    "peak_next3": 139.6,
     "baseline": 152.1,
-    "ratio_pct": 112,
+    "ratio_pct": 96,
     "status": "Normal",
     "map": "https://sites.research.google/floods/l/0.816/101.966/9"
   },
@@ -98,38 +59,31 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 1.94,
-      "time": "10:00"
+      "h": 1.8,
+      "time": "11:00"
     },
     "low": {
-      "h": -0.52,
-      "time": "18:00"
+      "h": -0.36,
+      "time": "05:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.4,
+        "h": -0.36,
         "time": "05:00"
       },
       {
         "type": "pasang",
-        "h": 1.94,
+        "h": 1.8,
         "time": "11:00"
       },
       {
         "type": "surut",
-        "h": -0.52,
+        "h": -0.28,
         "time": "18:00"
       }
     ],
     "daily": [
-      {
-        "date": "2026-10-15",
-        "high": 1.94,
-        "high_time": "10:00",
-        "low": -0.52,
-        "low_time": "18:00"
-      },
       {
         "date": "2026-10-16",
         "high": 1.8,
@@ -218,7 +172,7 @@
       },
       {
         "date": "2026-10-28",
-        "high": 2.34,
+        "high": 2.35,
         "high_time": "10:00",
         "low": -1.0,
         "low_time": "16:30",
@@ -226,7 +180,7 @@
       },
       {
         "date": "2026-10-29",
-        "high": 2.31,
+        "high": 2.32,
         "high_time": "10:30",
         "low": -0.84,
         "low_time": "17:00",
@@ -234,9 +188,9 @@
       },
       {
         "date": "2026-10-30",
-        "high": 2.18,
+        "high": 2.19,
         "high_time": "11:00",
-        "low": -0.6,
+        "low": -0.61,
         "low_time": "18:00",
         "est": true
       },
@@ -260,21 +214,21 @@
         "date": "2026-11-02",
         "high": 1.48,
         "high_time": "14:00",
-        "low": -0.04,
+        "low": -0.05,
         "low_time": "07:00",
         "est": true
       },
       {
         "date": "2026-11-03",
-        "high": 1.36,
+        "high": 1.35,
         "high_time": "16:00",
-        "low": 0.07,
+        "low": 0.06,
         "low_time": "09:00",
         "est": true
       },
       {
         "date": "2026-11-04",
-        "high": 1.39,
+        "high": 1.38,
         "high_time": "17:30",
         "low": -0.04,
         "low_time": "11:00",
@@ -282,7 +236,7 @@
       },
       {
         "date": "2026-11-05",
-        "high": 1.46,
+        "high": 1.45,
         "high_time": "18:30",
         "low": -0.27,
         "low_time": "12:00",
@@ -290,7 +244,7 @@
       },
       {
         "date": "2026-11-06",
-        "high": 1.58,
+        "high": 1.57,
         "high_time": "06:30",
         "low": -0.52,
         "low_time": "13:00",
@@ -298,7 +252,7 @@
       },
       {
         "date": "2026-11-07",
-        "high": 1.84,
+        "high": 1.83,
         "high_time": "07:30",
         "low": -0.7,
         "low_time": "14:00",
@@ -308,7 +262,7 @@
         "date": "2026-11-08",
         "high": 2.04,
         "high_time": "08:00",
-        "low": -0.82,
+        "low": -0.83,
         "low_time": "14:30",
         "est": true
       },
@@ -316,7 +270,7 @@
         "date": "2026-11-09",
         "high": 2.17,
         "high_time": "08:30",
-        "low": -0.86,
+        "low": -0.87,
         "low_time": "15:00",
         "est": true
       },
@@ -324,7 +278,7 @@
         "date": "2026-11-10",
         "high": 2.22,
         "high_time": "09:00",
-        "low": -0.83,
+        "low": -0.84,
         "low_time": "15:30",
         "est": true
       },
@@ -332,13 +286,13 @@
         "date": "2026-11-11",
         "high": 2.2,
         "high_time": "09:30",
-        "low": -0.74,
+        "low": -0.75,
         "low_time": "16:00",
         "est": true
       },
       {
         "date": "2026-11-12",
-        "high": 2.11,
+        "high": 2.12,
         "high_time": "10:00",
         "low": -0.61,
         "low_time": "16:30",
@@ -346,10 +300,18 @@
       },
       {
         "date": "2026-11-13",
-        "high": 1.97,
+        "high": 1.98,
         "high_time": "10:30",
         "low": -0.46,
-        "low_time": "04:00",
+        "low_time": "17:30",
+        "est": true
+      },
+      {
+        "date": "2026-11-14",
+        "high": 1.8,
+        "high_time": "11:30",
+        "low": -0.35,
+        "low_time": "04:30",
         "est": true
       }
     ],
