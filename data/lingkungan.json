@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T17:19+08:00",
+  "updated_at": "2026-10-16T22:56+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -69,23 +69,23 @@
     "map_google": "https://www.google.com/maps?q=0.4426,101.8907"
   },
   "air": {
-    "us_aqi": 177,
-    "pm2_5": 85.0,
-    "pm10": 87.5,
+    "us_aqi": 176,
+    "pm2_5": 43.8,
+    "pm10": 44.9,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 3.06,
-    "dust": 1,
+    "aod": 3.53,
+    "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.2,
+    "uv": 0.0,
     "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 146.2,
     "unit": "m3/s",
     "trend": "stabil",
-    "peak_next3": 139.6,
+    "peak_next3": 141.6,
     "baseline": 152.1,
     "ratio_pct": 96,
     "status": "Normal",
@@ -102,13 +102,13 @@
       "time": "11:00"
     },
     "low": {
-      "h": -0.36,
+      "h": -0.38,
       "time": "05:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.36,
+        "h": -0.38,
         "time": "05:00"
       },
       {
@@ -127,14 +127,14 @@
         "date": "2026-10-16",
         "high": 1.8,
         "high_time": "11:00",
-        "low": -0.36,
+        "low": -0.38,
         "low_time": "05:00"
       },
       {
         "date": "2026-10-17",
-        "high": 1.53,
+        "high": 1.54,
         "high_time": "12:00",
-        "low": -0.29,
+        "low": -0.3,
         "low_time": "06:00"
       },
       {
@@ -148,58 +148,57 @@
         "date": "2026-10-19",
         "high": 1.07,
         "high_time": "13:00",
-        "low": 0.02,
+        "low": 0.03,
         "low_time": "08:00"
       },
       {
         "date": "2026-10-20",
-        "high": 1.04,
+        "high": 1.02,
         "high_time": "17:00",
-        "low": 0.08,
+        "low": 0.09,
         "low_time": "09:00"
       },
       {
         "date": "2026-10-21",
-        "high": 1.17,
+        "high": 1.18,
         "high_time": "18:00",
-        "low": 0.01,
+        "low": 0.0,
         "low_time": "11:00"
       },
       {
         "date": "2026-10-22",
-        "high": 1.32,
+        "high": 1.36,
         "high_time": "19:00",
-        "low": -0.21,
+        "low": -0.19,
         "low_time": "12:00"
       },
       {
         "date": "2026-10-23",
-        "high": 1.56,
+        "high": 1.52,
         "high_time": "20:00",
-        "low": -0.49,
+        "low": -0.48,
         "low_time": "13:00"
       },
       {
         "date": "2026-10-24",
-        "high": 1.67,
+        "high": 1.7,
         "high_time": "08:00",
-        "low": -0.72,
+        "low": -0.73,
         "low_time": "14:00"
       },
       {
         "date": "2026-10-25",
-        "high": 1.35,
-        "high_time": "06:00",
-        "low": -0.56,
-        "low_time": "02:00"
+        "high": 1.93,
+        "high_time": "08:00",
+        "low": -0.95,
+        "low_time": "15:00"
       },
       {
         "date": "2026-10-26",
-        "high": 2.16,
-        "high_time": "08:30",
-        "low": -1.04,
-        "low_time": "15:00",
-        "est": true
+        "high": 1.12,
+        "high_time": "06:00",
+        "low": -0.62,
+        "low_time": "03:00"
       },
       {
         "date": "2026-10-27",
@@ -221,7 +220,7 @@
         "date": "2026-10-29",
         "high": 2.32,
         "high_time": "10:30",
-        "low": -0.84,
+        "low": -0.85,
         "low_time": "17:00",
         "est": true
       },
@@ -261,7 +260,7 @@
         "date": "2026-11-03",
         "high": 1.35,
         "high_time": "16:00",
-        "low": 0.06,
+        "low": 0.07,
         "low_time": "09:00",
         "est": true
       },
@@ -293,7 +292,7 @@
         "date": "2026-11-07",
         "high": 1.83,
         "high_time": "07:30",
-        "low": -0.7,
+        "low": -0.71,
         "low_time": "14:00",
         "est": true
       },
@@ -333,7 +332,7 @@
         "date": "2026-11-12",
         "high": 2.12,
         "high_time": "10:00",
-        "low": -0.61,
+        "low": -0.62,
         "low_time": "16:30",
         "est": true
       },
