@@ -1,21 +1,59 @@
 {
-  "updated_at": "2026-10-16T09:41+08:00",
+  "updated_at": "2026-10-16T17:19+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "aman",
+    "status": "waspada",
     "warn_km": 50,
-    "nearest": null,
-    "count_within": 0,
+    "nearest": {
+      "km": 42.3,
+      "dir": "selatan",
+      "lat": 0.4426,
+      "lon": 101.8907,
+      "place": "Pangkalan Kerinci, Riau",
+      "acq": "2026-10-14",
+      "sat": "N20",
+      "confidence": "n",
+      "frp": "2.96"
+    },
+    "count_within": 3,
     "scanned_days": 5,
-    "points": [],
+    "points": [
+      {
+        "lat": 0.4426,
+        "lon": 101.8907,
+        "km": 42.3,
+        "acq": "2026-10-14",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.96"
+      },
+      {
+        "lat": 0.4423,
+        "lon": 101.8906,
+        "km": 42.4,
+        "acq": "2026-10-15",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.86"
+      },
+      {
+        "lat": 0.4413,
+        "lon": 101.8937,
+        "km": 42.4,
+        "acq": "2026-10-14",
+        "sat": "N",
+        "confidence": "n",
+        "frp": "3.26"
+      }
+    ],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 89
+      "humidity": 87
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -27,19 +65,20 @@
       "total_points": 0,
       "source_label": null
     },
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
+    "map_google": "https://www.google.com/maps?q=0.4426,101.8907"
   },
   "air": {
-    "us_aqi": 175,
-    "pm2_5": 83.4,
-    "pm10": 84.8,
+    "us_aqi": 177,
+    "pm2_5": 85.0,
+    "pm10": 87.5,
     "category": "Tidak sehat",
     "color": "red",
-    "aod": 3.34,
-    "dust": 0,
+    "aod": 3.06,
+    "dust": 1,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.5,
+    "uv": 0.2,
     "uv_cat": "rendah"
   },
   "flood": {
