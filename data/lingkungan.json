@@ -1,41 +1,31 @@
 {
-  "updated_at": "2026-10-20T01:02+08:00",
+  "updated_at": "2026-10-20T10:00+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "waspada",
+    "status": "aman",
     "warn_km": 50,
     "nearest": {
-      "km": 42.4,
-      "dir": "selatan",
-      "lat": 0.4423,
-      "lon": 101.8906,
-      "place": "Pangkalan Kerinci, Riau",
-      "acq": "2026-10-15",
-      "sat": "N20",
+      "km": 58.0,
+      "dir": "barat",
+      "lat": 0.7173,
+      "lon": 101.454,
+      "place": "Minas, Riau",
+      "acq": "2026-10-19",
+      "sat": "N",
       "confidence": "n",
-      "frp": "2.86"
+      "frp": "0.55"
     },
-    "count_within": 1,
+    "count_within": 0,
     "scanned_days": 5,
-    "points": [
-      {
-        "lat": 0.4423,
-        "lon": 101.8906,
-        "km": 42.4,
-        "acq": "2026-10-15",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "2.86"
-      }
-    ],
+    "points": [],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 87
+      "humidity": 92
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -48,26 +38,26 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4423,101.8906"
+    "map_google": "https://www.google.com/maps?q=0.7173,101.454"
   },
   "air": {
-    "us_aqi": 108,
-    "pm2_5": 20.0,
-    "pm10": 20.4,
+    "us_aqi": 106,
+    "pm2_5": 35.4,
+    "pm10": 38.1,
     "category": "Tidak sehat (kel. sensitif)",
     "color": "orange",
-    "aod": 1.11,
+    "aod": 1.64,
     "dust": 0,
     "haze": "asap tebal",
     "haze_color": "red",
-    "uv": 0.0,
+    "uv": 2.5,
     "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 138.3,
     "unit": "m3/s",
     "trend": "stabil",
-    "peak_next3": 178.1,
+    "peak_next3": 196.2,
     "baseline": 141.6,
     "ratio_pct": 98,
     "status": "Normal",
