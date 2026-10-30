@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T10:48+08:00",
+  "updated_at": "2026-10-30T19:03+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -9,15 +9,15 @@
     "status": "aman",
     "warn_km": 50,
     "nearest": {
-      "km": 214.5,
-      "dir": "barat",
-      "lat": 0.3098,
-      "lon": 100.1044,
-      "place": "Panti, Sumatera Barat",
-      "acq": "2026-10-28",
+      "km": 189.7,
+      "dir": "timur laut",
+      "lat": 2.3366,
+      "lon": 102.7392,
+      "place": "Ledang, Johor",
+      "acq": "2026-10-30",
       "sat": "N20",
       "confidence": "n",
-      "frp": "3.03"
+      "frp": "2.68"
     },
     "count_within": 0,
     "scanned_days": 5,
@@ -25,7 +25,7 @@
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 88
+      "humidity": 90
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -38,20 +38,20 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.3098,100.1044"
+    "map_google": "https://www.google.com/maps?q=2.3366,102.7392"
   },
   "air": {
-    "us_aqi": 59,
-    "pm2_5": 11.9,
-    "pm10": 12.4,
+    "us_aqi": 55,
+    "pm2_5": 7.0,
+    "pm10": 7.1,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.34,
+    "aod": 0.44,
     "dust": 0,
     "haze": "berkabut tipis",
     "haze_color": "gold",
-    "uv": 3.5,
-    "uv_cat": "sedang"
+    "uv": 0.0,
+    "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 253.1,
