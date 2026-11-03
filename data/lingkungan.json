@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-03T11:59+08:00",
+  "updated_at": "2026-11-03T20:24+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -78,23 +78,23 @@
     "map_google": "https://www.google.com/maps?q=0.4447,101.8905"
   },
   "air": {
-    "us_aqi": 60,
-    "pm2_5": 12.3,
-    "pm10": 14.4,
+    "us_aqi": 62,
+    "pm2_5": 7.2,
+    "pm10": 7.5,
     "category": "Sedang",
     "color": "gold",
-    "aod": 0.48,
+    "aod": 0.44,
     "dust": 0,
     "haze": "berkabut tipis",
     "haze_color": "gold",
-    "uv": 4.9,
-    "uv_cat": "sedang"
+    "uv": 0.0,
+    "uv_cat": "rendah"
   },
   "flood": {
     "river_discharge": 245.6,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 226.5,
+    "peak_next3": 207.4,
     "baseline": 284.8,
     "ratio_pct": 86,
     "status": "Normal",
@@ -107,17 +107,17 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 1.35,
-      "time": "16:00"
+      "h": 1.37,
+      "time": "17:00"
     },
     "low": {
-      "h": -0.08,
+      "h": -0.05,
       "time": "23:00"
     },
     "extremes": [
       {
         "type": "pasang",
-        "h": 0.82,
+        "h": 0.81,
         "time": "04:00"
       },
       {
@@ -127,23 +127,23 @@
       },
       {
         "type": "pasang",
-        "h": 1.35,
+        "h": 1.37,
         "time": "17:00"
       }
     ],
     "daily": [
       {
         "date": "2026-11-03",
-        "high": 1.35,
-        "high_time": "16:00",
-        "low": -0.08,
+        "high": 1.37,
+        "high_time": "17:00",
+        "low": -0.05,
         "low_time": "23:00"
       },
       {
         "date": "2026-11-04",
-        "high": 1.36,
+        "high": 1.37,
         "high_time": "18:00",
-        "low": -0.17,
+        "low": -0.16,
         "low_time": "11:00"
       },
       {
@@ -157,7 +157,7 @@
         "date": "2026-11-06",
         "high": 1.66,
         "high_time": "07:00",
-        "low": -0.66,
+        "low": -0.67,
         "low_time": "13:00"
       },
       {
@@ -169,50 +169,49 @@
       },
       {
         "date": "2026-11-08",
-        "high": 2.11,
+        "high": 2.1,
         "high_time": "08:00",
-        "low": -0.93,
+        "low": -0.92,
         "low_time": "15:00"
       },
       {
         "date": "2026-11-09",
-        "high": 2.16,
+        "high": 2.15,
         "high_time": "09:00",
         "low": -0.92,
         "low_time": "15:00"
       },
       {
         "date": "2026-11-10",
-        "high": 2.24,
+        "high": 2.25,
         "high_time": "09:00",
-        "low": -0.89,
+        "low": -0.9,
         "low_time": "16:00"
       },
       {
         "date": "2026-11-11",
-        "high": 2.23,
+        "high": 2.24,
         "high_time": "09:00",
-        "low": -0.72,
+        "low": -0.73,
         "low_time": "17:00"
       },
       {
         "date": "2026-11-12",
-        "high": 0.84,
-        "high_time": "00:00",
-        "low": -0.38,
-        "low_time": "04:00"
+        "high": 2.16,
+        "high_time": "10:00",
+        "low": -0.67,
+        "low_time": "17:00"
       },
       {
         "date": "2026-11-13",
-        "high": 1.93,
-        "high_time": "10:30",
-        "low": -0.47,
-        "low_time": "17:30",
-        "est": true
+        "high": 0.9,
+        "high_time": "00:00",
+        "low": -0.35,
+        "low_time": "04:00"
       },
       {
         "date": "2026-11-14",
-        "high": 1.75,
+        "high": 1.76,
         "high_time": "11:30",
         "low": -0.32,
         "low_time": "18:00",
@@ -220,7 +219,7 @@
       },
       {
         "date": "2026-11-15",
-        "high": 1.56,
+        "high": 1.57,
         "high_time": "12:00",
         "low": -0.18,
         "low_time": "05:30",
@@ -230,7 +229,7 @@
         "date": "2026-11-16",
         "high": 1.36,
         "high_time": "13:00",
-        "low": -0.02,
+        "low": -0.03,
         "low_time": "19:30",
         "est": true
       },
@@ -292,7 +291,7 @@
       },
       {
         "date": "2026-11-24",
-        "high": 2.27,
+        "high": 2.28,
         "high_time": "08:30",
         "low": -0.94,
         "low_time": "15:00",
@@ -310,7 +309,7 @@
         "date": "2026-11-26",
         "high": 2.42,
         "high_time": "09:30",
-        "low": -0.9,
+        "low": -0.91,
         "low_time": "16:30",
         "est": true
       },
@@ -318,15 +317,15 @@
         "date": "2026-11-27",
         "high": 2.36,
         "high_time": "10:30",
-        "low": -0.78,
+        "low": -0.79,
         "low_time": "17:00",
         "est": true
       },
       {
         "date": "2026-11-28",
-        "high": 2.21,
+        "high": 2.22,
         "high_time": "11:00",
-        "low": -0.61,
+        "low": -0.62,
         "low_time": "18:00",
         "est": true
       },
@@ -356,7 +355,7 @@
       },
       {
         "date": "2026-12-02",
-        "high": 1.27,
+        "high": 1.26,
         "high_time": "15:00",
         "low": -0.07,
         "low_time": "09:00",
