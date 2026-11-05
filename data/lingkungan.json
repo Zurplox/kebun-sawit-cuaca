@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-05T02:06+08:00",
+  "updated_at": "2026-11-05T11:39+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -32,19 +32,19 @@
         "frp": "2.87"
       },
       {
-        "lat": 0.4433,
-        "lon": 101.8923,
-        "km": 42.2,
-        "acq": "2026-10-31",
+        "lat": 0.4426,
+        "lon": 101.8894,
+        "km": 42.4,
+        "acq": "2026-11-04",
         "sat": "N20",
         "confidence": "n",
-        "frp": "2.62"
+        "frp": "0.63"
       }
     ],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 94
+      "humidity": 96
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -60,23 +60,23 @@
     "map_google": "https://www.google.com/maps?q=0.4447,101.8905"
   },
   "air": {
-    "us_aqi": 52,
-    "pm2_5": 6.1,
-    "pm10": 6.4,
-    "category": "Sedang",
-    "color": "gold",
-    "aod": 0.49,
+    "us_aqi": 47,
+    "pm2_5": 6.2,
+    "pm10": 6.7,
+    "category": "Baik",
+    "color": "green",
+    "aod": 0.34,
     "dust": 0,
     "haze": "berkabut tipis",
     "haze_color": "gold",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "uv": 5.2,
+    "uv_cat": "sedang"
   },
   "flood": {
     "river_discharge": 190.9,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 196.2,
+    "peak_next3": 219.3,
     "baseline": 284.8,
     "ratio_pct": 67,
     "status": "Normal",
