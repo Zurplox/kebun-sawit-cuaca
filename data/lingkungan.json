@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-06T02:07+08:00",
+  "updated_at": "2026-11-06T11:34+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -9,28 +9,19 @@
     "status": "waspada",
     "warn_km": 50,
     "nearest": {
-      "km": 42.1,
+      "km": 42.4,
       "dir": "selatan",
-      "lat": 0.4447,
-      "lon": 101.8905,
-      "place": "Pangkalan Kerinci, Pelalawan, Riau",
-      "acq": "2026-11-01",
+      "lat": 0.4426,
+      "lon": 101.8894,
+      "place": "Pangkalan Kerinci, Riau",
+      "acq": "2026-11-04",
       "sat": "N20",
       "confidence": "n",
-      "frp": "2.87"
+      "frp": "0.63"
     },
-    "count_within": 2,
+    "count_within": 1,
     "scanned_days": 5,
     "points": [
-      {
-        "lat": 0.4447,
-        "lon": 101.8905,
-        "km": 42.1,
-        "acq": "2026-11-01",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "2.87"
-      },
       {
         "lat": 0.4426,
         "lon": 101.8894,
@@ -44,7 +35,7 @@
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 94
+      "humidity": 95
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -57,26 +48,26 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4447,101.8905"
+    "map_google": "https://www.google.com/maps?q=0.4426,101.8894"
   },
   "air": {
-    "us_aqi": 46,
-    "pm2_5": 8.4,
-    "pm10": 8.8,
+    "us_aqi": 38,
+    "pm2_5": 4.2,
+    "pm10": 4.4,
     "category": "Baik",
     "color": "green",
-    "aod": 0.3,
+    "aod": 0.19,
     "dust": 0,
-    "haze": "berkabut tipis",
-    "haze_color": "gold",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "haze": "cerah",
+    "haze_color": "green",
+    "uv": 5.2,
+    "uv_cat": "sedang"
   },
   "flood": {
     "river_discharge": 189.1,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 216.8,
+    "peak_next3": 278.2,
     "baseline": 253.1,
     "ratio_pct": 75,
     "status": "Normal",
