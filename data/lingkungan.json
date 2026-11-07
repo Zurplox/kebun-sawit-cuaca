@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-07T01:35+08:00",
+  "updated_at": "2026-11-07T11:03+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -51,23 +51,23 @@
     "map_google": "https://www.google.com/maps?q=0.4426,101.8894"
   },
   "air": {
-    "us_aqi": 41,
-    "pm2_5": 4.6,
-    "pm10": 4.7,
+    "us_aqi": 32,
+    "pm2_5": 4.4,
+    "pm10": 4.5,
     "category": "Baik",
     "color": "green",
-    "aod": 0.41,
+    "aod": 0.43,
     "dust": 0,
     "haze": "berkabut tipis",
     "haze_color": "gold",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "uv": 6.7,
+    "uv_cat": "tinggi"
   },
   "flood": {
     "river_discharge": 269.4,
     "unit": "m3/s",
     "trend": "naik",
-    "peak_next3": 334.0,
+    "peak_next3": 356.3,
     "baseline": 245.6,
     "ratio_pct": 110,
     "status": "Normal",
