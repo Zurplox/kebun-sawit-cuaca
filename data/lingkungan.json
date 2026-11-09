@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T21:24+08:00",
+  "updated_at": "2026-11-10T04:59+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -8,17 +8,7 @@
   "fire": {
     "status": "aman",
     "warn_km": 50,
-    "nearest": {
-      "km": 63.9,
-      "dir": "barat",
-      "lat": 0.846,
-      "lon": 101.3919,
-      "place": "Minas, Riau",
-      "acq": "2026-11-05",
-      "sat": "N20",
-      "confidence": "n",
-      "frp": "0.73"
-    },
+    "nearest": null,
     "count_within": 0,
     "scanned_days": 5,
     "points": [],
@@ -37,16 +27,15 @@
       "total_points": 0,
       "source_label": null
     },
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.846,101.3919"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
   },
   "air": {
-    "us_aqi": 36,
-    "pm2_5": 3.9,
-    "pm10": 4.0,
+    "us_aqi": 27,
+    "pm2_5": 3.6,
+    "pm10": 3.7,
     "category": "Baik",
     "color": "green",
-    "aod": 0.24,
+    "aod": 0.19,
     "dust": 0,
     "haze": "cerah",
     "haze_color": "green",
@@ -54,12 +43,12 @@
     "uv_cat": "rendah"
   },
   "flood": {
-    "river_discharge": 389.8,
+    "river_discharge": 392.6,
     "unit": "m3/s",
     "trend": "naik",
     "peak_next3": 448.8,
     "baseline": 245.6,
-    "ratio_pct": 159,
+    "ratio_pct": 160,
     "status": "Tinggi",
     "map": "https://sites.research.google/floods/l/0.816/101.966/9"
   },
@@ -70,43 +59,36 @@
     "km": 69,
     "dir": "timur laut",
     "high": {
-      "h": 2.13,
-      "time": "08:00"
+      "h": 2.2,
+      "time": "09:00"
     },
     "low": {
-      "h": -0.91,
-      "time": "15:00"
+      "h": -0.87,
+      "time": "16:00"
     },
     "extremes": [
       {
         "type": "surut",
-        "h": -0.36,
+        "h": -0.4,
         "time": "03:00"
       },
       {
         "type": "pasang",
-        "h": 2.13,
+        "h": 2.2,
         "time": "09:00"
       },
       {
         "type": "surut",
-        "h": -0.91,
-        "time": "15:00"
+        "h": -0.87,
+        "time": "16:00"
       },
       {
         "type": "pasang",
-        "h": 1.47,
+        "h": 1.35,
         "time": "21:00"
       }
     ],
     "daily": [
-      {
-        "date": "2026-11-09",
-        "high": 2.13,
-        "high_time": "08:00",
-        "low": -0.91,
-        "low_time": "15:00"
-      },
       {
         "date": "2026-11-10",
         "high": 2.2,
@@ -189,7 +171,7 @@
         "date": "2026-11-21",
         "high": 1.58,
         "high_time": "06:00",
-        "low": -0.43,
+        "low": -0.44,
         "low_time": "13:00",
         "est": true
       },
@@ -203,7 +185,7 @@
       },
       {
         "date": "2026-11-23",
-        "high": 2.11,
+        "high": 2.12,
         "high_time": "07:30",
         "low": -0.86,
         "low_time": "14:30",
@@ -211,7 +193,7 @@
       },
       {
         "date": "2026-11-24",
-        "high": 2.3,
+        "high": 2.31,
         "high_time": "08:30",
         "low": -0.98,
         "low_time": "15:00",
@@ -246,7 +228,7 @@
         "high": 2.24,
         "high_time": "11:00",
         "low": -0.65,
-        "low_time": "18:00",
+        "low_time": "17:30",
         "est": true
       },
       {
@@ -267,7 +249,7 @@
       },
       {
         "date": "2026-12-01",
-        "high": 1.46,
+        "high": 1.45,
         "high_time": "14:00",
         "low": -0.16,
         "low_time": "07:30",
@@ -285,7 +267,7 @@
         "date": "2026-12-03",
         "high": 1.22,
         "high_time": "04:00",
-        "low": -0.06,
+        "low": -0.07,
         "low_time": "10:30",
         "est": true
       },
@@ -293,13 +275,13 @@
         "date": "2026-12-04",
         "high": 1.4,
         "high_time": "05:00",
-        "low": -0.19,
+        "low": -0.2,
         "low_time": "11:30",
         "est": true
       },
       {
         "date": "2026-12-05",
-        "high": 1.61,
+        "high": 1.6,
         "high_time": "06:00",
         "low": -0.36,
         "low_time": "13:00",
@@ -327,6 +309,14 @@
         "high_time": "08:00",
         "low": -0.68,
         "low_time": "15:00",
+        "est": true
+      },
+      {
+        "date": "2026-12-09",
+        "high": 2.12,
+        "high_time": "09:00",
+        "low": -0.7,
+        "low_time": "15:30",
         "est": true
       }
     ],
