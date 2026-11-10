@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T04:59+08:00",
+  "updated_at": "2026-11-10T12:44+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -8,14 +8,24 @@
   "fire": {
     "status": "aman",
     "warn_km": 50,
-    "nearest": null,
+    "nearest": {
+      "km": 109.8,
+      "dir": "barat laut",
+      "lat": 1.6725,
+      "lon": 101.475,
+      "place": "Dumai Timur, Riau",
+      "acq": "2026-11-09",
+      "sat": "N20",
+      "confidence": "n",
+      "frp": "2.54"
+    },
     "count_within": 0,
     "scanned_days": 5,
     "points": [],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 92
+      "humidity": 93
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -27,26 +37,27 @@
       "total_points": 0,
       "source_label": null
     },
-    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z"
+    "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
+    "map_google": "https://www.google.com/maps?q=1.6725,101.475"
   },
   "air": {
-    "us_aqi": 27,
-    "pm2_5": 3.6,
-    "pm10": 3.7,
+    "us_aqi": 29,
+    "pm2_5": 3.7,
+    "pm10": 4.3,
     "category": "Baik",
     "color": "green",
-    "aod": 0.19,
+    "aod": 0.25,
     "dust": 0,
     "haze": "cerah",
     "haze_color": "green",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "uv": 5.7,
+    "uv_cat": "sedang"
   },
   "flood": {
     "river_discharge": 392.6,
     "unit": "m3/s",
     "trend": "naik",
-    "peak_next3": 448.8,
+    "peak_next3": 495.6,
     "baseline": 245.6,
     "ratio_pct": 160,
     "status": "Tinggi",
