@@ -1,31 +1,50 @@
 {
-  "updated_at": "2026-11-13T02:27+08:00",
+  "updated_at": "2026-11-13T11:31+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "aman",
+    "status": "waspada",
     "warn_km": 50,
     "nearest": {
-      "km": 109.8,
-      "dir": "barat laut",
-      "lat": 1.6725,
-      "lon": 101.475,
-      "place": "Dumai Timur, Riau",
-      "acq": "2026-11-09",
+      "km": 42.2,
+      "dir": "selatan",
+      "lat": 0.4436,
+      "lon": 101.8916,
+      "place": "Pangkalan Kerinci, Pelalawan, Riau",
+      "acq": "2026-11-12",
       "sat": "N20",
       "confidence": "n",
-      "frp": "2.54"
+      "frp": "2.55"
     },
-    "count_within": 0,
+    "count_within": 2,
     "scanned_days": 5,
-    "points": [],
+    "points": [
+      {
+        "lat": 0.4436,
+        "lon": 101.8916,
+        "km": 42.2,
+        "acq": "2026-11-12",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "2.55"
+      },
+      {
+        "lat": 0.4422,
+        "lon": 101.8892,
+        "km": 42.4,
+        "acq": "2026-11-12",
+        "sat": "N20",
+        "confidence": "n",
+        "frp": "3.06"
+      }
+    ],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 92
+      "humidity": 93
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -38,26 +57,26 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=1.6725,101.475"
+    "map_google": "https://www.google.com/maps?q=0.4436,101.8916"
   },
   "air": {
-    "us_aqi": 45,
-    "pm2_5": 6.9,
-    "pm10": 7.0,
-    "category": "Baik",
-    "color": "green",
-    "aod": 0.33,
+    "us_aqi": 55,
+    "pm2_5": 8.1,
+    "pm10": 8.3,
+    "category": "Sedang",
+    "color": "gold",
+    "aod": 0.24,
     "dust": 0,
-    "haze": "berkabut tipis",
-    "haze_color": "gold",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "haze": "cerah",
+    "haze_color": "green",
+    "uv": 4.5,
+    "uv_cat": "sedang"
   },
   "flood": {
     "river_discharge": 486.5,
     "unit": "m3/s",
     "trend": "naik",
-    "peak_next3": 591.9,
+    "peak_next3": 638.7,
     "baseline": 389.8,
     "ratio_pct": 125,
     "status": "Agak tinggi",
