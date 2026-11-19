@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-19T02:55+08:00",
+  "updated_at": "2026-11-19T12:24+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -11,26 +11,17 @@
     "nearest": {
       "km": 42.2,
       "dir": "selatan",
-      "lat": 0.4444,
-      "lon": 101.89,
-      "place": "Pangkalan Kerinci, Pelalawan, Riau",
-      "acq": "2026-11-14",
+      "lat": 0.4432,
+      "lon": 101.8916,
+      "place": "Pangkalan Kerinci, Riau",
+      "acq": "2026-11-16",
       "sat": "N20",
       "confidence": "n",
-      "frp": "0.98"
+      "frp": "2.19"
     },
-    "count_within": 2,
+    "count_within": 1,
     "scanned_days": 5,
     "points": [
-      {
-        "lat": 0.4444,
-        "lon": 101.89,
-        "km": 42.2,
-        "acq": "2026-11-14",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "0.98"
-      },
       {
         "lat": 0.4432,
         "lon": 101.8916,
@@ -57,26 +48,26 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4444,101.89"
+    "map_google": "https://www.google.com/maps?q=0.4432,101.8916"
   },
   "air": {
-    "us_aqi": 29,
-    "pm2_5": 1.7,
-    "pm10": 1.7,
+    "us_aqi": 31,
+    "pm2_5": 7.7,
+    "pm10": 7.9,
     "category": "Baik",
     "color": "green",
-    "aod": 0.19,
+    "aod": 0.32,
     "dust": 0,
-    "haze": "cerah",
-    "haze_color": "green",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "haze": "berkabut tipis",
+    "haze_color": "gold",
+    "uv": 8.2,
+    "uv_cat": "sangat tinggi"
   },
   "flood": {
     "river_discharge": 825.0,
     "unit": "m3/s",
     "trend": "stabil",
-    "peak_next3": 921.6,
+    "peak_next3": 980.8,
     "baseline": 784.2,
     "ratio_pct": 105,
     "status": "Normal",
