@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22T01:40+08:00",
+  "updated_at": "2026-11-22T11:22+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -60,17 +60,17 @@
     "map_google": "https://www.google.com/maps?q=0.442,101.8928"
   },
   "air": {
-    "us_aqi": 41,
-    "pm2_5": 3.8,
-    "pm10": 3.9,
+    "us_aqi": 32,
+    "pm2_5": 2.2,
+    "pm10": 2.2,
     "category": "Baik",
     "color": "green",
-    "aod": 0.2,
+    "aod": 0.1,
     "dust": 0,
     "haze": "cerah",
     "haze_color": "green",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "uv": 3.5,
+    "uv_cat": "sedang"
   },
   "flood": {
     "river_discharge": 976.2,
