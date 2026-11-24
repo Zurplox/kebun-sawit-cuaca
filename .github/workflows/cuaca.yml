@@ -2,15 +2,13 @@ name: Cuaca Kebun (harian)
 
 on:
   schedule:
-    # Kirim 3x sehari di jam "ganjil" (menit non-bulat) biar tidak pas jam bulat.
+    # Kirim 2x sehari, 12 jam terpisah, di jam "ganjil" (menit non-bulat).
     # Waktu Singapura (SGT = UTC+8):
     #   07:32 SGT  ->  cron "32 23" (UTC hari sebelumnya)
-    #   12:47 SGT  ->  cron "47 4"
-    #   18:23 SGT  ->  cron "23 10"
+    #   19:32 SGT  ->  cron "32 11"
     # notify.py punya jeda minimum antar-kirim (MIN_GAP_HOURS) biar tidak dobel.
     - cron: "32 23 * * *"
-    - cron: "47 4 * * *"
-    - cron: "23 10 * * *"
+    - cron: "32 11 * * *"
   workflow_dispatch: {}
 
 permissions:
