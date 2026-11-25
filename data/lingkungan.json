@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T05:28+08:00",
+  "updated_at": "2026-11-25T13:36+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -19,7 +19,7 @@
       "confidence": "n",
       "frp": "4.12"
     },
-    "count_within": 3,
+    "count_within": 1,
     "scanned_days": 5,
     "points": [
       {
@@ -30,24 +30,6 @@
         "sat": "N20",
         "confidence": "n",
         "frp": "4.12"
-      },
-      {
-        "lat": 0.442,
-        "lon": 101.8928,
-        "km": 42.4,
-        "acq": "2026-11-20",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.53"
-      },
-      {
-        "lat": 0.4426,
-        "lon": 101.889,
-        "km": 42.4,
-        "acq": "2026-11-20",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "1.53"
       }
     ],
     "weather_risk": {
@@ -69,23 +51,23 @@
     "map_google": "https://www.google.com/maps?q=0.4428,101.8906"
   },
   "air": {
-    "us_aqi": 48,
-    "pm2_5": 5.4,
-    "pm10": 5.5,
+    "us_aqi": 42,
+    "pm2_5": 6.0,
+    "pm10": 6.1,
     "category": "Baik",
     "color": "green",
-    "aod": 0.27,
+    "aod": 0.23,
     "dust": 0,
     "haze": "cerah",
     "haze_color": "green",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "uv": 5.5,
+    "uv_cat": "sedang"
   },
   "flood": {
     "river_discharge": 720.1,
     "unit": "m3/s",
     "trend": "turun",
-    "peak_next3": 786.0,
+    "peak_next3": 880.0,
     "baseline": 850.1,
     "ratio_pct": 85,
     "status": "Normal",
