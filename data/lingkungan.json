@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T04:37+08:00",
+  "updated_at": "2026-11-26T13:19+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
@@ -35,7 +35,7 @@
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 94
+      "humidity": 90
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -51,17 +51,17 @@
     "map_google": "https://www.google.com/maps?q=0.4428,101.8906"
   },
   "air": {
-    "us_aqi": 49,
-    "pm2_5": 10.2,
-    "pm10": 10.3,
+    "us_aqi": 39,
+    "pm2_5": 4.5,
+    "pm10": 4.6,
     "category": "Baik",
     "color": "green",
-    "aod": 0.15,
+    "aod": 0.16,
     "dust": 0,
     "haze": "cerah",
     "haze_color": "green",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "uv": 9.2,
+    "uv_cat": "sangat tinggi"
   },
   "flood": {
     "river_discharge": 825.0,
