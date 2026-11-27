@@ -1,41 +1,31 @@
 {
-  "updated_at": "2026-11-27T04:28+08:00",
+  "updated_at": "2026-11-27T13:15+08:00",
   "farm": {
     "lat": 0.81573,
     "lon": 101.96621,
     "name": "Kebun Sawit (Rawang Air Putih)"
   },
   "fire": {
-    "status": "waspada",
+    "status": "aman",
     "warn_km": 50,
     "nearest": {
-      "km": 42.3,
-      "dir": "selatan",
-      "lat": 0.4428,
-      "lon": 101.8906,
-      "place": "Pangkalan Kerinci, Riau",
-      "acq": "2026-11-22",
+      "km": 103.3,
+      "dir": "barat laut",
+      "lat": 1.3718,
+      "lon": 101.2222,
+      "place": "Bathin Solapan, Riau",
+      "acq": "2026-11-26",
       "sat": "N20",
       "confidence": "n",
-      "frp": "4.12"
+      "frp": "0.74"
     },
-    "count_within": 1,
+    "count_within": 0,
     "scanned_days": 5,
-    "points": [
-      {
-        "lat": 0.4428,
-        "lon": 101.8906,
-        "km": 42.3,
-        "acq": "2026-11-22",
-        "sat": "N20",
-        "confidence": "n",
-        "frp": "4.12"
-      }
-    ],
+    "points": [],
     "weather_risk": {
       "level": "rendah",
       "dry_streak": 0,
-      "humidity": 95
+      "humidity": 96
     },
     "sipongi": {
       "status": "tidak tersedia",
@@ -48,20 +38,20 @@
       "source_label": null
     },
     "map": "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@101.966,0.816,9z",
-    "map_google": "https://www.google.com/maps?q=0.4428,101.8906"
+    "map_google": "https://www.google.com/maps?q=1.3718,101.2222"
   },
   "air": {
-    "us_aqi": 39,
-    "pm2_5": 6.0,
-    "pm10": 6.1,
+    "us_aqi": 40,
+    "pm2_5": 4.4,
+    "pm10": 4.5,
     "category": "Baik",
     "color": "green",
-    "aod": 0.14,
+    "aod": 0.13,
     "dust": 0,
     "haze": "cerah",
     "haze_color": "green",
-    "uv": 0.0,
-    "uv_cat": "rendah"
+    "uv": 9.8,
+    "uv_cat": "sangat tinggi"
   },
   "flood": {
     "river_discharge": 1296.2,
